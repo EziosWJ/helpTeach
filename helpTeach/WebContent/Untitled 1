@@ -1,0 +1,18 @@
+    			$.ajax({
+    				url:'',
+    				type:'POST',
+    				data: formData,
+    				dataType:'json',
+    				success: function(data){
+    					if(data.code === '200'){
+    					    var host = window.location.host;
+    					    var projectName = "/jfinal";
+    					    var req = '/mui_nim/tabbar.html';
+    					    contextPath = "http://" + host + projectName + req;
+    						var uc = {};
+    						uc.accid = data.content.uc.ucAccid;
+    						uc.token = data.content.uc.ucToken;
+    						window.location.href = contextPath + uc;
+    					}
+    				}
+    			})

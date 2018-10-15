@@ -1,0 +1,6 @@
+{
+  "bar":[
+    {"name":"心理情况查看","fa":"fa-plus","src":"archivesMgmRenderer.launchTest()"},
+    {"name":"查看心理测评情况","fa":"fa-search","src":"archivesMgmRenderer.testResultList()"}
+  ]
+}

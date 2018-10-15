@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/mui.picker.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css"/>
+		<style>
+			
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<i class="mui-icon mui-icon-left-nav mui-pull-left" id="back-main"></i>
+			<h1 class="mui-title">IMchat</h1>
+		</header>
+		<!--<header class="mui-bar mui-bar-nav">-->
+			<!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+			<!--<h1 class="mui-title">底部选项卡-div模式</h1>-->
+		<!--</header>-->
+		<nav class="mui-bar mui-bar-tab" id="main_nav">
+			<a class="mui-tab-item mui-active" href="#tabbar-with-menu">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat">
+				<span class="mui-icon mui-icon-email"><span id="mui_badge_num" class="mui-badge">1</span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-contact">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">通讯录</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">设置</span>
+			</a>
+		</nav>
+		<div class="mui-content" id="main_content">
+			<div id="tabbar-with-menu" class="mui-control-content mui-active">
+				<!--页面主结构开始-->
+				<!--功能页面容器-->
+				<div id="main-container"></div>
+				<!--轮播-->
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../images/04.jpg">
+								<p class="mui-slider-title">基层管理建设</p>
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/01.jpg">
+								<p class="mui-slider-title">召开全省动员大会</p>
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/02.jpg">
+								<p class="mui-slider-title">食堂卫生监督检查</p>
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/03.jpg">
+								<p class="mui-slider-title">认真贯彻思想教育</p>
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/04.jpg">
+								<p class="mui-slider-title">干部下基层</p>
+							</a>
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../images/01.jpg">
+								<p class="mui-slider-title">召开全省动员大会</p>
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator mui-text-right">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				<!--轮播结束-->
+				<ul id="menu-bar" class="mui-table-view mui-grid-view mui-grid-9">
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+                        <!--<span class="mui-icon fa fa-home"></span>-->
+						<!--<div class="mui-media-body">心理测试</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>-->
+						<!--<div class="mui-media-body">评测以及</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-chatbubble"></span>-->
+						<!--<div class="mui-media-body">Chat</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-location"></span>-->
+						<!--<div class="mui-media-body">location</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-search"></span>-->
+						<!--<div class="mui-media-body">Search</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-phone"></span>-->
+						<!--<div class="mui-media-body">Phone</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-gear"></span>-->
+						<!--<div class="mui-media-body">Setting</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-info"></span>-->
+						<!--<div class="mui-media-body">about</div></a></li>-->
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">-->
+						<!--<span class="mui-icon mui-icon-more"></span>-->
+						<!--<div class="mui-media-body">more</div></a></li>-->
+				</ul>
+				<!--页面主结构结束-->
+			</div>
+
+
+			<div id="tabbar-with-chat" class="mui-control-content">
+				<div class="title">消息列表</div>
+				
+				<ul class="mui-table-view mui-table-view-chevron" id="sessionList">
+					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 1</a></li>
+					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 2</a></li>
+					<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 3</a></li>
+				</ul>
+				
+			</div>
+			<div id="tabbar-with-contact" class="mui-control-content">
+				<div class="title">通讯录</div>
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" id="chat-contact-list">
+
+			</ul>
+			</div>
+			<div id="tabbar-with-map" class="mui-control-content">
+				<div class="title">常见的设置</div>
+				<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						新消息通知
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						隐私
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						通用
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						关于IM
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell" id="mui-logout-btn">
+					<a style="text-align: center;color: #FF3B30;">
+						退出登录
+					</a>
+				</li>
+			</ul>
+			</div>
+		</div>
+		<div class="mui-content" id="chat_canvas">
+
+
+		</div>
+		<footer id="chat_footer">
+			<div class="footer-left">
+				<input type="file" accept="image/*" id='chat_msg-image' class="mui-icon mui-icon-image" style="font-size: 28px;display: none"/>
+				<i id='chat_msg-sendImage' class="mui-icon mui-icon-image" style="font-size: 28px;"></i>
+			</div>
+			<div class="footer-center">
+				<textarea id='chat_msg-text' type="text" class='input-text'></textarea>
+			</div>
+			<label for="" class="footer-right">
+				<i id='chat_msg-sendText' class="mui-icon mui-icon-paperplane"></i>
+			</label>
+		</footer>
+	</body>
+
+
+	<script src="../js/jquery.min.js"></script>
+
+	<script src="../app/utils.js"></script>
+	<script src="../app/picker.js"></script>
+	<script src="../js/app.js"></script>
+	<script src="../app/renderer.js"></script>
+
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.view.js"></script>
+	<script src="../js/mui.picker.min.js"></script>
+
+	<script src="../js/NIM_Web_NIM_v5.3.0.js"></script>
+    <script type="text/javascript" src="//wap.cmread.com/rbc/t/content/repository/ues/js/s109/vconsole.js"></script>
+    <script type="text/javascript">
+        var vConsole=new VConsole();
+    </script>
+	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+
+
+	<script type="text/javascript">
+        /**
+		 * 隐藏的FileUpload绑定到发送图片的单击事件上
+         */
+        $(function () {
+            $('#chat_msg-sendImage').click(function () {
+                return $('#chat_msg-image').click();
+            });
+            $('#mui-logout-btn').click(function () {
+                window.location.href=contextPath + "/userCase/logout"
+            });
+        })
+
+
+        // var chatMoudle = {
+        // 	'chat_canvas':{
+        //
+        // 	},
+        // 	'chat_footer':{
+        // 	    'div':{
+        // 	        'class':'footer-left',
+        // 			'i':{
+        //
+        // 			}
+        // 		}
+        // 	}
+        // };
+	</script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+
+        var appKey = '358259c12ef46fa86bb83e62ef763b83';
+        var account = '';
+        var token = '';
+
+$(function(){
+   var host = window.location.host;
+   var projectName = "/helpTeach";
+   var contextPath = "http://" + host + projectName;
+   $.ajax({
+       url:contextPath + '/userCase/init',
+       type:'POST',
+       dataType:'json',
+       async : false,//同步请求，锁住浏览器
+       success : function (data) {
+       	var data = data;
+           console.log(data);
+           if(data.code != 555){
+               account = data.content.uc.ucAccid;
+               token = data.content.uc.ucToken;
+               getNIM();//连接IM平台
+           }else{
+               window.location.href = contextPath + '/nim_mui/page/login.html';
+           }
+       }
+   });
+})
+		/**
+                聊天参数
+            onConversation 会话是否开启参数
+            chat_account 会话对象accid参数
+            chat_sessionId example：p2p-wangjian
+		**/
+        var chatParam = {
+            onConversation : false,
+            chat_account : '',
+            chat_sessionId : ''
+        }
+		// var onConversation = false;
+		// var chat_account = '';
+		// var chat_sessionId = '';
+		//聊天画布
+        var $canvas = $('#chat_canvas');
+
+        var data = {
+            msgs:{}
+		};
+        // 注意这里, 引入的 SDK 文件不一样的话, 你可能需要使用 SDK.NIM.getInstance 来调用接口
+        var nim = null;
+        function getNIM() {
+            nim = NIM.getInstance({
+                // debug: true,
+                appKey: appKey,
+                account: account,
+                token: token,
+                onconnect: onConnect,
+                onwillreconnect: onWillReconnect,
+                ondisconnect: onDisconnect,
+                onerror: onError,
+                //msg
+                onroamingmsgs: onRoamingMsgs,
+                onofflinemsgs: onOfflineMsgs,
+                onmsg: onMsg,
+                //friends
+                onfriends: onFriends,
+                //session
+                onsessions: onSessions,
+                onupdatesession: onUpdateSession
+            });
+        }
+        function onConnect() {
+            console.log('连接成功');
+        }
+        function onWillReconnect(obj) {
+            // 此时说明 SDK 已经断开连接, 请开发者在界面上提示用户连接已断开, 而且正在重新建立连接
+            console.log('即将重连');
+            console.log(obj.retryCount);
+            console.log(obj.duration);
+        }
+        function onDisconnect(error) {
+            // 此时说明 SDK 处于断开状态, 开发者此时应该根据错误码提示相应的错误信息, 并且跳转到登录页面
+            console.log('丢失连接');
+            console.log(error);
+            if (error) {
+                switch (error.code) {
+                    // 账号或者密码错误, 请跳转到登录页面并提示错误
+                    case 302:
+                        break;
+                    // 重复登录, 已经在其它端登录了, 请跳转到登录页面并提示错误
+                    case 417:
+                        break;
+                    // 被踢, 请提示错误后跳转到登录页面
+                    case 'kicked':
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        function onError(error) {
+            console.log(error);
+        }
+
+        //msg
+        function onRoamingMsgs(obj) {
+            console.log('收到漫游消息', obj);
+            pushMsg(obj.msgs);
+        }
+        function onOfflineMsgs(obj) {
+            console.log('收到离线消息', obj);
+            pushMsg(obj.msgs);
+        }
+        function onMsg(msg) {
+            console.log('收到消息', msg.scene, msg.type, msg);
+            pushMsg(msg);
+            //是否使用进行聊天界面渲染
+            if (chatParam.onConversation && (msg.from === chatParam.chat_account.toString())){
+                renderMsgToUI(msg);
+            }
+
+
+            // switch (msg.type) {
+            //     case 'text':
+            //
+            //         break;
+            //     case 'image':
+            //
+            //         break;
+            //     case 'custom':
+            //
+            //         onCustomMsg(msg);
+            //         break;
+            //     case 'notification':
+            //         // 处理群通知消息
+            //         onTeamNotificationMsg(msg);
+            //         break;
+            //     // 其它case
+            //     default:
+            //         break;
+            // }
+        }
+        function pushMsg(msgs) {
+            if (!Array.isArray(msgs)) { msgs = [msgs]; }
+            // var sessionId = msgs[0].scene + '-' + msgs[0].from;
+            var sessionId = msgs[0].sessionId;
+            data.msgs = data.msgs || {};
+            data.msgs[sessionId] = nim.mergeMsgs(data.msgs[sessionId], msgs);
+        }
+        function onCustomMsg(msg) {
+            // 处理自定义消息
+        }
+
+
+        //sendMessage - in p2p
+
+        var sendMessage_p2p = {
+            sendText_p2p: function () {
+                            var text = document.getElementById('chat_msg-text').value;
+                            var msg = nim.sendText({
+                                scene: 'p2p',
+                                to: chatParam.chat_account,
+                                text: text,
+                                done: sendMessage_p2p.sendDone_p2p
+                            });
+                            console.log('正在发送p2p text消息, id=' + msg.idClient);
+                            pushMsg(msg);
+                        },
+
+            sendImga_p2p: function () {
+                            var fileInput = document.getElementById('chat_msg-image');
+                           nim.sendFile({
+                               scene: 'p2p',
+                               to: chatParam.chat_account,
+                               type: 'image',
+                               fileInput: fileInput,
+                               beginupload: function(upload) {
+                                   // - 如果开发者传入 fileInput, 在此回调之前不能修改 fileInput
+                                   // - 在此回调之后可以取消图片上传, 此回调会接收一个参数 `upload`, 调用 `upload.abort();` 来取消文件上传
+                               },
+                               uploadprogress: function(obj) {
+                                   console.log('文件总大小: ' + obj.total + 'bytes');
+                                   console.log('已经上传的大小: ' + obj.loaded + 'bytes');
+                                   console.log('上传进度: ' + obj.percentage);
+                                   console.log('上传进度文本: ' + obj.percentageText);
+                               },
+                               uploaddone: function(error, file) {
+                                   console.log(error);
+                                   console.log(file);
+                                   console.log('上传' + (!error?'成功':'失败'));
+                               },
+                               beforesend: function(msg) {
+                                   console.log('正在发送p2p image消息, id=' + msg.idClient);
+                                   pushMsg(msg);
+                               },
+                               done: sendMessage_p2p.sendDone_p2p
+                           });
+            },
+
+            sendDone_p2p: function (error, msg) {
+                                console.log(error);
+                                console.log(msg);
+                                console.log('发送' + msg.scene + ' ' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient);
+                                pushMsg(msg);
+
+                                switch (msg.type){
+                                    case 'text':
+                                        document.getElementById('chat_msg-text').value = '';
+                                        break;
+                                    case 'image':
+                                        document.getElementById('chat_msg-image').value = '';
+                                        break;
+                                    default:
+                                        console.log('未定义该类型输出渲染器：' + msg.type);
+                                        break;
+
+                                }
+
+                                renderMsgToUI(msg);
+
+            }
+        }
+        //注册发送信息按钮
+        document.getElementById('chat_msg-sendText').addEventListener('click',sendMessage_p2p.sendText_p2p,false);
+        //注册发送图片按钮
+        document.getElementById('chat_msg-image').addEventListener('change',sendMessage_p2p.sendImga_p2p,false);
+
+        //sendText
+        // document.getElementById('chat_msg-sendText').addEventListener('click',sendTextMsg,false);
+        // function sendTextMsg() {
+		 //    var text = document.getElementById('chat_msg-text').value;
+        //     var msg = nim.sendText({
+        //         scene: 'p2p',
+        //         to: chat_account,
+        //         text: text,
+        //         done: sendMsgDone
+        //     });
+        //     console.log('正在发送p2p text消息, id=' + msg.idClient);
+        //     pushMsg(msg);
+        //
+        //     // var $p = $('<p></p>').text(msg.text);
+        //     // var $time = $('<p></p>').text(msg.time);
+        //     // $canvas.append($time).append($p);
+        //     // document.getElementById('chat_msg-text').value = '';
+        // }
+        //
+        // function sendMsgDone(error, msg) {
+        //     console.log(error);
+        //     console.log(msg);
+        //     console.log('发送' + msg.scene + ' ' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient);
+        //     pushMsg(msg);
+        //     var $p = null;
+        //     var $time = null;
+        //     if(msg.type === 'text'){
+        //         $p = $('<p></p>').text(msg.text);
+        //         $time = $('<p></p>').text(msg.time);
+        //         $canvas.append($time).append($p);
+        //         //文本节点恢复初始化
+        //         document.getElementById('chat_msg-text').value = '';
+			// }
+			// if(msg.type === 'image'){
+        //         var $img = $('<img/>').attr('src',msg.file.url).addClass('chat-image');
+        //         var $div = $('<div></div>').addClass('chat-image-box').append($img);
+        //         $p = $('<p></p>').append($div);
+        //         $time = $('<p></p>').text(msg.time);
+        //         $canvas.append($time).append($p);
+        //         //图片节点恢复初始化
+        //         document.getElementById('chat_msg-image').value = '';
+			// }
+        //
+        //
+        // }
+
+        //sendImage
+
+		// function sendImageMsg() {
+		//     var fileInput = document.getElementById('chat_msg-image');
+         //    nim.sendFile({
+         //        scene: 'p2p',
+         //        to: chat_account,
+         //        type: 'image',
+         //        fileInput: fileInput,
+         //        beginupload: function(upload) {
+         //            // - 如果开发者传入 fileInput, 在此回调之前不能修改 fileInput
+         //            // - 在此回调之后可以取消图片上传, 此回调会接收一个参数 `upload`, 调用 `upload.abort();` 来取消文件上传
+         //        },
+         //        uploadprogress: function(obj) {
+         //            console.log('文件总大小: ' + obj.total + 'bytes');
+         //            console.log('已经上传的大小: ' + obj.loaded + 'bytes');
+         //            console.log('上传进度: ' + obj.percentage);
+         //            console.log('上传进度文本: ' + obj.percentageText);
+         //        },
+         //        uploaddone: function(error, file) {
+         //            console.log(error);
+         //            console.log(file);
+         //            console.log('上传' + (!error?'成功':'失败'));
+         //        },
+         //        beforesend: function(msg) {
+         //            console.log('正在发送p2p image消息, id=' + msg.idClient);
+         //            pushMsg(msg);
+         //        },
+         //        done: sendMsgDone
+         //    });
+
+        // }
+        //Friends
+        function onFriends(friends) {
+            console.log('收到好友列表', friends);
+            data.friends = nim.mergeFriends(data.friends, friends);
+            data.friends = nim.cutFriends(data.friends, friends.invalid);
+            refreshFriendsUI();
+        }
+        function refreshFriendsUI() {
+            // 刷新界面
+			renderFriendsUI(data.friends)
+        }
+
+        //Session
+        function onSessions(sessions) {
+            console.log('收到会话列表', sessions);
+            data.sessions = nim.mergeSessions(data.sessions, sessions);
+            updateSessionsUI();
+        }
+        function onUpdateSession(session) {
+            console.log('会话更新了', session);
+            data.sessions = nim.mergeSessions(data.sessions, session);
+            updateSessionsUI();
+        }
+        function updateSessionsUI() {
+            // 刷新界面
+            renderSessionListToUI(data.sessions);
+        }
+        /**
+		 * core javascript
+		 * author: wangjian
+		 * date: 2018年7月7日  18时45分59秒
+		 *
+         */
+
+
+		function renderFriendsUI(friends) {
+            var ul = $('#chat-contact-list');
+            ul.empty();
+            $.each(friends,function (i,friend) {
+                var li = '\t\t\t\t<li class="mui-table-view-cell" onclick="chatWith('+ friend.account +')">\n' +
+                    '\t\t\t\t\t<div class="mui-slider-cell">\n' +
+                    '\t\t\t\t\t\t<div class="oa-contact-cell mui-table">\n' +
+                    '\t\t\t\t\t\t\t<div class="oa-contact-avatar mui-table-cell">\n' +
+                    '\t\t\t\t\t\t\t\t<img src="../images/60x60.gif" />\n' +
+                    '\t\t\t\t\t\t\t</div>\n' +
+                    '\t\t\t\t\t\t\t<div class="oa-contact-content mui-table-cell">\n' +
+                    '\t\t\t\t\t\t\t\t<div class="mui-clearfix">\n' +
+                    '\t\t\t\t\t\t\t\t\t<h4 class="oa-contact-name">'+ friend.account +'</h4>\n' +
+                    '\t\t\t\t\t\t\t\t\t<span class="oa-contact-position mui-h6">' + '职务:' + '</span>\n' +
+                    '\t\t\t\t\t\t\t\t</div>\n' +
+                    '\t\t\t\t\t\t\t\t<p class="oa-contact-email mui-h6">\n' +
+                    '\t\t\t\t\t\t\t\t\t静芳@bangjiao.com\n' +
+                    '\t\t\t\t\t\t\t\t</p>\n' +
+                    '\t\t\t\t\t\t\t</div>\n' +
+                    '\t\t\t\t\t\t</div>\n' +
+                    '\t\t\t\t\t</div>\n' +
+                    '\t\t\t\t</li>';
+                ul.append(li);
+
+            })
+
+        }
+        //p2p聊天点击事件 这么使用必须放置于renderFriendsUI之前
+        // var chat_p2p = {
+        //         chatwith: function (personTalk) {
+        //                         $(document).ready(function () {
+        //                             $('#main_nav').css('display','none');
+        //                             $('#main_content').css('display','none');
+        //                         })
+        //                         onConversation = true;
+        //                         chat_account = personTalk;
+        //                         chat_sessionId = 'p2p-' + personTalk ;
+        //                         $canvas.empty();
+        //                         var msgs = data.msgs;
+        //                         renderMsgToUI(msgs);
+        //                         document.getElementById('back-main').addEventListener('click',backMain,false);
+        //         }
+        // };
+        function chatWith(personTalk) {
+            $(document).ready(function () {
+                $('#main_nav').css('display','none');
+                $('#main_content').css('display','none');
+            })
+
+            chatParam.onConversation = true;
+            chatParam.chat_account = personTalk;
+            chatParam.chat_sessionId = 'p2p-' + personTalk ;
+            $canvas.empty();
+            nim.setCurrSession(chatParam.chat_sessionId);
+            var msgs = data.msgs;
+            if(msgs.hasOwnProperty(chatParam.chat_sessionId)){
+                $.each(msgs[chatParam.chat_sessionId],function (i,msg) {
+                    renderMsgToUI(msg);
+                })
+            }
+            document.getElementById('back-main').addEventListener('click',backMain,false);
+        }
+
+
+        //聊天内容输出渲染器
+        function renderMsgToUI(msg) {
+            var isSelf = false;
+            var pull = '';
+            var name = msg.target;
+            var time = tptoRealDate(msg.time);
+		    if(msg.flow === 'out'){
+		        isSelf = true;
+                name = msg.from;
+                pull = 'mui-text-right';
+            }
+            console.log(name+time);
+            var $head = $("<p></p>").text(name + ' ' + time);
+            switch (msg.type){
+                case 'text':
+                    var $p = $('<p></p>').text(msg.text);
+                    var $canva = $('<div></div>').addClass(pull).append($head).append($p);
+                    $canvas.append($canva);
+                    break;
+
+                case 'image':
+                    var $img = $('<img/>').attr('src',msg.file.url).addClass('chat-image');
+                    var $div = $('<div></div>').addClass('chat-image-box').append($img);
+                    var $p = $('<p></p>').append($div);
+                    var $canva = $('<div></div>').addClass(pull).append($head).append($p);
+                    $canvas.append($canva);
+                    break;
+                default:
+                    console.log('未定义该类型输出渲染器：' + msg.type);
+                    break;
+
+            }
+        }
+        //时间戳转换真实时间
+        function tptoRealDate(tp) {
+            var time = new Date(tp);
+            var y = time.getFullYear();
+            var m = time.getMonth()+1;
+            var d = time.getDate();
+            var h = time.getHours();
+            var mm = time.getMinutes();
+            var s = time.getSeconds();
+            return y+'-'+m+'-'+d+' '+h+':'+mm+':'+s;
+        }
+        //聊天页面返回主页 ‘<’ 事件
+		function backMain(){
+            $('#main_nav').css('display','');
+            $('#main_content').css('display','');
+            document.getElementById('back-main').removeEventListener('click',backMain,false);
+
+            nim.resetCurrSession();
+            $canvas.empty();
+            chatParam.chat_account = '';
+            chatParam.chat_sessionId = '';
+            chatParam.onConversation = false;
+		}
+
+		//会话列表渲染器
+        function renderSessionListToUI(sessions) {
+		    $('#mui_badge_num').text(sessions.unread);
+            var ul = $('#sessionList');
+            ul.empty();
+            $.each(sessions,function (i,session) {
+            //<li class="mui-table-view-cell"><a href="" class="mui-navigate-right">Item 1</a></li>
+                var li = '<li class="mui-table-view-cell" onclick=" chatWith(' + session.to +')"><a  class="mui-navigate-right">' + session.to +'</a></li>';
+                ul.append(li);
+            })
+        }
+
+
+
+	</script>
+</html>

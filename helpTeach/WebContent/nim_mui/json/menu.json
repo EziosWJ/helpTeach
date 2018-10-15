@@ -1,0 +1,29 @@
+{
+  "nav":[
+    {"name":"心理测试","fa":"fa-heart","src":"archivesMgm/mindMgm"},
+    {"name":"心理疏导","fa":"fa-coffee","src":"archivesMgm/lead"},
+    {"name":"风险评估","fa":"fa-warning","src":"archivesMgm/riskResultList"},
+    {"name":"帮教方案","fa":"fa-check-square-o","src":"archivesMgm/helpPlanResultList"},
+    {"name":"帮教回访","fa":"fa-id-badge","src":"archivesMgm/helpVisit"},
+    {"name":"奖惩管理","fa":"fa-glass","src":"#"},
+    {"name":"考察意见","fa":"fa-lightbulb-o","src":"#"}
+  ],
+  "nav1":[
+    {"name":"日常报道","fa":"fa-calendar-check-o","src":"helpEducate/signOn"},
+    {"name":"外出请假","fa":"fa-cab","src":"helpEducate/leave"},
+    {"name":"走访调查","fa":"fa-binoculars","src":"helpEducate/investigation"},
+    {"name":"劳动谈话","fa":"fa-american-sign-language-interpreting","src":"helpEducate/labourTalk"},
+    {"name":"社区服务","fa":"fa-wheelchair","src":"helpEducate/serviceList"},
+    {"name":"违规违纪","fa":"fa-warning","src":"#"},
+    {"name":"评定意见","fa":"fa-pencil-square","src":"helpEducate/opinionList"}
+  ],
+  "nav2":[
+    {"name":"在线教育","fa":"fa-internet-explorer","src":"helpOper/onlineEdu"},
+    {"name":"帮教进程","fa":"fa-hourglass-half","src":"helpOper/process"},
+    {"name":"帮教结果","fa":"fa-file-word-o","src":"helpOper/helpResult"},
+    {"name":"帮教申诉","fa":"fa-hand-stop-o","src":"helpOper/appeal"}
+  ],
+  "nav3":[
+    {"name":"查看帮教进程","fa":"fa-hourglass-half","src":"helpOper/process"}
+  ]
+}
