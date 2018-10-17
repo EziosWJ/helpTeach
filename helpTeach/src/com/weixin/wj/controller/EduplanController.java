@@ -1,6 +1,5 @@
 package com.weixin.wj.controller;
 
-import java.util.List;
 
 import com.jfinal.core.Controller;
 
