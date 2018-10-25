@@ -1,6 +1,8 @@
 package com.weixin.wj.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.HttpKit;
 import com.weixin.wj.model.Usercase;
 import com.weixin.wj.service.UserCaseService;
 import com.weixin.wj.service.impl.UserCaseServiceImpl;
@@ -16,9 +18,10 @@ public class UserCaseController extends Controller{
 		
 	}
 	public void login(){
+		String readData = HttpKit.readData(getRequest());
 		Usercase usercase = new Usercase();
-		usercase.setUcName(getPara("ucName"));
-		usercase.setUcPassword(getPara("ucPassword"));
+		usercase.setUcName(JSONObject.parseObject(readData).getString("ucName"));
+		usercase.setUcPassword(JSONObject.parseObject(readData).getString("ucPassword"));
 		MsgResponse msgResponse = userCaseService.login(usercase);
 		setSessionAttr("session_uc",(Usercase) msgResponse.getContent().get("uc"));
 		renderJson(msgResponse);
