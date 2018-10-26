@@ -8,7 +8,7 @@ import com.weixin.wj.service.UserCaseService;
 import com.weixin.wj.service.impl.UserCaseServiceImpl;
 import com.weixin.wj.util.MsgResponse;
 
-public class UserCaseController extends Controller{
+public class UserCaseController extends WController{
 	private UserCaseService userCaseService = new UserCaseServiceImpl();
 	public void index() {
 		
@@ -18,10 +18,7 @@ public class UserCaseController extends Controller{
 		
 	}
 	public void login(){
-		String readData = HttpKit.readData(getRequest());
-		UserCaseModel usercase = new UserCaseModel();
-		usercase.setUcName(JSONObject.parseObject(readData).getString("ucName"));
-		usercase.setUcPassword(JSONObject.parseObject(readData).getString("ucPassword"));
+		UserCaseModel usercase = getByBean(UserCaseModel.class);
 		MsgResponse msgResponse = userCaseService.login(usercase);
 		setSessionAttr("session_uc",(UserCaseModel) msgResponse.getContent().get("uc"));
 		renderJson(msgResponse);

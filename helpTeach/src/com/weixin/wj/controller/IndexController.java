@@ -21,8 +21,8 @@ public class IndexController extends WController {
 	}
 	public void menu(){
 //		String role = ((Usercase)getSessionAttr("session_uc")).getUcRole();
-		String readData = HttpKit.readData(getRequest());
-		String role = JSONObject.parseObject(readData).getString("role");
+//		String readData = HttpKit.readData(getRequest());
+		String role = getPara("role");
 		renderJson(menuService.getMenuList(role));
 //		renderJson(menuService.getMenuList(role));
 	}

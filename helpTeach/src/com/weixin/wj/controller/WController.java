@@ -4,6 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.HttpKit;
 
+/**
+ * 山一程，水一程，身向榆关那畔行~
+ * @author wangj
+ * 
+ */
 public class WController extends Controller {
 
 	/**
@@ -17,13 +22,30 @@ public class WController extends Controller {
 	
 	/**
 	 * 通过key获取请求中json字串key对应的value
-	 * @param key
+	 * @param  jsonString key
 	 * @return value
 	 */
-	public String readJsonValue(String key){
-		String jsonData = readJsonData();
-		JSONObject jsonObject = JSONObject.parseObject(jsonData);
+	public String readJsonValue(String jsonString,String key){
+		JSONObject jsonObject = JSONObject.parseObject(jsonString);
 		return jsonObject.getString(key);
+	}
+	
+	/**
+	 * 直接通过setter方法对应参数获取请求的formData，转换成Bean
+	 * @param BeanClass
+	 * @return Bean that u need
+	 */
+	public <T> T getByBean(Class<T> BeanClass){
+		return getBean((Class<T>) BeanClass, "");
+	}
+	/**
+	 * 
+	 * @param BeanClass
+	 * @param skipConvertError 
+	 * @return
+	 */
+	public <T> T getByBean(T BeanClass,Boolean skipConvertError){
+		return getBean((Class<T>) BeanClass, "",skipConvertError);
 	}
 	
 	

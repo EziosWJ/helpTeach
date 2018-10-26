@@ -6,13 +6,12 @@ import java.util.List;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.weixin.wj.model.UserCaseModel;
-import com.weixin.wj.service.ServiceSupport;
 import com.weixin.wj.service.UserCaseService;
 import com.weixin.wj.util.MsgResponse;
 
 import nim.api.server.NIMService;
 
-public class UserCaseServiceImpl extends ServiceSupport implements UserCaseService {
+public class UserCaseServiceImpl implements UserCaseService {
 
 	private static UserCaseModel dao = new UserCaseModel().dao();
 
@@ -25,7 +24,7 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 	}
 	@Override
 	public MsgResponse login(UserCaseModel usercase) {
-		String sql = "SELECT * FROM hae_usercase where ucName = ? and ucPassword = ?";
+		String sql = "SELECT * FROM hae_user_case_model where ucName = ? and ucPassword = ?";
 		UserCaseModel uc = dao.findFirst(sql, usercase.getUcName(),usercase.getUcPassword());
 		return reMsg(uc);
 	}
@@ -45,7 +44,7 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 	@Override
 	public MsgResponse getAll() {
 		try {
-			String sql = "SELECT * FROM hae_usercase";
+			String sql = "SELECT * FROM hae_user_case_model";
 			return MsgResponse.success().put("userList", dao.find(sql));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,22 +101,9 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 	}
 	@Override
 	public MsgResponse regist(UserCaseModel usercase) {
-		List<UserCaseModel> ucList = dao.find("SELECT ucNAME FROM hae_usercase where ucName = ?",usercase.getUcName());
-		if(ucList.size()<1){
-			try {
-				String res = NIMService.createUser(usercase.getUcName());
-				JSONObject jsonObject = JSONObject.parseObject(res);
-				JSONObject info = jsonObject.getJSONObject("info");
-				String token = info.getString("token");
-				usercase.setUcToken(token);
-				usercase.setUcAccid(usercase.getUcName());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return excuseOperate(usercase.save());
-		}
-		return MsgResponse.fail();
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 }

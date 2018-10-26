@@ -13,7 +13,7 @@ public class MenuServiceImpl implements MenuService {
 	private MenuModel dao = new MenuModel().dao();
 	@Override
 	public MsgResponse getMenuList(String mRole) {
-		String sql = "select * from hae_menu where mRole = ?";
+		String sql = "select * from hae_menu_model where mRole = ?";
 		List<MenuModel> mainMenu = new ArrayList<>();
 		List<MenuModel> firstMenu = new ArrayList<>();		
 		for (MenuModel menu : dao.find(sql, mRole)){
