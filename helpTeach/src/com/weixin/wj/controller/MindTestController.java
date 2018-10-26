@@ -6,7 +6,7 @@ import com.jfinal.core.Controller;
 import com.weixin.wj.service.impl.MindTestQstServiceImpl;
 import com.weixin.wj.util.MsgResponse;
 
-public class MindTestController extends Controller {
+public class MindTestController extends WController {
 	
 	private MindTestQstServiceImpl qstServiceImpl = new MindTestQstServiceImpl();
 	

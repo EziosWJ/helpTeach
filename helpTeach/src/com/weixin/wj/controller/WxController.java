@@ -3,7 +3,7 @@ package com.weixin.wj.controller;
 import com.jfinal.core.Controller;
 import com.weixin.wj.util.Auth;
 
-public class WxController extends Controller {
+public class WxController extends WController {
 
 	public void index() {
 		String reqMethod = getRequest().getMethod();

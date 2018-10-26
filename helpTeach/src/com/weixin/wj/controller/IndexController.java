@@ -7,7 +7,7 @@ import com.weixin.wj.service.MenuService;
 import com.weixin.wj.service.impl.MenuServiceImpl;
 
 
-public class IndexController extends Controller {
+public class IndexController extends WController {
 	private MenuService menuService = new MenuServiceImpl();
 	public void index() {
 		redirect("/nim_mui/page/login.html");

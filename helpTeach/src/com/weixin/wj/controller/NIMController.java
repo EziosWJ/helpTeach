@@ -6,7 +6,7 @@ import com.jfinal.core.Controller;
 
 import nim.api.server.NIMService;
 
-public class NIMController extends Controller {
+public class NIMController extends WController {
 	
 	public void index(){
 		
