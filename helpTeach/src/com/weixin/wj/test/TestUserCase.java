@@ -1,10 +1,13 @@
 package com.weixin.wj.test;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.weixin.wj.model.MindLeadModel;
 import com.weixin.wj.model.UserCaseModel;
 import com.weixin.wj.service.UserCaseService;
 import com.weixin.wj.service.impl.UserCaseServiceImpl;
@@ -52,6 +55,16 @@ public class TestUserCase {
 		usercase.setUcPassword("000000");
 		System.out.println(usercase.toJson());
 		System.out.println(ucService.update(usercase));
+		
+	}
+	@Test
+	public void testModel() {
+		MindLeadModel leadModel = new MindLeadModel();
+		Map<String, Object> map = new HashMap<>();
+		map.put("teacherId", 5);
+		map.put("teacherName", "lijie");
+		leadModel._setAttrs(map);
+		System.out.println("model:" +leadModel.toJson());
 		
 	}
 
