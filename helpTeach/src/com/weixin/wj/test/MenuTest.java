@@ -1,7 +1,6 @@
 package com.weixin.wj.test;
 
-import static org.junit.Assert.*;
-
+import com.weixin.wj.model.MenuModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import org.junit.Test;
 
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
-import com.weixin.wj.model.Menu;
 import com.weixin.wj.model._MappingKit;
 import com.weixin.wj.service.MenuService;
 import com.weixin.wj.service.impl.MenuServiceImpl;
@@ -28,10 +26,10 @@ public class MenuTest {
 	public void getMenu(){
 		init();
 		MsgResponse msg = menuService.getMenuList("2");
-		List<Menu> menuList = new ArrayList<>();
-		List<Menu> mainMenu = new ArrayList<>();
-		List<Menu> firstMenu = new ArrayList<>();		
-		for (Menu menu : (List<Menu>) msg.getContent().get("menuList")){
+		List<MenuModel> menuList = new ArrayList<>();
+		List<MenuModel> mainMenu = new ArrayList<>();
+		List<MenuModel> firstMenu = new ArrayList<>();		
+		for (MenuModel menu : (List<MenuModel>) msg.getContent().get("menuList")){
 			if(menu.getMParentId().toString().startsWith("0")){
 				System.out.println("========main目录=========");
 				System.out.println(menu.toJson());

@@ -1,7 +1,7 @@
 package com.weixin.wj.service;
 
-import com.weixin.wj.model.Userrecord;
+import com.weixin.wj.model.UserRecordModel;
 
-public interface UserRecordService extends BaseService<Userrecord> {
+public interface UserRecordService extends BaseService<UserRecordModel> {
 
 }

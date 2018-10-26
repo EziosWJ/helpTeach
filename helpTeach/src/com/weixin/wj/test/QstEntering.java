@@ -1,7 +1,6 @@
 package com.weixin.wj.test;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -19,11 +18,11 @@ import org.junit.Test;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.weixin.wj.enums.MindQst;
-import com.weixin.wj.model.Mindtestqst;
+import com.weixin.wj.model.MindTestQstModel;
 import com.weixin.wj.model._MappingKit;
 //不确定%3
 public class QstEntering {
-	private static Mindtestqst dao = new Mindtestqst().dao();
+	private static MindTestQstModel dao = new MindTestQstModel().dao();
 	
 	public static void main(String[] args) {
     
@@ -32,7 +31,7 @@ public class QstEntering {
 	}
 	@Test
 	public void qstEnter(){
-		Mindtestqst mtq = new Mindtestqst();
+		MindTestQstModel mtq = new MindTestQstModel();
 		
 	    // 创建HttpClient对象
         HttpClient hClient = new DefaultHttpClient();

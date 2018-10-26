@@ -3,7 +3,7 @@
  */
 package com.weixin.wj.service.impl;
 
-import com.weixin.wj.model.Userrecord;
+import com.weixin.wj.model.UserRecordModel;
 import com.weixin.wj.service.ServiceSupport;
 import com.weixin.wj.service.UserRecordService;
 import com.weixin.wj.util.MsgResponse;
@@ -13,7 +13,7 @@ import com.weixin.wj.util.MsgResponse;
  *
  */
 public class UserRecordServiceImpl extends ServiceSupport implements UserRecordService {
-	private static final Userrecord dao = new Userrecord().dao();
+	private static final UserRecordModel dao = new UserRecordModel().dao();
 	/* (non-Javadoc)
 	 * @see com.weixin.wj.service.BaseService#getById(int)
 	 */
@@ -42,7 +42,7 @@ public class UserRecordServiceImpl extends ServiceSupport implements UserRecordS
 	 * @see com.weixin.wj.service.BaseService#instert(java.lang.Object)
 	 */
 	@Override
-	public MsgResponse instert(Userrecord t) {
+	public MsgResponse instert(UserRecordModel t) {
 		return super.excuseOperate(t.save());
 	}
 
@@ -50,7 +50,7 @@ public class UserRecordServiceImpl extends ServiceSupport implements UserRecordS
 	 * @see com.weixin.wj.service.BaseService#update(java.lang.Object)
 	 */
 	@Override
-	public MsgResponse update(Userrecord t) {
+	public MsgResponse update(UserRecordModel t) {
 		// TODO Auto-generated method stub
 		return super.excuseOperate(t.update());
 	}
@@ -68,7 +68,7 @@ public class UserRecordServiceImpl extends ServiceSupport implements UserRecordS
 	 * @see com.weixin.wj.service.BaseService#delete(java.lang.Object)
 	 */
 	@Override
-	public MsgResponse delete(Userrecord t) {
+	public MsgResponse delete(UserRecordModel t) {
 		
 		return super.excuseOperate(t.delete());
 	}
@@ -78,7 +78,7 @@ public class UserRecordServiceImpl extends ServiceSupport implements UserRecordS
 	 */
 	@Override
 	public MsgResponse deleteById(int id) {
-		return super.excuseOperate(new Userrecord().deleteById(id));
+		return super.excuseOperate(new UserRecordModel().deleteById(id));
 	}
 
 }

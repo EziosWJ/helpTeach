@@ -3,8 +3,6 @@ package com.weixin.wj.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jfinal.plugin.activerecord.Model;
-
 public class MsgResponse {
 	
 	private int code;

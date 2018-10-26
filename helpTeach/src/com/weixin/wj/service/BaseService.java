@@ -1,7 +1,5 @@
 package com.weixin.wj.service;
 
-import java.util.List;
-
 import com.weixin.wj.util.MsgResponse;
 
 public interface BaseService<T> {

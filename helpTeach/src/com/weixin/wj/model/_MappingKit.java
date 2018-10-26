@@ -16,13 +16,13 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class _MappingKit {
 	
 	public static void mapping(ActiveRecordPlugin arp) {
-		arp.addMapping("dede_diyform2", "id", DedeDiyform2.class);
-		arp.addMapping("hae_menu", "mId", Menu.class);
-		arp.addMapping("hae_mindtestqst", "mtqId", Mindtestqst.class);
-		arp.addMapping("hae_sheet", "SheetName", Sheet.class);
-		arp.addMapping("hae_usercase", "ucId", Usercase.class);
-		arp.addMapping("hae_userrecord", "urId", Userrecord.class);
-		arp.addMapping("test", "id", Test.class);
+		arp.addMapping("hae_menu_model", "mId", MenuModel.class);
+		arp.addMapping("hae_mind_lead_model", "mdId", MindLeadModel.class);
+		arp.addMapping("hae_mind_test_model", "mtId", MindTestModel.class);
+		arp.addMapping("hae_mind_test_qst_model", "mtqId", MindTestQstModel.class);
+		arp.addMapping("hae_risk_model", "rkId", RiskModel.class);
+		arp.addMapping("hae_user_case_model", "ucId", UserCaseModel.class);
+		arp.addMapping("hae_user_record_model", "urId", UserRecordModel.class);
 	}
 }
 

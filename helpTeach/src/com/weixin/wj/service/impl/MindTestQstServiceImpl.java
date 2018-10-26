@@ -2,14 +2,14 @@ package com.weixin.wj.service.impl;
 
 import java.util.List;
 
-import com.weixin.wj.model.Mindtestqst;
+import com.weixin.wj.model.MindTestQstModel;
 
 public class MindTestQstServiceImpl {
 
-	private static final Mindtestqst dao = new Mindtestqst().dao();
+	private static final MindTestQstModel dao = new MindTestQstModel().dao();
 	
-	public List<Mindtestqst> getQstList(String type){
-		List<Mindtestqst> list = dao.find("select * from hae_mindtestqst where mtqType = ?", type);
+	public List<MindTestQstModel> getQstList(String type){
+		List<MindTestQstModel> list = dao.find("select * from hae_mindtestqst where mtqType = ?", type);
 		return list;
 	}
 }

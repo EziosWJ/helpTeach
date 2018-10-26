@@ -3,10 +3,9 @@ package com.weixin.wj.service.impl;
 import java.io.IOException;
 import java.util.List;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.plugin.activerecord.ActiveRecordException;
-import com.weixin.wj.model.Usercase;
+import com.weixin.wj.model.UserCaseModel;
 import com.weixin.wj.service.ServiceSupport;
 import com.weixin.wj.service.UserCaseService;
 import com.weixin.wj.util.MsgResponse;
@@ -15,9 +14,9 @@ import nim.api.server.NIMService;
 
 public class UserCaseServiceImpl extends ServiceSupport implements UserCaseService {
 
-	private static Usercase dao = new Usercase().dao();
+	private static UserCaseModel dao = new UserCaseModel().dao();
 
-	private MsgResponse reMsg(Usercase uc){
+	private MsgResponse reMsg(UserCaseModel uc){
 		if(null != uc){
 			return MsgResponse.success().put("uc", uc);
 		}else{
@@ -25,15 +24,15 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 		}
 	}
 	@Override
-	public MsgResponse login(Usercase usercase) {
+	public MsgResponse login(UserCaseModel usercase) {
 		String sql = "SELECT * FROM hae_usercase where ucName = ? and ucPassword = ?";
-		Usercase uc = dao.findFirst(sql, usercase.getUcName(),usercase.getUcPassword());
+		UserCaseModel uc = dao.findFirst(sql, usercase.getUcName(),usercase.getUcPassword());
 		return reMsg(uc);
 	}
 
 	@Override
 	public MsgResponse getById(int id) {
-		Usercase uc = dao.findById(id);
+		UserCaseModel uc = dao.findById(id);
 		return reMsg(uc);
 	}
 
@@ -55,9 +54,9 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 	}
 
 	@Override
-	public MsgResponse instert(Usercase t) {
+	public MsgResponse instert(UserCaseModel t) {
 		try{
-			System.out.println(new Usercase()._setAttrs(t).save());
+			System.out.println(new UserCaseModel()._setAttrs(t).save());
 			return MsgResponse.success();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -66,9 +65,9 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 	}
 
 	@Override
-	public MsgResponse update(Usercase t) {
+	public MsgResponse update(UserCaseModel t) {
 		try{
-			new Usercase()._setAttrs(t).update();
+			new UserCaseModel()._setAttrs(t).update();
 			return MsgResponse.success();
 		}catch(ActiveRecordException e){
 //			e.printStackTrace();
@@ -86,7 +85,7 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 	}
 
 	@Override
-	public MsgResponse delete(Usercase t) {
+	public MsgResponse delete(UserCaseModel t) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -94,7 +93,7 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 	@Override
 	public MsgResponse deleteById(int id) {
 		try{
-			new Usercase().deleteById(id);
+			new UserCaseModel().deleteById(id);
 			return MsgResponse.success();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -102,8 +101,8 @@ public class UserCaseServiceImpl extends ServiceSupport implements UserCaseServi
 		}
 	}
 	@Override
-	public MsgResponse regist(Usercase usercase) {
-		List<Usercase> ucList = dao.find("SELECT ucNAME FROM hae_usercase where ucName = ?",usercase.getUcName());
+	public MsgResponse regist(UserCaseModel usercase) {
+		List<UserCaseModel> ucList = dao.find("SELECT ucNAME FROM hae_usercase where ucName = ?",usercase.getUcName());
 		if(ucList.size()<1){
 			try {
 				String res = NIMService.createUser(usercase.getUcName());
