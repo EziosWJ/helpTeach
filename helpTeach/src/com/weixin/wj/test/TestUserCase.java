@@ -1,6 +1,10 @@
 package com.weixin.wj.test;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
@@ -65,6 +69,21 @@ public class TestUserCase {
 		map.put("teacherName", "lijie");
 		leadModel._setAttrs(map);
 		System.out.println("model:" +leadModel.toJson());
+		
+	}
+	
+	@Test
+	public void testReflectField() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		UserCaseModel model = new UserCaseModel();
+		Class<?> beanClass = model.getClass().getSuperclass().getSuperclass();
+		Method[] methods = beanClass.getDeclaredMethods();
+		for (Method method : methods) {
+//			System.out.println(method.getName());
+		}
+		Method method = beanClass.getDeclaredMethod("set",String.class, Object.class);
+		method.setAccessible(true);
+		method.invoke(model, "ucId","213");
+		System.out.println(model);
 		
 	}
 

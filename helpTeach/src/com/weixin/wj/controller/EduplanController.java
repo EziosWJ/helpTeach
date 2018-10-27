@@ -1,9 +1,15 @@
 package com.weixin.wj.controller;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Model;
 import com.weixin.wj.model.MindLeadModel;
 import com.weixin.wj.service.impl.EduplanServiceImp;
 import com.weixin.wj.util.MsgResponse;
@@ -17,7 +23,14 @@ public class EduplanController extends WController{
 	}
 	
 	public void putMindLead(){
-		MindLeadModel mindLeadModel = getByBean(MindLeadModel.class);
+		MindLeadModel mindLeadModel = new MindLeadModel();
+		try {
+			mindLeadModel = getByBeanIgoneArrayZero(MindLeadModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		boolean p = eduplanServiceImp.putMindLead(mindLeadModel);
 		if(p){
 			renderJson(MsgResponse.success());

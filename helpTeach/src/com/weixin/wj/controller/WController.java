@@ -1,8 +1,16 @@
 package com.weixin.wj.controller;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.HttpKit;
+import com.jfinal.plugin.activerecord.Model;
 
 /**
  * 山一程，水一程，身向榆关那畔行~
@@ -37,6 +45,38 @@ public class WController extends Controller {
 	 */
 	public <T> T getByBean(Class<T> BeanClass){
 		return getBean((Class<T>) BeanClass, "");
+	}
+	/**
+	 * 直接通过setter方法对应参数获取请求的formData，转换成Bean
+	 * @param <T>
+	 * @param BeanClass
+	 * @return Bean that u need
+	 * @throws NoSuchMethodException 
+	 * @throws SecurityException 
+	 * @throws InvocationTargetException 
+	 * @throws NoSuchFieldException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
+	 */
+	public <T> T getByBeanIgoneArrayZero(Class<T> BeanClass) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		T t = getBean((Class<T>) BeanClass, "");
+		Map<String, String[]> map = getParaMap();
+		Set<String> set = map.keySet();
+		Iterator<String> it = set.iterator();
+		while (it.hasNext()) {
+			String key = (String) it.next();
+			String realKey = key.substring(0, key.length()-3);
+			String[] value =  map.get(key);
+			if(key.trim().endsWith("[0]")){
+//				Field f = t.getClass().getDeclaredField(realKey);
+//				f.setAccessible(true);
+//				f.set(t, getPara(realKey));//没有声明
+				Method method = Model.class.getDeclaredMethod("set",String.class,Object.class);
+				method.invoke(t, realKey,value[0]);
+			}
+			
+		}
+		return t;
 	}
 	/**
 	 * 

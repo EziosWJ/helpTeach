@@ -1,6 +1,7 @@
 package jfinal.config.routes;
 
 import com.jfinal.config.Routes;
+import com.weixin.wj.controller.ComController;
 import com.weixin.wj.controller.EduplanController;
 import com.weixin.wj.controller.HelpEducationController;
 import com.weixin.wj.controller.IndexController;
@@ -15,6 +16,7 @@ public class HelloRoutes extends Routes {
 		// TODO Auto-generated method stub
 		add("/",IndexController.class);
 		add("/eduplan",EduplanController.class);
+		add("/com",ComController.class);
 		add("/hae",HelpEducationController.class);
 		add("/userCase",UserCaseController.class);
 		add("/NIM",NIMController.class);
