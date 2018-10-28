@@ -16,7 +16,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class _MappingKit {
 	
 	public static void mapping(ActiveRecordPlugin arp) {
-		arp.addMapping("hae_leave_record_model", "reId", LeaveRecordModel.class);
+		arp.addMapping("hae_eduplan_model", "epId", EduplanModel.class);
 		arp.addMapping("hae_menu_model", "mId", MenuModel.class);
 		arp.addMapping("hae_mind_lead_model", "mdId", MindLeadModel.class);
 		arp.addMapping("hae_mind_test_model", "mtId", MindTestModel.class);

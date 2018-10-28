@@ -12,7 +12,9 @@ public class ComController extends WController {
 	public void index(){
 		
 	}
-	
+	/**
+	 * 查询被帮教人列表
+	 */
 	public void getByTheHelperList(){
 		String id = getPara("ucId");
 		List<?> list = comServiceImpl.getByTheHelperList();
