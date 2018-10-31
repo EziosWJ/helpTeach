@@ -5,9 +5,9 @@ import com.weixin.wj.controller.ComController;
 import com.weixin.wj.controller.EduplanController;
 import com.weixin.wj.controller.HelpEducationController;
 import com.weixin.wj.controller.IndexController;
-import com.weixin.wj.controller.LeaveRecordController;
 import com.weixin.wj.controller.MindTestController;
 import com.weixin.wj.controller.NIMController;
+import com.weixin.wj.controller.RecordController;
 import com.weixin.wj.controller.UserCaseController;
 
 public class HelloRoutes extends Routes {
@@ -17,8 +17,8 @@ public class HelloRoutes extends Routes {
 		// TODO Auto-generated method stub
 		add("/",IndexController.class);
 		add("/eduplan",EduplanController.class);
+		add("/record",RecordController.class);
 		add("/com",ComController.class);
-		add("/record",LeaveRecordController.class);
 		add("/hae",HelpEducationController.class);
 		add("/userCase",UserCaseController.class);
 		add("/NIM",NIMController.class);

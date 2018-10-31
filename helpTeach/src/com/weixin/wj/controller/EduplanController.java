@@ -11,7 +11,10 @@ import java.util.Set;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Model;
 import com.weixin.wj.model.EduplanModel;
+import com.weixin.wj.model.InvOptionModel;
 import com.weixin.wj.model.MindLeadModel;
+import com.weixin.wj.model.RevisitModel;
+import com.weixin.wj.model.RewardPunishModel;
 import com.weixin.wj.model.RiskModel;
 import com.weixin.wj.service.impl.EduplanServiceImp;
 import com.weixin.wj.util.MsgResponse;
@@ -84,11 +87,90 @@ public class EduplanController extends WController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		eduplanServiceImp.putEduplan(eduplanModel);
+		boolean flag = eduplanServiceImp.putEduplan(eduplanModel);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else {
+			renderJson(MsgResponse.fail());
+		}
 	}
 	
 	public void getEduplanList(){
 		renderJson(MsgResponse.success().put("eduplanList", eduplanServiceImp.getEduplanList()));
+	}
+	
+	/**
+	 * 帮教回访
+	 */
+	public void putRevisit(){
+		RevisitModel revisitModel = new RevisitModel();
+		try {
+			revisitModel = getByBeanIgoneArrayZero(RevisitModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = eduplanServiceImp.putReVisit(revisitModel);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else {
+			renderJson(MsgResponse.fail());
+		}
+		
+	}
+	
+	public void getRevisitList(){
+		renderJson(MsgResponse.success().put("revisitList", eduplanServiceImp.getReVisitList()));
+	}
+	
+	/**
+	 * 奖惩管理
+	 */
+	public void putRewardPunish(){
+		RewardPunishModel rewardPunishModel = new RewardPunishModel();
+		try {
+			rewardPunishModel = getByBeanIgoneArrayZero(RewardPunishModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = eduplanServiceImp.putRewardPunish(rewardPunishModel);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	
+	public void getRewardPunishList() {
+		renderJson(MsgResponse.success().put("rewardPunishList", eduplanServiceImp.getRewardPunishList()));
+	}
+	
+	/**
+	 * 考察意见
+	 */
+	public void putInvOption(){
+		InvOptionModel invOptionModel = new InvOptionModel();
+		try {
+			invOptionModel = getByBeanIgoneArrayZero(InvOptionModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = eduplanServiceImp.putInvOption(invOptionModel);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else {
+			renderJson(MsgResponse.fail());
+		}
+	}
+	
+	public void getInvOptionList() {
+		renderJson(MsgResponse.success().put("invOptionList", eduplanServiceImp.getInvOptionList()));
+		
 	}
 
 }
