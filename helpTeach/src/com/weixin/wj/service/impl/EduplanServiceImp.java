@@ -32,6 +32,11 @@ public class EduplanServiceImp {
 		return mindLeadModel;
 	}
 	
+	public MindLeadModel getMindLeadByRecent(String mdReciver){
+		MindLeadModel mindLeadModel = mindLeadDao.findFirst("select * from hae_mind_lead_model where mdReciver = ? ",mdReciver);
+		return mindLeadModel;
+	}
+	
 	public List<?> getMindLeadList(){
 		return mindLeadDao.find("select * from hae_mind_lead_model");
 	}

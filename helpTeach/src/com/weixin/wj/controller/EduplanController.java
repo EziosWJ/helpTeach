@@ -47,6 +47,10 @@ public class EduplanController extends WController{
 		}
 	}
 	
+	public void getMindLeadByRecent() {
+		renderJson(MsgResponse.success().put("mindLead", eduplanServiceImp.getMindLeadByRecent(getPara("mdReciver"))));
+	}
+	
 	public void getMindLeadList(){
 		List<?> list = eduplanServiceImp.getMindLeadList();
 		renderJson(MsgResponse.success().put("mindLeadList", list));
