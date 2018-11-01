@@ -16,18 +16,21 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class _MappingKit {
 	
 	public static void mapping(ActiveRecordPlugin arp) {
-		arp.addMapping("hae_archive_record_model", "urId", ArchiveRecordModel.class);
-		arp.addMapping("hae_daily_check_in_model", "diId", DailyCheckInModel.class);
-		arp.addMapping("hae_eduplan_model", "epId", EduplanModel.class);
-		arp.addMapping("hae_inv_option_model", "ioId", InvOptionModel.class);
+		arp.addMapping("hae_community_service_model", "csId", CommunityServiceModel.class);
+		arp.addMapping("hae_foul_record_model", "frId", FoulRecordModel.class);
+		arp.addMapping("hae_interview_record_model", "irId", InterviewRecordModel.class);
+		arp.addMapping("hae_labour_education_model", "leId", LabourEducationModel.class);
+		arp.addMapping("hae_leave_record_model", "reId", LeaveRecordModel.class);
 		arp.addMapping("hae_menu_model", "mId", MenuModel.class);
 		arp.addMapping("hae_mind_lead_model", "mdId", MindLeadModel.class);
 		arp.addMapping("hae_mind_test_model", "mtId", MindTestModel.class);
 		arp.addMapping("hae_mind_test_qst_model", "mtqId", MindTestQstModel.class);
+		arp.addMapping("hae_opinion_record_model", "orId", OpinionRecordModel.class);
 		arp.addMapping("hae_revisit_model", "rvId", RevisitModel.class);
 		arp.addMapping("hae_reward_punish_model", "rpId", RewardPunishModel.class);
 		arp.addMapping("hae_risk_model", "rkId", RiskModel.class);
 		arp.addMapping("hae_user_case_model", "ucId", UserCaseModel.class);
+		
 	}
 }
 

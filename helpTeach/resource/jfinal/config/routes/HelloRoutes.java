@@ -5,6 +5,7 @@ import com.weixin.wj.controller.ComController;
 import com.weixin.wj.controller.EduplanController;
 import com.weixin.wj.controller.HelpEducationController;
 import com.weixin.wj.controller.IndexController;
+import com.weixin.wj.controller.LeaveRecordController;
 import com.weixin.wj.controller.MindTestController;
 import com.weixin.wj.controller.NIMController;
 import com.weixin.wj.controller.RecordController;
