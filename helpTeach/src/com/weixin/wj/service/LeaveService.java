@@ -9,6 +9,6 @@ public interface LeaveService extends BaseService<LeaveRecordModel>{
 	
 	
 
-	List<?> getucid(int ucid);
+	List<?> getucid();
 	
 }

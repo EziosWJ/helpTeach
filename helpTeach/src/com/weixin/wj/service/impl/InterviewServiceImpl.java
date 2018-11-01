@@ -64,10 +64,10 @@ public class InterviewServiceImpl implements InterviewService{
 	}
 
 	@Override
-	public List<?> getucid(int ucid) {
+	public List<?> getucid() {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM hae_interview_record_model where ucId=?";
-		List<InterviewRecordModel> lr =  dao.find(sql,ucid);
+		String sql = "SELECT * FROM hae_interview_record_model order by irId desc";
+		List<InterviewRecordModel> lr =  dao.find(sql);
 		return  lr;
 	}
 

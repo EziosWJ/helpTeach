@@ -6,6 +6,6 @@ import com.weixin.wj.model.InterviewRecordModel;
 
 public interface InterviewService extends BaseService<InterviewRecordModel>{
 
-	List<?> getucid(int ucid);
+	List<?> getucid();
 
 }

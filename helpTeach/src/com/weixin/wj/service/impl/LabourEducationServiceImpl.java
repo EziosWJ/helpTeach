@@ -66,10 +66,10 @@ public class LabourEducationServiceImpl implements LabourEducationService{
 	}
 
 	@Override
-	public List<?> getucid(int ucid) {
+	public List<?> getucid() {
 		// TODO Auto-generated method stub
-		String sql = "select * from hae_labour_education_model where ucid = ?";
-		List<LabourEducationModel> le = dao.find(sql,ucid);
+		String sql = "select * from hae_labour_education_model order by leId desc";
+		List<LabourEducationModel> le = dao.find(sql);
 		return le;
 	}
 

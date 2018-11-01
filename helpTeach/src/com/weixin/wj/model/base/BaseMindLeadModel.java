@@ -54,15 +54,6 @@ public abstract class BaseMindLeadModel<M extends BaseMindLeadModel<M>> extends 
 		return get("mdLeadDate");
 	}
 
-	public M setMdLeadResult(java.lang.String mdLeadResult) {
-		set("mdLeadResult", mdLeadResult);
-		return (M)this;
-	}
-	
-	public java.lang.String getMdLeadResult() {
-		return getStr("mdLeadResult");
-	}
-
 	public M setMdCondition(java.lang.String mdCondition) {
 		set("mdCondition", mdCondition);
 		return (M)this;

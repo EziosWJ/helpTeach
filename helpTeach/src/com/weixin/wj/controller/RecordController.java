@@ -40,8 +40,8 @@ public class RecordController extends WController {
 	}
 	//请假记录获取
 	public void getrecord(){
-		int ucid = getParaToInt("ucId");
-		List<?> list = leaveService.getucid(ucid);
+		//int ucid = getParaToInt("ucId");
+		List<?> list = leaveService.getucid();
 		renderJson(MsgResponse.success().put("list", list));
 	}
 	//走访调查添加
@@ -52,8 +52,8 @@ public class RecordController extends WController {
 	}
 	//获取走访调查
 	public void getirterviewrecord(){
-		int ucid  = getParaToInt("ucId");
-		List<?> list = interviewService.getucid(ucid);
+		//int ucid  = getParaToInt("ucId");
+		List<?> list = interviewService.getucid();
 		renderJson(MsgResponse.success().put("list", list));
 	}
 	//劳动教育添加
@@ -67,7 +67,7 @@ public class RecordController extends WController {
 		
 		int ucid = getParaToInt("ucId");
 		
-		List<?> list =  labourService.getucid(ucid);
+		List<?> list =  labourService.getucid();
 		
 		renderJson(MsgResponse.success().put("list", list));
 		

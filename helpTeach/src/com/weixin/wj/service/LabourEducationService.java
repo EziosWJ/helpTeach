@@ -6,7 +6,7 @@ import com.weixin.wj.model.LabourEducationModel;
 
 public interface LabourEducationService extends BaseService<LabourEducationModel> {
 
-	List<?> getucid(int ucid);
+	List<?> getucid();
 															
 
 }

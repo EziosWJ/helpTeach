@@ -71,10 +71,10 @@ public class LeaveServiceImpl implements LeaveService{
 		return null;
 	}
 	@Override
-	public List<?> getucid(int ucid) {
+	public List<?> getucid() {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM hae_leave_record_model where ucId=?";
-		List<LeaveRecordModel> lr =  dao.find(sql,ucid);
+		String sql = "SELECT * FROM hae_leave_record_model order by reId  desc ";
+		List<LeaveRecordModel> lr =  dao.find(sql);
 		return  lr;
 	}
 
