@@ -3,16 +3,14 @@ package com.weixin.wj.controller;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.DailyCheckInModel;
+import com.weixin.wj.model.FoulRecordModel;
 import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.LabourEducationModel;
 import com.weixin.wj.model.LeaveRecordModel;
-import com.weixin.wj.service.InterviewService;
-import com.weixin.wj.service.LabourEducationService;
-import com.weixin.wj.service.LeaveService;
-import com.weixin.wj.service.impl.InterviewServiceImpl;
-import com.weixin.wj.service.impl.LabourEducationServiceImpl;
-import com.weixin.wj.service.impl.LeaveServiceImpl;
+import com.weixin.wj.model.OpinionRecordModel;
+import com.weixin.wj.model.TalkEducationModel;
 import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.util.MsgResponse;
 
@@ -24,54 +22,6 @@ public class RecordController extends WController {
 		
 	}
 	
-	//请假记录
-	private LeaveService  leaveService = new LeaveServiceImpl();
-	//走访调查
-	private InterviewService interviewService = new InterviewServiceImpl();
-	//劳动教育
-	private LabourEducationService labourService = new LabourEducationServiceImpl();
-	//请假记录添加
-	public void add(){
-		
-		LeaveRecordModel  leaverecord = getByBean(LeaveRecordModel.class);
-		
-		MsgResponse msgResponse = leaveService.instert(leaverecord);
-		renderJson(msgResponse);
-	}
-	//请假记录获取
-	public void getrecord(){
-		//int ucid = getParaToInt("ucId");
-		List<?> list = leaveService.getucid();
-		renderJson(MsgResponse.success().put("list", list));
-	}
-	//走访调查添加
-	public void interviewadd(){
-		InterviewRecordModel  interviewrecord  = getByBean(InterviewRecordModel.class);
-		MsgResponse msgResponse = interviewService.instert(interviewrecord);
-		renderJson(msgResponse);
-	}
-	//获取走访调查
-	public void getirterviewrecord(){
-		//int ucid  = getParaToInt("ucId");
-		List<?> list = interviewService.getucid();
-		renderJson(MsgResponse.success().put("list", list));
-	}
-	//劳动教育添加
-	public void workrecordadd(){
-		LabourEducationModel laboureducation = getByBean(LabourEducationModel.class);
-		MsgResponse msResponse = labourService.instert(laboureducation);
-		renderJson(msResponse);
-	}
-	//劳动教育获取
-	public void getworkrecord(){
-		
-		int ucid = getParaToInt("ucId");
-		
-		List<?> list =  labourService.getucid();
-		
-		renderJson(MsgResponse.success().put("list", list));
-		
-	}
 	
 	
 	/**
@@ -93,7 +43,6 @@ public class RecordController extends WController {
 			renderJson(MsgResponse.fail());
 		}
 	}
-	
 	public void getDailyCheckInList(){
 		renderJson(MsgResponse.success().put("dailyCheckInList", recordServiceImpl.getDailyCheckInList()));
 	}
@@ -101,5 +50,160 @@ public class RecordController extends WController {
 	public void getDailyCheckInConditionList(){
 		renderJson(MsgResponse.success().put("dailyCheckInConditionList", recordServiceImpl.getDailyCheckInConditionList()));
 	}
-	
+	/**
+	 * 添加劳动教育
+	 */
+	public void putLabourEducation(){
+		LabourEducationModel laboureducation = getByBean(LabourEducationModel.class);
+		boolean flag = recordServiceImpl.putLabourEducation(laboureducation);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	/**
+	 * 获取劳动教育列表
+	 */
+	public void getLabourEducation(){
+		renderJson(MsgResponse.success().put("labourEducationList", recordServiceImpl.getLabourEducationList()));
+	}
+	/**
+	 * 添加外出请假
+	 */
+	public void putLeaveRecord(){
+		LeaveRecordModel leaveRecord = new LeaveRecordModel();
+		try {
+			 leaveRecord = getByBeanIgoneArrayZero(LeaveRecordModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = recordServiceImpl.putLeaveRecord(leaveRecord);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	/**
+	 * 获取外出请假
+	 */
+	public void getLeaveRecord(){
+		renderJson(MsgResponse.success().put("leaveRecordList", recordServiceImpl.getLeaveRecordList()));
+	}
+	/**
+	 * 添加走访记录
+	 */
+	public void putInterviewRecord() {
+		InterviewRecordModel interviewRecord = new InterviewRecordModel();
+		try {
+			interviewRecord = getByBeanIgoneArrayZero(InterviewRecordModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = recordServiceImpl.putInterviewRecord(interviewRecord);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	/**
+	 * 获取走访记录
+	 */
+	public void getInterviewRecord(){
+		renderJson(MsgResponse.success().put("interviewRecordList", recordServiceImpl.getInterviewRecord()));
+	}
+	/**
+	 * 添加谈话记录
+	 */
+	public void putTalkEducation() {
+		TalkEducationModel talkEducation = new TalkEducationModel();
+		try {
+			talkEducation = getByBeanIgoneArrayZero(TalkEducationModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = recordServiceImpl.putTalkEducation(talkEducation); 
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void getTalkEduction(){
+		renderJson(MsgResponse.success().put("talkEducationList", recordServiceImpl.getTalkEducation()));
+	}
+	/**
+	 * 添加社区服务
+	 */
+	public void putCommiuntyRecord(){
+		CommunityServiceModel community = new CommunityServiceModel();
+		try {
+			community = getByBeanIgoneArrayZero(CommunityServiceModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = recordServiceImpl.putCommunityRecord(community);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void getCommunityRecord(){
+		renderJson(MsgResponse.success().put("communityRecordList", recordServiceImpl.getCommunityRecordList()));
+	}
+	/**
+	 * 添加违规违纪
+	 */
+	public void putFoulRecord(){
+		FoulRecordModel foulRecord = new FoulRecordModel();
+		try {
+			foulRecord = getByBeanIgoneArrayZero(FoulRecordModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = recordServiceImpl.putFoulRecord(foulRecord);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void getFoulRecord(){
+		renderJson(MsgResponse.success().put("foulRecordList", recordServiceImpl.getFoulRecordList()));
+	}
+	/**
+	 * 添加评定意见
+	 */
+	public void putOpinionRecord(){
+		OpinionRecordModel opinionRecord = new OpinionRecordModel();
+		try {
+			opinionRecord = getByBeanIgoneArrayZero(OpinionRecordModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = recordServiceImpl.putOpinionRecord(opinionRecord);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void getOpinionRecord(){
+		renderJson(MsgResponse.success().put("opinionRecordList", recordServiceImpl.getOpinionRecordList()));
+	}
 }

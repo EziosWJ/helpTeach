@@ -45,4 +45,22 @@ public abstract class BaseCommunityServiceModel<M extends BaseCommunityServiceMo
 		return getStr("csReason");
 	}
 
+	public M setUcId(java.lang.Integer ucId) {
+		set("ucId", ucId);
+		return (M)this;
+	}
+	
+	public java.lang.Integer getUcId() {
+		return getInt("ucId");
+	}
+
+	public M setCsPlace(java.lang.String csPlace) {
+		set("csPlace", csPlace);
+		return (M)this;
+	}
+	
+	public java.lang.String getCsPlace() {
+		return getStr("csPlace");
+	}
+
 }

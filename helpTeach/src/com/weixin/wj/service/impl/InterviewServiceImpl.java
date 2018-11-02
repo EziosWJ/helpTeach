@@ -66,7 +66,7 @@ public class InterviewServiceImpl implements InterviewService{
 	@Override
 	public List<?> getucid() {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM hae_interview_record_model order by irId desc";
+		String sql = "SELECT u.ucAccid,ir.irDate,ir.irReason FROM hae_interview_record_model as ir LEFT JOIN hae_user_case_model as u on ir.ucId=u.ucId ORDER BY ir.irId DESC";
 		List<InterviewRecordModel> lr =  dao.find(sql);
 		return  lr;
 	}

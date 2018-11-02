@@ -45,4 +45,13 @@ public abstract class BaseTalkEducationModel<M extends BaseTalkEducationModel<M>
 		return getStr("teReason");
 	}
 
+	public M setUcId(java.lang.Integer ucId) {
+		set("ucId", ucId);
+		return (M)this;
+	}
+	
+	public java.lang.Integer getUcId() {
+		return getInt("ucId");
+	}
+
 }

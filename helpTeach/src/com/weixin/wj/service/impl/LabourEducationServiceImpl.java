@@ -68,7 +68,7 @@ public class LabourEducationServiceImpl implements LabourEducationService{
 	@Override
 	public List<?> getucid() {
 		// TODO Auto-generated method stub
-		String sql = "select * from hae_labour_education_model order by leId desc";
+		String sql = "select u.ucAccid,le.leDate,le.leReason from hae_labour_education_model as le LEFT JOIN hae_user_case_model as u on le.ucId=u.ucId order by le.leId desc";
 		List<LabourEducationModel> le = dao.find(sql);
 		return le;
 	}
