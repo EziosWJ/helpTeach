@@ -60,6 +60,6 @@ public class LeaveRecordController extends WController{
 		List<?> list =  labourService.getucid();
 		
 		renderJson(MsgResponse.success().put("list", list));
-		
 	}
+	
 }

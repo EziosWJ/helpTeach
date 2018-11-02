@@ -45,4 +45,13 @@ public abstract class BaseOpinionRecordModel<M extends BaseOpinionRecordModel<M>
 		return getStr("orReason");
 	}
 
+	public M setUcId(java.lang.Integer ucId) {
+		set("ucId", ucId);
+		return (M)this;
+	}
+	
+	public java.lang.Integer getUcId() {
+		return getInt("ucId");
+	}
+
 }

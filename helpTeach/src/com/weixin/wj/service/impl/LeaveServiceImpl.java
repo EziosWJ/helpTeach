@@ -73,7 +73,7 @@ public class LeaveServiceImpl implements LeaveService{
 	@Override
 	public List<?> getucid() {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM hae_leave_record_model order by reId  desc ";
+		String sql = "SELECT u.ucAccid,lr.reDate,lr.reReason FROM hae_leave_record_model as lr LEFT JOIN hae_user_case_model as u on lr.ucId=u.ucId ORDER BY lr.reId DESC ";
 		List<LeaveRecordModel> lr =  dao.find(sql);
 		return  lr;
 	}
