@@ -31,7 +31,6 @@ public class _MappingKit {
 		arp.addMapping("hae_risk_model", "rkId", RiskModel.class);
 		arp.addMapping("hae_talk_education_model", "teId", TalkEducationModel.class);
 		arp.addMapping("hae_user_case_model", "ucId", UserCaseModel.class);
-		arp.addMapping("hae_user_record_model", "urId", UserRecordModel.class);
 	}
 }
 
