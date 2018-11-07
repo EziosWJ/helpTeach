@@ -10,7 +10,7 @@ import com.weixin.wj.service.impl.MenuServiceImpl;
 public class IndexController extends WController {
 	private MenuService menuService = new MenuServiceImpl();
 	public void index() {
-		redirect("/nim_mui/page/login.html");
+		redirect("/index.html");
 		//Support initMenu()
 //		String role = ((Usercase)getSessionAttr("session_uc")).getUcRole();
 //		renderJson(menuService.getMenuList(role));

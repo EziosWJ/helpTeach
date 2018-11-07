@@ -36,6 +36,24 @@ public abstract class BaseInvOptionModel<M extends BaseInvOptionModel<M>> extend
 		return getStr("ioTitle");
 	}
 
+	public M setIoCreateDate(java.util.Date ioCreateDate) {
+		set("ioCreateDate", ioCreateDate);
+		return (M)this;
+	}
+	
+	public java.util.Date getIoCreateDate() {
+		return get("ioCreateDate");
+	}
+
+	public M setIoResult(java.lang.String ioResult) {
+		set("ioResult", ioResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getIoResult() {
+		return getStr("ioResult");
+	}
+
 	public M setIoContent(java.lang.String ioContent) {
 		set("ioContent", ioContent);
 		return (M)this;
@@ -52,24 +70,6 @@ public abstract class BaseInvOptionModel<M extends BaseInvOptionModel<M>> extend
 	
 	public java.lang.String getIoReciver() {
 		return getStr("ioReciver");
-	}
-
-	public M setIoResult(java.lang.String ioResult) {
-		set("ioResult", ioResult);
-		return (M)this;
-	}
-	
-	public java.lang.String getIoResult() {
-		return getStr("ioResult");
-	}
-
-	public M setIoCreateDate(java.util.Date ioCreateDate) {
-		set("ioCreateDate", ioCreateDate);
-		return (M)this;
-	}
-	
-	public java.util.Date getIoCreateDate() {
-		return get("ioCreateDate");
 	}
 
 	public M setIoCustom(java.lang.String ioCustom) {

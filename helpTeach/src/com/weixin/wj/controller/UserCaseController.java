@@ -50,4 +50,9 @@ public class UserCaseController extends WController{
 		uc.setUcRole(getPara("ucRole"));
 		renderJson(userCaseService.regist(uc));
 	}
+	
+	public void getChatList(){
+		String ucAccid = getPara("ucAccid");
+		renderJson(userCaseService.getChatList(ucAccid));
+	}
 }

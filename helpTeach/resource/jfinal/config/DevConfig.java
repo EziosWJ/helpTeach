@@ -61,6 +61,7 @@ public class DevConfig extends JFinalConfig {
 	}
 	public static DruidPlugin createDataSource(){
 		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql:///helpeducate", "root", "123456");
+//		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql://118.126.114.66:3306/helpeducate", "root", "bootstrap");
 		return druidPlugin;
 		
 	}
