@@ -20,7 +20,9 @@ public class _MappingKit {
 		arp.addMapping("hae_eduplan_model", "epId", EduplanModel.class);
 		arp.addMapping("hae_feedback_record_model", "frId", FeedbackRecordModel.class);
 		arp.addMapping("hae_foul_record_model", "frId", FoulRecordModel.class);
+		arp.addMapping("hae_frrdback_record_model", "frId", FrrdbackRecordModel.class);
 		arp.addMapping("hae_interview_record_model", "irId", InterviewRecordModel.class);
+		arp.addMapping("hae_inv_option_model", "ioId", InvOptionModel.class);
 		arp.addMapping("hae_labour_education_model", "leId", LabourEducationModel.class);
 		arp.addMapping("hae_leave_record_model", "reId", LeaveRecordModel.class);
 		arp.addMapping("hae_menu_model", "mId", MenuModel.class);
@@ -34,6 +36,7 @@ public class _MappingKit {
 		arp.addMapping("hae_risk_model", "rkId", RiskModel.class);
 		arp.addMapping("hae_talk_education_model", "teId", TalkEducationModel.class);
 		arp.addMapping("hae_user_case_model", "ucId", UserCaseModel.class);
+		arp.addMapping("hae_user_record_model", "urId", UserRecordModel.class);
 	}
 }
 

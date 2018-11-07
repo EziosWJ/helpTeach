@@ -3,13 +3,14 @@ package com.weixin.wj.service.impl;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.DailyCheckInModel;
-<<<<<<< HEAD
+
 import com.weixin.wj.model.FeedbackRecordModel;
-=======
+
 import com.weixin.wj.model.LeaveRecordModel;
->>>>>>> refs/remotes/origin/master
+
 import com.weixin.wj.model.FoulRecordModel;
 import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.LabourEducationModel;
@@ -76,7 +77,7 @@ public class RecordServiceImpl {
 	}
 	
 	public List<?> getLeaveRecordList(){
-		return Db.find("SELECT * FROM hae_leave_record_model order by reId  desc ");
+		return Db.find("SELECT u.ucAccid,l.reDate,l.reReason FROM hae_leave_record_model as l LEFT JOIN hae_user_case_model as u on l.ucId=u.ucId order by l.reId  desc ");
 	}
 	/**
 	 * 添加走访记录
@@ -132,6 +133,8 @@ public class RecordServiceImpl {
 
 	public boolean putOpinionRecord(OpinionRecordModel opinionRecord) {
 		// TODO Auto-generated method stub
+		Record ur = Db.findById("hae_user_record_model","urId" ,opinionRecord.getUcId()).set("urPortraitUrl", "8");
+		Db.update("hae_user_record_model","urId", ur);
 		return opinionRecord.save();
 	}
 

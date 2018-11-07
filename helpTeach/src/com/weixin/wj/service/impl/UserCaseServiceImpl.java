@@ -51,6 +51,15 @@ public class UserCaseServiceImpl implements UserCaseService {
 			return MsgResponse.fail();
 		}
 	}
+	public MsgResponse getChatList(String ucAccid) {
+		try {
+			String sql = "SELECT * FROM hae_user_case_model where ucAccid != ?";
+			return MsgResponse.success().put("chatList", dao.find(sql,ucAccid));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.fail();
+		}
+	}
 
 	@Override
 	public MsgResponse instert(UserCaseModel t) {

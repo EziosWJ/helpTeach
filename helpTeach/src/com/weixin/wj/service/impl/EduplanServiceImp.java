@@ -2,6 +2,8 @@ package com.weixin.wj.service.impl;
 
 import java.util.List;
 
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanModel;
 import com.weixin.wj.model.InvOptionModel;
 import com.weixin.wj.model.MindLeadModel;
@@ -63,7 +65,7 @@ public class EduplanServiceImp {
 	}
 	
 	public List<?> getEduplanList(){
-		return eduplanDao.find("select * from hae_eduplan_model");
+		return eduplanDao.find("select * from hae_Eduplan_Model");
 	}
 	
 	/**
@@ -98,6 +100,9 @@ public class EduplanServiceImp {
 	 * @return
 	 */
 	public boolean putInvOption(InvOptionModel invOptionModel) {
+		Record ur = Db.findById("hae_user_record_model", "urId", invOptionModel.getIoReciver());
+		ur.set("urPortraitUrl", "9");
+		Db.update("hae_user_record_model", "urId", ur);
 		return invOptionModel.save();
 	}
 	

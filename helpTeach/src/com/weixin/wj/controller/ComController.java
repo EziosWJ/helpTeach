@@ -16,8 +16,13 @@ public class ComController extends WController {
 	 * 查询被帮教人列表
 	 */
 	public void getByTheHelperList(){
-		String id = getPara("ucId");
-		List<?> list = comServiceImpl.getByTheHelperList();
+		String ucId = getPara("ucId");
+		List<?> list = comServiceImpl.getByTheHelperList(ucId);
+		renderJson(MsgResponse.success().put("byTheHelperList", list));
+	}
+	public void getByTheHelperOptionedList(){
+		String ucId = getPara("ucId");
+		List<?> list = comServiceImpl.getByTheHelperOptionedList(ucId);
 		renderJson(MsgResponse.success().put("byTheHelperList", list));
 	}
 	
