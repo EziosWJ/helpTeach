@@ -104,4 +104,9 @@ public class EduplanServiceImp {
 	public List<?> getInvOptionList() {
 		return invOptionDao.find("select * from hae_Inv_Option_Model");
 	}
+
+	public List<?> getResultRecordList(int ucid) {
+		// TODO Auto-generated method stub
+		return eduplanDao.find("select * from hae_result_record_model where ucId = ?",ucid);
+	}
 }

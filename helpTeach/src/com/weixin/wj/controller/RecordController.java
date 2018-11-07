@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.DailyCheckInModel;
+import com.weixin.wj.model.FeedbackRecordModel;
 import com.weixin.wj.model.FoulRecordModel;
 import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.LabourEducationModel;
@@ -211,5 +212,28 @@ public class RecordController extends WController {
 	}
 	public void getOpinionRecord(){
 		renderJson(MsgResponse.success().put("opinionRecordList", recordServiceImpl.getOpinionRecordList()));
+	}
+	/**
+	 * 添加反馈意见
+	 */
+	public void putFeedbackRecord(){
+		FeedbackRecordModel feedbackRecord = new FeedbackRecordModel();
+		try {
+			feedbackRecord = getByBeanIgoneArrayZero(FeedbackRecordModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = recordServiceImpl.putFeedbackRecord(feedbackRecord);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void getFeedbackRecord(){
+		
+		renderJson(MsgResponse.success().put("feedbackRecordList", recordServiceImpl.getFeedbackRecordList()));
 	}
 }

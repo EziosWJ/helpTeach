@@ -5,6 +5,7 @@ import java.util.List;
 import com.jfinal.plugin.activerecord.Db;
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.DailyCheckInModel;
+import com.weixin.wj.model.FeedbackRecordModel;
 import com.weixin.wj.model.FoulRecordModel;
 import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.LabourEducationModel;
@@ -132,6 +133,16 @@ public class RecordServiceImpl {
 	public List<?> getOpinionRecordList() {
 		// TODO Auto-generated method stub
 		return Db.find("SELECT u.ucAccid,o.orDate,o.orReason FROM hae_opinion_record_model as o LEFT JOIN hae_user_case_model as u on o.ucId=u.ucId ORDER BY o.orId DESC");
+	}
+
+	public boolean putFeedbackRecord(FeedbackRecordModel feedbackRecord) {
+		// TODO Auto-generated method stub
+		return feedbackRecord.save();
+	}
+
+	public Object getFeedbackRecordList() {
+		// TODO Auto-generated method stub
+		return Db.find("SELECT u.ucAccid,f.frReason,f.frAnswer FROM hae_feedback_record_model as f LEFT JOIN hae_user_case_model as u on f.ucId=u.ucId ORDER BY f.frId DESC");
 	}
 	
 

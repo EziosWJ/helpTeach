@@ -176,5 +176,9 @@ public class EduplanController extends WController{
 		renderJson(MsgResponse.success().put("invOptionList", eduplanServiceImp.getInvOptionList()));
 		
 	}
-
+	
+	public void getResultRecord(){
+		int ucid = getParaToInt("ucId"); 
+		renderJson(MsgResponse.success().put("resultRecordList", eduplanServiceImp.getResultRecordList(ucid)));
+	}
 }

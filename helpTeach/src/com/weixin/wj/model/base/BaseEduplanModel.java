@@ -72,4 +72,13 @@ public abstract class BaseEduplanModel<M extends BaseEduplanModel<M>> extends Mo
 		return getStr("epCustom");
 	}
 
+	public M setUcId(java.lang.Integer ucId) {
+		set("ucId", ucId);
+		return (M)this;
+	}
+	
+	public java.lang.Integer getUcId() {
+		return getInt("ucId");
+	}
+
 }
