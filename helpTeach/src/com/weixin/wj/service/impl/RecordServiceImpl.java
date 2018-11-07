@@ -5,7 +5,11 @@ import java.util.List;
 import com.jfinal.plugin.activerecord.Db;
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.DailyCheckInModel;
+<<<<<<< HEAD
 import com.weixin.wj.model.FeedbackRecordModel;
+=======
+import com.weixin.wj.model.LeaveRecordModel;
+>>>>>>> refs/remotes/origin/master
 import com.weixin.wj.model.FoulRecordModel;
 import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.LabourEducationModel;
@@ -35,7 +39,7 @@ public class RecordServiceImpl {
 		FROM
 			hae_user_case_model u
 		LEFT JOIN hae_daily_check_in_model c ON u.ucId = c.diReciver AND
-	c.diCreateDate = '2018-10-30'
+		c.diCreateDate = '2018-10-30'
 	 * @return
 	 */
 	public List<?> getDailyCheckInConditionList(){
@@ -67,11 +71,12 @@ public class RecordServiceImpl {
 	 * @param leaveRecordModel
 	 * @return
 	 */
-	public boolean putLeaveRecord(LeaveRecordModel leaveRecordModel){
+	public boolean putLeaveRecord(LeaveRecordModel leaveRecordModel) {
 		return leaveRecordModel.save();
 	}
+	
 	public List<?> getLeaveRecordList(){
-		return Db.find("SELECT u.ucAccid,lr.reDate,lr.reReason FROM hae_leave_record_model as lr LEFT JOIN hae_user_case_model as u on lr.ucId=u.ucId ORDER BY lr.reId DESC ");
+		return Db.find("SELECT * FROM hae_leave_record_model order by reId  desc ");
 	}
 	/**
 	 * 添加走访记录
@@ -145,5 +150,6 @@ public class RecordServiceImpl {
 		return Db.find("SELECT u.ucAccid,f.frReason,f.frAnswer FROM hae_feedback_record_model as f LEFT JOIN hae_user_case_model as u on f.ucId=u.ucId ORDER BY f.frId DESC");
 	}
 	
+
 
 }

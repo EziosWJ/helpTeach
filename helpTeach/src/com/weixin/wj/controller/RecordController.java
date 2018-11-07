@@ -12,12 +12,6 @@ import com.weixin.wj.model.LabourEducationModel;
 import com.weixin.wj.model.LeaveRecordModel;
 import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.TalkEducationModel;
-import com.weixin.wj.service.InterviewService;
-import com.weixin.wj.service.LabourEducationService;
-import com.weixin.wj.service.LeaveService;
-import com.weixin.wj.service.impl.InterviewServiceImpl;
-import com.weixin.wj.service.impl.LabourEducationServiceImpl;
-import com.weixin.wj.service.impl.LeaveServiceImpl;
 import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.util.MsgResponse;
 
