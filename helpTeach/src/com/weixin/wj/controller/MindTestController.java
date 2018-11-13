@@ -1,8 +1,10 @@
 package com.weixin.wj.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.jfinal.core.Controller;
+import com.weixin.wj.model.MindTestModel;
 import com.weixin.wj.service.impl.MindTestQstServiceImpl;
 import com.weixin.wj.util.MsgResponse;
 
@@ -14,9 +16,31 @@ public class MindTestController extends WController {
 	public void index(){
 		
 	}
-	
+	/**
+	 * 拉取题库
+	 */
 	public void getMindTestQstList(){
 		List<?> list = qstServiceImpl.getQstList("10001");
 		renderJson(MsgResponse.success().put("qst", list));
+	}
+	
+	/**
+	 * 提交测试结果
+	 */
+	public void putMindTestResult(){
+		MindTestModel mindTestModel = new MindTestModel();
+		try {
+			mindTestModel = getByBeanIgoneArrayZero(MindTestModel.class);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = qstServiceImpl.putMindTestResult(mindTestModel);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
 	}
 }

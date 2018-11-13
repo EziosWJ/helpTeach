@@ -28,7 +28,7 @@ public class BeanGenerator {
 		// 设置是否生成链式 setter 方法
 		generator.setGenerateChainSetter(false);
 		// 添加不需要生成的表名
-		generator.addExcludedTable("test","hae_sheet","dede_diyform2");
+		generator.addExcludedTable("test","hae_sheet","dede_diyform2","dict_data","dict_list","menu_case","role_case","role_menu","user_case");
 		// 设置是否在 Model 中生成 dao 对象
 		generator.setGenerateDaoInModel(false);
 		// 设置是否生成链式 setter 方法
