@@ -98,7 +98,7 @@ public class WeixinMsgController extends MsgControllerAdapter {
         {
             logger.debug("关注：" + inFollowEvent.getFromUserName());
             OutTextMsg outMsg = new OutTextMsg(inFollowEvent);
-            outMsg.setContent("这是Jfinal-weixin测试服务</br>\r\n感谢您的关注");
+            outMsg.setContent("这是帮教-weixin测试服务\r\n感谢您的关注");
             render(outMsg);
         }
         // 如果为取消关注事件，将无法接收到传回的信息

@@ -92,25 +92,17 @@ public class WeixinApiController extends ApiController {
     public void sendMsg()
     {
         String str = " {\n" +
-                "           \"touser\":\"ohbweuNYB_heu_buiBWZtwgi4xzU\",\n" +
-                "           \"template_id\":\"9SIa8ph1403NEM3qk3z9-go-p4kBMeh-HGepQZVdA7w\",\n" +
-                "           \"url\":\"http://www.sina.com\",\n" +
+                "           \"touser\":\"oBB5s1W6rzUxkEkpAgg5AcPphr3I\",\n" +
+                "           \"template_id\":\"R8fdU9Xsv33gxzUw3uUx03hCbc-RI2DcKQUWviFn5uc\",\n" +
+                "           \"url\":\"http://www.tyjcywj.cn\",\n" +
                 "           \"topcolor\":\"#FF0000\",\n" +
                 "           \"data\":{\n" +
-                "                   \"first\": {\n" +
-                "                       \"value\":\"恭喜你购买成功！\",\n" +
+                "                   \"name\": {\n" +
+                "                       \"value\":\"李杰\",\n" +
                 "                       \"color\":\"#173177\"\n" +
                 "                   },\n" +
-                "                   \"keyword1\":{\n" +
-                "                       \"value\":\"去哪儿网发的酒店红包（1个）\",\n" +
-                "                       \"color\":\"#173177\"\n" +
-                "                   },\n" +
-                "                   \"keyword2\":{\n" +
-                "                       \"value\":\"1元\",\n" +
-                "                       \"color\":\"#173177\"\n" +
-                "                   },\n" +
-                "                   \"remark\":{\n" +
-                "                       \"value\":\"欢迎再次购买！\",\n" +
+                "                   \"state\":{\n" +
+                "                       \"value\":\"报到成功！\",\n" +
                 "                       \"color\":\"#173177\"\n" +
                 "                   }\n" +
                 "           }\n" +
@@ -118,6 +110,16 @@ public class WeixinApiController extends ApiController {
         ApiResult apiResult = TemplateMsgApi.send(str);
         renderText(apiResult.getJson());
     }
+    
+    public void sendCustomTemplateMsg(String template) {
+        ApiResult apiResult = TemplateMsgApi.send(template);
+        renderText(apiResult.getJson());
+	}
+    
+    public void sendWjMsg() {
+//		renderText(CustomServiceApi.sendText(getPara("openid"), "大傻逼").getJson());
+		renderText(CustomServiceApi.sendText("oBB5s1W6rzUxkEkpAgg5AcPphr3I", "大傻逼").getJson());
+	}
 
     /**
      * 获取参数二维码

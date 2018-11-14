@@ -1,0 +1,5 @@
+cron4j=task1
+task1.cron=* * * * *
+task1.class=jfinal.config.RecordTask
+task1.daemon=true
+task1.enable=true

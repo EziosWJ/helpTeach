@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.weixin.wj.model._MappingKit;
@@ -55,4 +57,42 @@ public class MenuTest {
 	    arp.start();
 	}
 
+	@Test
+	public void str() {
+        String str = "{\n" +
+                "    \"button\": [\n" +
+                "        {\n" +
+                "            \"name\": \"进入理财\",\n" +
+                "            \"url\": \"http://m.bajie8.com/bajie/enter\",\n" +
+                "            \"type\": \"view\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"name\": \"安全保障\",\n" +
+                "            \"key\": \"112\",\n" +
+                "\t    \"type\": \"click\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "\t    \"name\": \"使用帮助\",\n" +
+                "\t    \"url\": \"http://m.bajie8.com/footer/cjwt\",\n" +
+                "\t    \"type\": \"view\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+        System.out.println(str);
+        
+        JSONArray jsonArray = new JSONArray();
+        JSONObject bOne = new JSONObject();
+        JSONObject bTwo = new JSONObject();
+        JSONObject bThree = new JSONObject();
+        bOne.put("name", "帮教系统");
+        bOne.put("url", "http://www.tyjcywj.cn");
+        bOne.put("type", "view");
+        jsonArray.add(bOne);
+        JSONObject button = new JSONObject();
+        button.put("button", jsonArray);
+        System.out.println(button);
+        
+	}
+	
+	
 }

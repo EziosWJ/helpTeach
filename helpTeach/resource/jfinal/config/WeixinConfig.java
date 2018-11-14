@@ -16,6 +16,7 @@ import com.jfinal.core.JFinal;
 import com.jfinal.json.MixedJsonFactory;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
@@ -70,6 +71,12 @@ public class WeixinConfig extends JFinalConfig {
     }
 
     public void configPlugin(Plugins me) {
+    	
+    	Cron4jPlugin cp = new Cron4jPlugin("task.txt");
+    	me.add(cp);
+    	
+    	
+    	
 		DruidPlugin druidPlugin = createDataSource();
 		me.add(druidPlugin);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
@@ -142,8 +149,8 @@ public class WeixinConfig extends JFinalConfig {
 //            ApiConfigKit.setAccessTokenCache(new LocalTestTokenCache(onLineTokenUrl));
 //        }
         WxaConfig wc = new WxaConfig();
-        wc.setAppId("wx4f53594f9a6b3dcb");
-        wc.setAppSecret("eec6482ba3804df05bd10895bace0579");
+        wc.setAppId("wx254ff707d1b45b3e");
+        wc.setAppSecret("487215f2ce0b41b8c8cc8e22c3c6c4c3");
         WxaConfigKit.setWxaConfig(wc);
     }
 
@@ -151,8 +158,8 @@ public class WeixinConfig extends JFinalConfig {
 //        JFinal.start("src/main/webapp", 80, "/", 5);
 //    }
 	public static DruidPlugin createDataSource(){
-//		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql:///helpeducate", "root", "123456");
-		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql://118.126.114.66:3306/helpeducate", "root", "bootstrap");
+		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql:///helpeducate", "root", "123456");
+//		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql://118.126.114.66:3306/helpeducate", "root", "bootstrap");
 		return druidPlugin;
 		
 	}
