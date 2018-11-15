@@ -82,7 +82,7 @@ public class WeixinApiController extends ApiController {
      */
     public void getUserInfo()
     {
-        ApiResult apiResult = UserApi.getUserInfo("ohbweuNYB_heu_buiBWZtwgi4xzU");
+        ApiResult apiResult = UserApi.getUserInfo("oBB5s1W6rzUxkEkpAgg5AcPphr3I");
         renderText(apiResult.getJson());
     }
 
@@ -111,6 +111,10 @@ public class WeixinApiController extends ApiController {
         renderText(apiResult.getJson());
     }
     
+    /**
+     * 发送模板消息
+     * @param template
+     */
     public void sendCustomTemplateMsg(String template) {
         ApiResult apiResult = TemplateMsgApi.send(template);
         renderText(apiResult.getJson());
@@ -118,7 +122,7 @@ public class WeixinApiController extends ApiController {
     
     public void sendWjMsg() {
 //		renderText(CustomServiceApi.sendText(getPara("openid"), "大傻逼").getJson());
-		renderText(CustomServiceApi.sendText("oBB5s1W6rzUxkEkpAgg5AcPphr3I", "大傻逼").getJson());
+		renderText(CustomServiceApi.sendText("oBB5s1W6rzUxkEkpAgg5AcPphr3I", "五分钟测试").getJson());
 	}
 
     /**
