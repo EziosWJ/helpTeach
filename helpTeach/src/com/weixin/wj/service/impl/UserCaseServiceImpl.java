@@ -113,6 +113,12 @@ public class UserCaseServiceImpl implements UserCaseService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public boolean editUserInfo(UserCaseModel usercase) {
+		// TODO Auto-generated method stub
+		return usercase.update();
+		
+	}
 
 
 }

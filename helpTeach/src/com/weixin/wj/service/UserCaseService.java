@@ -7,4 +7,5 @@ public interface UserCaseService extends BaseService<UserCaseModel> {
 	public MsgResponse login(UserCaseModel usercase);
 	public MsgResponse regist(UserCaseModel usercase);
 	public MsgResponse getChatList(String ucAccid);
+	public boolean editUserInfo(UserCaseModel usercase);
 }

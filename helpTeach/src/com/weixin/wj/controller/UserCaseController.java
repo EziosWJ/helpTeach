@@ -55,4 +55,14 @@ public class UserCaseController extends WController{
 		String ucAccid = getPara("ucAccid");
 		renderJson(userCaseService.getChatList(ucAccid));
 	}
+	public void editUserInfo(){
+		
+		UserCaseModel usercase = getByBean(UserCaseModel.class);
+		boolean flag = userCaseService.editUserInfo(usercase);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
 }

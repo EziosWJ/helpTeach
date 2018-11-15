@@ -65,7 +65,7 @@ public class RecordServiceImpl {
 	 * @return
 	 */
 	public List<?> getLabourEducationList(){
-		return Db.find("select u.ucAccid,le.leDate,le.leReason from hae_labour_education_model as le LEFT JOIN hae_user_case_model as u on le.ucId=u.ucId order by le.leId desc");
+		return Db.find("select ucId,leDate,leReason from hae_labour_education_model order by leId desc");
 	}
 	/**
 	 * 添加请假记录
@@ -77,7 +77,7 @@ public class RecordServiceImpl {
 	}
 	
 	public List<?> getLeaveRecordList(){
-		return Db.find("SELECT u.ucAccid,l.reDate,l.reReason FROM hae_leave_record_model as l LEFT JOIN hae_user_case_model as u on l.ucId=u.ucId order by l.reId  desc ");
+		return Db.find("SELECT ucId,reDate,reReason FROM hae_leave_record_model order by reId  desc ");
 	}
 	/**
 	 * 添加走访记录
@@ -91,7 +91,7 @@ public class RecordServiceImpl {
 
 	public List<?> getInterviewRecord() {
 		// TODO Auto-generated method stub
-		return Db.find("SELECT u.ucAccid,ir.irDate,ir.irReason FROM hae_interview_record_model as ir LEFT JOIN hae_user_case_model as u on ir.ucId=u.ucId ORDER BY ir.irId DESC");
+		return Db.find("SELECT ucId,irDate,irReason FROM hae_interview_record_model ORDER BY irId DESC");
 	}
 	/**
 	 * 添加谈话教育
@@ -108,7 +108,7 @@ public class RecordServiceImpl {
 	 */
 	public List<?> getTalkEducation() {
 		// TODO Auto-generated method stub
-		return Db.find("SELECT u.ucAccid,te.teDate,te.teReason FROM hae_talk_education_model as te LEFT JOIN hae_user_case_model as u on te.ucId=u.ucId ORDER BY te.teId DESC");
+		return Db.find("SELECT ucId,teDate,teReason FROM hae_talk_education_model ORDER BY teId DESC");
 	}
 
 	public boolean putCommunityRecord(CommunityServiceModel community) {
@@ -118,7 +118,7 @@ public class RecordServiceImpl {
 
 	public List<?> getCommunityRecordList() {
 		// TODO Auto-generated method stub
-		return Db.find("SELECT u.ucAccid,c.csPlace,c.csReason FROM hae_community_service_model as c LEFT JOIN hae_user_case_model as u on c.ucId=u.ucId ORDER BY c.csId DESC");
+		return Db.find("SELECT ucId,csPlace,csReason FROM hae_community_service_model ORDER BY csId DESC");
 	}
 
 	public boolean putFoulRecord(FoulRecordModel foulRecord) {
@@ -128,7 +128,7 @@ public class RecordServiceImpl {
 
 	public List<?> getFoulRecordList() {
 		// TODO Auto-generated method stub
-		return Db.find("SELECT u.ucAccid,f.frDate,f.frReason FROM hae_foul_record_model as f LEFT JOIN hae_user_case_model as u on f.ucId=u.ucId ORDER BY f.frId DESC");
+		return Db.find("SELECT ucId,frDate,frReason FROM hae_foul_record_model ORDER BY frId DESC");
 	}
 
 	public boolean putOpinionRecord(OpinionRecordModel opinionRecord) {
@@ -140,7 +140,7 @@ public class RecordServiceImpl {
 
 	public List<?> getOpinionRecordList() {
 		// TODO Auto-generated method stub
-		return Db.find("SELECT u.ucAccid,o.orDate,o.orReason FROM hae_opinion_record_model as o LEFT JOIN hae_user_case_model as u on o.ucId=u.ucId ORDER BY o.orId DESC");
+		return Db.find("SELECT ucId,orDate,orReason FROM hae_opinion_record_model ORDER BY orId DESC");
 	}
 
 	public boolean putFeedbackRecord(FeedbackRecordModel feedbackRecord) {

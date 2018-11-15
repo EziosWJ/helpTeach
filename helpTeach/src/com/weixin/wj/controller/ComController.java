@@ -17,7 +17,8 @@ public class ComController extends WController {
 	 */
 	public void getByTheHelperList(){
 		String ucId = getPara("ucId");
-		List<?> list = comServiceImpl.getByTheHelperList(ucId);
+		String role = getPara("role");
+		List<?> list = comServiceImpl.getByTheHelperList(ucId,role);
 		renderJson(MsgResponse.success().put("byTheHelperList", list));
 	}
 	public void getByTheHelperOptionedList(){
