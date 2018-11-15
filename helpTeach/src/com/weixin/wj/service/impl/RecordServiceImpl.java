@@ -1,5 +1,6 @@
 package com.weixin.wj.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Db;
@@ -45,12 +46,14 @@ public class RecordServiceImpl {
 	 */
 	public List<?> getDailyCheckInConditionList(){
 		String sql = "SELECT * "
-				+ "FROM hae_user_case_model u "
-				+ "LEFT JOIN hae_daily_check_in_model c "
+				+ "FROM hae_user_record_model u "
+				+ "LEFT JOIN hae_daily_Check_In_model c "
 				+ "ON u.ucId = c.diReciver "
 				+ "AND "
 				+ "c.diCreateDate = ?";
-		return Db.find(sql,NormalUtils.getLocalDate());
+		String date = NormalUtils.getLocalDate();
+		List<?> record = Db.find(sql,date);
+		return record;
 	}
 	/**
 	 * 添加劳动教育

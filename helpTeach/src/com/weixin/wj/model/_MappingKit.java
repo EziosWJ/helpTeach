@@ -17,6 +17,7 @@ public class _MappingKit {
 	
 	public static void mapping(ActiveRecordPlugin arp) {
 		arp.addMapping("hae_community_service_model", "csId", CommunityServiceModel.class);
+		arp.addMapping("hae_daily_check_in_model", "diId", DailyCheckInModel.class);
 		arp.addMapping("hae_eduplan_model", "epId", EduplanModel.class);
 		arp.addMapping("hae_feedback_record_model", "frId", FeedbackRecordModel.class);
 		arp.addMapping("hae_foul_record_model", "frId", FoulRecordModel.class);
