@@ -63,23 +63,4 @@ public abstract class BaseFeedbackRecordModel<M extends BaseFeedbackRecordModel<
 		return getInt("frsize");
 	}
 
-	public M setFrReason(java.lang.String frReason) {
-		set("frReason", frReason);
-		return (M)this;
-	}
-	
-	public java.lang.String getFrReason() {
-		return getStr("frReason");
-	}
-
-	public M setFrAnswer(java.lang.Integer frAnswer) {
-		set("frAnswer", frAnswer);
-		return (M)this;
-	}
-	
-	public java.lang.Integer getFrAnswer() {
-		return getInt("frAnswer");
-	}
-
-
 }

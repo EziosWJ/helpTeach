@@ -1,6 +1,6 @@
 
 #微信服务器回调所用的 token
-token=blkj
+token=jfgzs
 
 # 测试用的账号
 appId=wx254ff707d1b45b3e
@@ -10,4 +10,11 @@ appSecret=487215f2ce0b41b8c8cc8e22c3c6c4c3
 #encryptMessage=false
 #encodingAesKey=yourEncodingAesKey
 
-
+mainUrl=http://www.tyjcywj.cn
+# Template
+#今日报到定时任务
+taskDailyCheckIn=N_h4CMn6TxyIGDsFqgcTdeT4RvhLZWy1lwKyo53qMGM
+#报道情况
+dailyCheckIn=R8fdU9Xsv33gxzUw3uUx03hCbc-RI2DcKQUWviFn5uc
+#外出请假提醒
+leaveRecord=bmFVgWdfuy09VJQwF7nm6COIhJY-UU1IUxhZldFEavc

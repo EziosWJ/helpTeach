@@ -7,10 +7,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.HttpKit;
 import com.jfinal.plugin.activerecord.Model;
+import com.weixin.wj.service.impl.WeixinSendTemplateServiceImpl;
 
 /**
  * 山一程，水一程，身向榆关那畔行~
@@ -19,6 +22,9 @@ import com.jfinal.plugin.activerecord.Model;
  */
 public class WController extends Controller {
 
+
+	public WeixinSendTemplateServiceImpl sendTemplateServiceImpl = new WeixinSendTemplateServiceImpl();
+	
 	/**
 	 * 通过HttpKit获取Request中json格式的字符串（请求参数）
 	 * @return 完整json字串

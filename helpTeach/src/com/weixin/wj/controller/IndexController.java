@@ -1,5 +1,7 @@
 package com.weixin.wj.controller;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.HttpKit;
@@ -8,8 +10,12 @@ import com.weixin.wj.service.impl.MenuServiceImpl;
 
 
 public class IndexController extends WController {
+
+    private final static Logger LOGGER = Logger.getLogger(IndexController.class);
+
 	private MenuService menuService = new MenuServiceImpl();
 	public void index() {
+		LOGGER.debug("asdadas");
 		redirect("/index.html");
 		//Support initMenu()
 //		String role = ((Usercase)getSessionAttr("session_uc")).getUcRole();

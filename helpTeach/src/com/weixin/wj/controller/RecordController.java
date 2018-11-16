@@ -13,6 +13,7 @@ import com.weixin.wj.model.LeaveRecordModel;
 import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.TalkEducationModel;
 import com.weixin.wj.service.impl.RecordServiceImpl;
+import com.weixin.wj.service.impl.WeixinSendTemplateServiceImpl;
 import com.weixin.wj.template.CustomTemplateMsg;
 import com.weixin.wj.template.RecordTemplate;
 import com.weixin.wj.util.MsgResponse;
@@ -23,6 +24,8 @@ public class RecordController extends WController {
 	private RecordServiceImpl recordServiceImpl = new RecordServiceImpl();
 	
 	private WeixinApiController weixinApiController = new WeixinApiController();
+	
+	private WeixinSendTemplateServiceImpl sendTemplateServiceImpl = new WeixinSendTemplateServiceImpl();
 	
 	public void index(){
 		
@@ -44,7 +47,7 @@ public class RecordController extends WController {
 		}
 		boolean flag = recordServiceImpl.putDailyCheckIn(dailyCheckInModel);
 		if(flag){
-			weixinApiController.sendCustomTemplateMsg(RecordTemplate.DailyCheckIn(dailyCheckInModel));//发送微信提醒！
+			sendTemplateServiceImpl.sendCheckInRecord(dailyCheckInModel);
 			renderJson(MsgResponse.success());
 		}else {
 			renderJson(MsgResponse.fail());
@@ -89,6 +92,7 @@ public class RecordController extends WController {
 		}
 		boolean flag = recordServiceImpl.putLeaveRecord(leaveRecord);
 		if(flag){
+			sendTemplateServiceImpl.sendLeaveRecord(leaveRecord);
 			renderJson(MsgResponse.success());
 		}else{
 			renderJson(MsgResponse.fail());

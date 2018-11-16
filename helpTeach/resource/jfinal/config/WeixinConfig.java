@@ -15,6 +15,7 @@ import com.jfinal.config.Routes;
 import com.jfinal.core.JFinal;
 import com.jfinal.json.MixedJsonFactory;
 import com.jfinal.kit.PropKit;
+import com.jfinal.log.Log4jLogFactory;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
@@ -58,6 +59,7 @@ public class WeixinConfig extends JFinalConfig {
         ApiConfigKit.setDevMode(me.getDevMode());
 		me.setViewType(ViewType.JSP);
 		me.setJsonFactory(new MixedJsonFactory());
+		me.setLogFactory(new Log4jLogFactory());
     }
 
     public void configRoute(Routes me) {

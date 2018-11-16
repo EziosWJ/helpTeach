@@ -27,22 +27,22 @@ public abstract class BaseDailyCheckInModel<M extends BaseDailyCheckInModel<M>> 
 		return getStr("diName");
 	}
 
-	public M setDiLeader(java.lang.String diLeader) {
+	public M setDiLeader(java.lang.Integer diLeader) {
 		set("diLeader", diLeader);
 		return (M)this;
 	}
 	
-	public java.lang.String getDiLeader() {
-		return getStr("diLeader");
+	public java.lang.Integer getDiLeader() {
+		return getInt("diLeader");
 	}
 
-	public M setDiReciver(java.lang.String diReciver) {
+	public M setDiReciver(java.lang.Integer diReciver) {
 		set("diReciver", diReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getDiReciver() {
-		return getStr("diReciver");
+	public java.lang.Integer getDiReciver() {
+		return getInt("diReciver");
 	}
 
 	public M setDiCreateDate(java.util.Date diCreateDate) {

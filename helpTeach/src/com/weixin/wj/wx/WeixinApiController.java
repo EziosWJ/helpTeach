@@ -45,8 +45,8 @@ public class WeixinApiController extends ApiController {
         String str = "{\n" +
                 "    \"button\": [\n" +
                 "        {\n" +
-                "            \"name\": \"进入理财\",\n" +
-                "            \"url\": \"http://m.bajie8.com/bajie/enter\",\n" +
+                "            \"name\": \"帮教平台\",\n" +
+                "            \"url\": \"http://www.tyjcywj.cn\",\n" +
                 "            \"type\": \"view\"\n" +
                 "        },\n" +
                 "        {\n" +
@@ -55,8 +55,8 @@ public class WeixinApiController extends ApiController {
                 "\t    \"type\": \"click\"\n" +
                 "        },\n" +
                 "        {\n" +
-                "\t    \"name\": \"使用帮助\",\n" +
-                "\t    \"url\": \"http://m.bajie8.com/footer/cjwt\",\n" +
+                "\t    \"name\": \"法制教育\",\n" +
+                "\t    \"url\": \"http://www.tyjcywj.cn\",\n" +
                 "\t    \"type\": \"view\"\n" +
                 "        }\n" +
                 "    ]\n" +
@@ -122,7 +122,7 @@ public class WeixinApiController extends ApiController {
     
     public void sendWjMsg() {
 //		renderText(CustomServiceApi.sendText(getPara("openid"), "大傻逼").getJson());
-		renderText(CustomServiceApi.sendText("oBB5s1W6rzUxkEkpAgg5AcPphr3I", "五分钟测试").getJson());
+		renderText(CustomServiceApi.sendText("oBB5s1W6rzUxkEkpAgg5AcPphr3I", "五分钟测试↑").getJson());
 	}
 
     /**

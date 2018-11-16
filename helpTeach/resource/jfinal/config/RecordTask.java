@@ -1,14 +1,18 @@
 package jfinal.config;
 
-import com.weixin.wj.wx.WeixinApiController;
+
+import org.apache.log4j.Logger;
+
+import com.jfinal.weixin.sdk.api.ApiResult;
+import com.weixin.wj.service.impl.WeixinSendTemplateServiceImpl;
 
 public class RecordTask implements Runnable {
-
-	private WeixinApiController weixinApiController = new WeixinApiController();
+	private final Logger logger = Logger.getLogger("");
+	private WeixinSendTemplateServiceImpl sendTemplateServiceImpl = new WeixinSendTemplateServiceImpl();
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		weixinApiController.sendWjMsg();
+		ApiResult apiResult = sendTemplateServiceImpl.sendTaskDailyCheckIn();
+		logger.debug(apiResult.getJson());
 	}
 
 }
