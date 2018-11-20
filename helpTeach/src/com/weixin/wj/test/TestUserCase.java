@@ -5,24 +5,40 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.MindLeadModel;
 import com.weixin.wj.model.UserCaseModel;
 import com.weixin.wj.service.UserCaseService;
+import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.service.impl.UserCaseServiceImpl;
 
 public class TestUserCase {
+	
+	
+	private RecordServiceImpl recordServiceImpl = new RecordServiceImpl();
+	
 	private UserCaseService ucService = new UserCaseServiceImpl();
 	
 	@Before
 	public void init(){
 		TestDbArp.init();
 	}
+	
+	@Test
+	public void testpage(){
+		Page<Record> list = recordServiceImpl.getLeaveRecordList(1, 2);
+		System.out.println(list.getList());
+	}
+	
+	
 	
 	@Test
 	public void insert() {

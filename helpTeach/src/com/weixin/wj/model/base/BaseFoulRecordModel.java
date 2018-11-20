@@ -9,49 +9,85 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseFoulRecordModel<M extends BaseFoulRecordModel<M>> extends Model<M> implements IBean {
 
-	public M setFrId(java.lang.Integer frId) {
+	public M setFrId(java.lang.String frId) {
 		set("frId", frId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getFrId() {
-		return getInt("frId");
+	public java.lang.String getFrId() {
+		return getStr("frId");
 	}
 
-	public M setFrHelper(java.lang.String frHelper) {
-		set("frHelper", frHelper);
+	public M setFrName(java.lang.String frName) {
+		set("frName", frName);
 		return (M)this;
 	}
 	
-	public java.lang.String getFrHelper() {
-		return getStr("frHelper");
+	public java.lang.String getFrName() {
+		return getStr("frName");
 	}
 
-	public M setFrDate(java.util.Date frDate) {
-		set("frDate", frDate);
+	public M setFrLeader(java.lang.String frLeader) {
+		set("frLeader", frLeader);
 		return (M)this;
 	}
 	
-	public java.util.Date getFrDate() {
-		return get("frDate");
+	public java.lang.String getFrLeader() {
+		return getStr("frLeader");
 	}
 
-	public M setFrReason(java.lang.String frReason) {
-		set("frReason", frReason);
+	public M setFrReciver(java.lang.String frReciver) {
+		set("frReciver", frReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getFrReason() {
-		return getStr("frReason");
+	public java.lang.String getFrReciver() {
+		return getStr("frReciver");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
-		set("ucId", ucId);
+	public M setFrCreateDate(java.util.Date frCreateDate) {
+		set("frCreateDate", frCreateDate);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.util.Date getFrCreateDate() {
+		return get("frCreateDate");
+	}
+
+	public M setFrState(java.lang.String frState) {
+		set("frState", frState);
+		return (M)this;
+	}
+	
+	public java.lang.String getFrState() {
+		return getStr("frState");
+	}
+
+	public M setFrContent(java.lang.String frContent) {
+		set("frContent", frContent);
+		return (M)this;
+	}
+	
+	public java.lang.String getFrContent() {
+		return getStr("frContent");
+	}
+
+	public M setFrResult(java.lang.String frResult) {
+		set("frResult", frResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getFrResult() {
+		return getStr("frResult");
+	}
+
+	public M setFrCustom(java.lang.String frCustom) {
+		set("frCustom", frCustom);
+		return (M)this;
+	}
+	
+	public java.lang.String getFrCustom() {
+		return getStr("frCustom");
 	}
 
 }

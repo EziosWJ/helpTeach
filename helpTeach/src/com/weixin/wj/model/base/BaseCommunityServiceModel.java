@@ -9,58 +9,85 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseCommunityServiceModel<M extends BaseCommunityServiceModel<M>> extends Model<M> implements IBean {
 
-	public M setCsId(java.lang.Integer csId) {
+	public M setCsId(java.lang.String csId) {
 		set("csId", csId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getCsId() {
-		return getInt("csId");
+	public java.lang.String getCsId() {
+		return getStr("csId");
 	}
 
-	public M setCsHelper(java.lang.String csHelper) {
-		set("csHelper", csHelper);
+	public M setCsName(java.lang.String csName) {
+		set("csName", csName);
 		return (M)this;
 	}
 	
-	public java.lang.String getCsHelper() {
-		return getStr("csHelper");
+	public java.lang.String getCsName() {
+		return getStr("csName");
 	}
 
-	public M setCsDate(java.util.Date csDate) {
-		set("csDate", csDate);
+	public M setCsLeader(java.lang.String csLeader) {
+		set("csLeader", csLeader);
 		return (M)this;
 	}
 	
-	public java.util.Date getCsDate() {
-		return get("csDate");
+	public java.lang.String getCsLeader() {
+		return getStr("csLeader");
 	}
 
-	public M setCsReason(java.lang.String csReason) {
-		set("csReason", csReason);
+	public M setCsReciver(java.lang.String csReciver) {
+		set("csReciver", csReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getCsReason() {
-		return getStr("csReason");
+	public java.lang.String getCsReciver() {
+		return getStr("csReciver");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
-		set("ucId", ucId);
+	public M setCsCreateDate(java.util.Date csCreateDate) {
+		set("csCreateDate", csCreateDate);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.util.Date getCsCreateDate() {
+		return get("csCreateDate");
 	}
 
-	public M setCsPlace(java.lang.String csPlace) {
-		set("csPlace", csPlace);
+	public M setCsState(java.lang.String csState) {
+		set("csState", csState);
 		return (M)this;
 	}
 	
-	public java.lang.String getCsPlace() {
-		return getStr("csPlace");
+	public java.lang.String getCsState() {
+		return getStr("csState");
+	}
+
+	public M setCsContent(java.lang.String csContent) {
+		set("csContent", csContent);
+		return (M)this;
+	}
+	
+	public java.lang.String getCsContent() {
+		return getStr("csContent");
+	}
+
+	public M setCsResult(java.lang.String csResult) {
+		set("csResult", csResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getCsResult() {
+		return getStr("csResult");
+	}
+
+	public M setCsCustom(java.lang.String csCustom) {
+		set("csCustom", csCustom);
+		return (M)this;
+	}
+	
+	public java.lang.String getCsCustom() {
+		return getStr("csCustom");
 	}
 
 }

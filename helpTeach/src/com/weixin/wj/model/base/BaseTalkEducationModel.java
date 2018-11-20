@@ -9,49 +9,85 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseTalkEducationModel<M extends BaseTalkEducationModel<M>> extends Model<M> implements IBean {
 
-	public M setTeId(java.lang.Integer teId) {
+	public M setTeId(java.lang.String teId) {
 		set("teId", teId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getTeId() {
-		return getInt("teId");
+	public java.lang.String getTeId() {
+		return getStr("teId");
 	}
 
-	public M setTeHelper(java.lang.String teHelper) {
-		set("teHelper", teHelper);
+	public M setTeName(java.lang.String teName) {
+		set("teName", teName);
 		return (M)this;
 	}
 	
-	public java.lang.String getTeHelper() {
-		return getStr("teHelper");
+	public java.lang.String getTeName() {
+		return getStr("teName");
 	}
 
-	public M setTeDate(java.util.Date teDate) {
-		set("teDate", teDate);
+	public M setTeLeader(java.lang.String teLeader) {
+		set("teLeader", teLeader);
 		return (M)this;
 	}
 	
-	public java.util.Date getTeDate() {
-		return get("teDate");
+	public java.lang.String getTeLeader() {
+		return getStr("teLeader");
 	}
 
-	public M setTeReason(java.lang.String teReason) {
-		set("teReason", teReason);
+	public M setTeReciver(java.lang.String teReciver) {
+		set("teReciver", teReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getTeReason() {
-		return getStr("teReason");
+	public java.lang.String getTeReciver() {
+		return getStr("teReciver");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
-		set("ucId", ucId);
+	public M setTeCreateDate(java.util.Date teCreateDate) {
+		set("teCreateDate", teCreateDate);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.util.Date getTeCreateDate() {
+		return get("teCreateDate");
+	}
+
+	public M setTeState(java.lang.String teState) {
+		set("teState", teState);
+		return (M)this;
+	}
+	
+	public java.lang.String getTeState() {
+		return getStr("teState");
+	}
+
+	public M setTeContent(java.lang.String teContent) {
+		set("teContent", teContent);
+		return (M)this;
+	}
+	
+	public java.lang.String getTeContent() {
+		return getStr("teContent");
+	}
+
+	public M setTeResult(java.lang.String teResult) {
+		set("teResult", teResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getTeResult() {
+		return getStr("teResult");
+	}
+
+	public M setTeCustom(java.lang.String teCustom) {
+		set("teCustom", teCustom);
+		return (M)this;
+	}
+	
+	public java.lang.String getTeCustom() {
+		return getStr("teCustom");
 	}
 
 }

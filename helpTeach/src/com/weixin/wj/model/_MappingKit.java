@@ -25,7 +25,7 @@ public class _MappingKit {
 		arp.addMapping("hae_interview_record_model", "irId", InterviewRecordModel.class);
 		arp.addMapping("hae_inv_option_model", "ioId", InvOptionModel.class);
 		arp.addMapping("hae_labour_education_model", "leId", LabourEducationModel.class);
-		arp.addMapping("hae_leave_record_model", "reId", LeaveRecordModel.class);
+		arp.addMapping("hae_leave_record_model", "lrId", LeaveRecordModel.class);
 		arp.addMapping("hae_menu_model", "mId", MenuModel.class);
 		arp.addMapping("hae_mind_lead_model", "mdId", MindLeadModel.class);
 		arp.addMapping("hae_mind_test_model", "mtId", MindTestModel.class);

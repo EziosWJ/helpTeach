@@ -1,8 +1,9 @@
 package com.weixin.wj.controller;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
+import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.DailyCheckInModel;
 import com.weixin.wj.model.FeedbackRecordModel;
@@ -14,16 +15,12 @@ import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.TalkEducationModel;
 import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.service.impl.WeixinSendTemplateServiceImpl;
-import com.weixin.wj.template.CustomTemplateMsg;
-import com.weixin.wj.template.RecordTemplate;
 import com.weixin.wj.util.MsgResponse;
-import com.weixin.wj.wx.WeixinApiController;
 
 public class RecordController extends WController {
+	private final int pageSize = PropKit.use("a_little_config.txt").getInt("pageSize");
 
 	private RecordServiceImpl recordServiceImpl = new RecordServiceImpl();
-	
-	private WeixinApiController weixinApiController = new WeixinApiController();
 	
 	private WeixinSendTemplateServiceImpl sendTemplateServiceImpl = new WeixinSendTemplateServiceImpl();
 	
@@ -38,14 +35,8 @@ public class RecordController extends WController {
 	 */
 	public void putDailyCheckIn(){
 		DailyCheckInModel dailyCheckInModel = new DailyCheckInModel();
-		try {
-			dailyCheckInModel = getByBeanIgoneArrayZero(DailyCheckInModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boolean flag = recordServiceImpl.putDailyCheckIn(dailyCheckInModel);
+		dailyCheckInModel = getByBeanIgoneArrayZero(DailyCheckInModel.class);
+		boolean flag = recordServiceImpl.putRecord(dailyCheckInModel);
 		if(flag){
 			sendTemplateServiceImpl.sendCheckInRecord(dailyCheckInModel);
 			renderJson(MsgResponse.success());
@@ -64,7 +55,7 @@ public class RecordController extends WController {
 	 * 添加劳动教育
 	 */
 	public void putLabourEducation(){
-		LabourEducationModel laboureducation = getByBean(LabourEducationModel.class);
+		LabourEducationModel laboureducation = getByBeanIgoneArrayZero(LabourEducationModel.class);
 		boolean flag = recordServiceImpl.putLabourEducation(laboureducation);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -83,16 +74,10 @@ public class RecordController extends WController {
 	 */
 	public void putLeaveRecord(){
 		LeaveRecordModel leaveRecord = new LeaveRecordModel();
-		try {
 			 leaveRecord = getByBeanIgoneArrayZero(LeaveRecordModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boolean flag = recordServiceImpl.putLeaveRecord(leaveRecord);
+		boolean flag = recordServiceImpl.putRecord(leaveRecord);
 		if(flag){
-			sendTemplateServiceImpl.sendLeaveRecord(leaveRecord);
+//			sendTemplateServiceImpl.sendLeaveRecord(leaveRecord);
 			renderJson(MsgResponse.success());
 		}else{
 			renderJson(MsgResponse.fail());
@@ -104,18 +89,18 @@ public class RecordController extends WController {
 	public void getLeaveRecord(){
 		renderJson(MsgResponse.success().put("leaveRecordList", recordServiceImpl.getLeaveRecordList()));
 	}
+	public void getLeaveRecordList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		Page<Record> list = recordServiceImpl.getLeaveRecordList(pageNum,pageSize);
+		renderJson(MsgResponse.success().put("leaveRecordList", list));
+	}
 	/**
 	 * 添加走访记录
 	 */
 	public void putInterviewRecord() {
 		InterviewRecordModel interviewRecord = new InterviewRecordModel();
-		try {
 			interviewRecord = getByBeanIgoneArrayZero(InterviewRecordModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = recordServiceImpl.putInterviewRecord(interviewRecord);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -134,13 +119,7 @@ public class RecordController extends WController {
 	 */
 	public void putTalkEducation() {
 		TalkEducationModel talkEducation = new TalkEducationModel();
-		try {
 			talkEducation = getByBeanIgoneArrayZero(TalkEducationModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = recordServiceImpl.putTalkEducation(talkEducation); 
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -156,13 +135,7 @@ public class RecordController extends WController {
 	 */
 	public void putCommiuntyRecord(){
 		CommunityServiceModel community = new CommunityServiceModel();
-		try {
 			community = getByBeanIgoneArrayZero(CommunityServiceModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = recordServiceImpl.putCommunityRecord(community);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -178,13 +151,7 @@ public class RecordController extends WController {
 	 */
 	public void putFoulRecord(){
 		FoulRecordModel foulRecord = new FoulRecordModel();
-		try {
 			foulRecord = getByBeanIgoneArrayZero(FoulRecordModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = recordServiceImpl.putFoulRecord(foulRecord);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -200,13 +167,7 @@ public class RecordController extends WController {
 	 */
 	public void putOpinionRecord(){
 		OpinionRecordModel opinionRecord = new OpinionRecordModel();
-		try {
 			opinionRecord = getByBeanIgoneArrayZero(OpinionRecordModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = recordServiceImpl.putOpinionRecord(opinionRecord);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -222,13 +183,7 @@ public class RecordController extends WController {
 	 */
 	public void putFeedbackRecord(){
 		FeedbackRecordModel feedbackRecord = new FeedbackRecordModel();
-		try {
 			feedbackRecord = getByBeanIgoneArrayZero(FeedbackRecordModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = recordServiceImpl.putFeedbackRecord(feedbackRecord);
 		if(flag){
 			renderJson(MsgResponse.success());

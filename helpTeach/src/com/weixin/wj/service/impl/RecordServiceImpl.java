@@ -1,8 +1,15 @@
 package com.weixin.wj.service.impl;
 
 import java.util.List;
+
+import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.Table;
+import com.jfinal.plugin.activerecord.TableMapping;
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.DailyCheckInModel;
 import com.weixin.wj.model.FeedbackRecordModel;
@@ -12,10 +19,72 @@ import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.LabourEducationModel;
 import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.TalkEducationModel;
+import com.weixin.wj.service.bean.TableBean;
+import com.weixin.wj.util.GenerateKey;
 import com.weixin.wj.util.NormalUtils;
 
 public class RecordServiceImpl {
 
+	/**
+	 * 主键生成器
+	 * @param modelClass
+	 * @return
+	 */
+	public Model generateRecordPrimaryKey(Model model){
+		TableBean tableBean = new TableBean(model.getClass());
+		Model m = null;
+		try {
+//			m = modelClass.newInstance().dao().findFirst("SELECT * FROM " + tableBean.getTableName() + " WHERE " + tableBean.getSinglePrimary() + " LIKE ? ORDER BY " + tableBean.getSinglePrimary() + " DESC", tableBean.getPrefix() + tableBean.getDateString() + "%" );
+			m = model.findFirst("SELECT * FROM " + tableBean.getTableName() + " WHERE " + tableBean.getSinglePrimary() + " LIKE ? ORDER BY " + tableBean.getSinglePrimary() + " DESC", tableBean.getPrefix() + tableBean.getDateString() + "%" );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String primaryValue = null;
+		String key = null;
+		try {
+			primaryValue = m.getStr(tableBean.getSinglePrimary());
+			key = tableBean.getPrefix() + "20" + (Integer.parseInt(primaryValue.substring(primaryValue.length() - 10)) + 1);
+		} catch (NullPointerException e) {
+			key = tableBean.getPrefix() + tableBean.getDateString() + "0001";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.set(tableBean.getSinglePrimary(), key);
+		return model;
+	}
+	
+	public String FROM_TABLE(Class<? extends Model> modelClass){
+		return " FROM " + TABLE_NAME(modelClass) + "  ";
+	}
+	public String TABLE_NAME(Class<? extends Model> modelClass){
+		return TableMapping.me().getTable(modelClass).getName();
+	}
+	public String PRIMARY_KEY(Class<? extends Model> modelClass){
+		return TableMapping.me().getTable(modelClass).getPrimaryKey()[0];
+	}
+	
+	public Record getRecordById(Class<? extends Model> modelClass ,String idValue){
+		return Db.findById(TABLE_NAME(modelClass), PRIMARY_KEY(modelClass), idValue);
+	}
+	
+	public boolean putRecord(Model<? extends Model> model){
+		return generateRecordPrimaryKey(model).save();
+	}
+	
+	public boolean updateRecord(Model<? extends Model> model){
+		return model.update();
+	}
+	
+	public boolean deleteRecord(Model<? extends Model> model){
+		return model.delete();
+	}
+	
+	public Page<Record> getRecordList(int pageNumber,int pageSize,Class<? extends Model> modelClass){
+		return Db.paginate(pageNumber, pageSize, "SELECT * ",FROM_TABLE(modelClass));
+	}
+	
+	
+	
 	/**
 	 * 日常报到
 	 * @param checkInModel
@@ -76,11 +145,17 @@ public class RecordServiceImpl {
 	 * @return
 	 */
 	public boolean putLeaveRecord(LeaveRecordModel leaveRecordModel) {
-		return leaveRecordModel.save();
+		return generateRecordPrimaryKey(leaveRecordModel).save();
 	}
-	
+//	public LeaveRecordModel getLeaveRecordById(){
+//		return Db.findById(TABLE_NAME(LeaveRecordModel.class), "", "");
+//	}
 	public List<?> getLeaveRecordList(){
 		return Db.find("SELECT ucId,reDate,reReason FROM hae_leave_record_model order by reId  desc ");
+	}
+	
+	public Page<Record> getLeaveRecordList(int pageNumber,int pageSize){
+		return Db.paginate(pageNumber, pageSize, "SELECT * ",FROM_TABLE(LeaveRecordModel.class));
 	}
 	/**
 	 * 添加走访记录
@@ -124,6 +199,11 @@ public class RecordServiceImpl {
 		return Db.find("SELECT ucId,csPlace,csReason FROM hae_community_service_model ORDER BY csId DESC");
 	}
 
+	/**
+	 * 违规违纪
+	 * @param foulRecord
+	 * @return
+	 */
 	public boolean putFoulRecord(FoulRecordModel foulRecord) {
 		// TODO Auto-generated method stub
 		return foulRecord.save();
@@ -134,9 +214,14 @@ public class RecordServiceImpl {
 		return Db.find("SELECT ucId,frDate,frReason FROM hae_foul_record_model ORDER BY frId DESC");
 	}
 
+	/**
+	 * 评定意见
+	 * @param opinionRecord
+	 * @return
+	 */
 	public boolean putOpinionRecord(OpinionRecordModel opinionRecord) {
 		// TODO Auto-generated method stub
-		Record ur = Db.findById("hae_user_record_model","urId" ,opinionRecord.getUcId()).set("urPortraitUrl", "8");
+		Record ur = Db.findById("hae_user_record_model","urId" ,opinionRecord.getOrReciver()).set("urPortraitUrl", "8");
 		Db.update("hae_user_record_model","urId", ur);
 		return opinionRecord.save();
 	}

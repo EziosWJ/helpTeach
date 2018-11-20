@@ -9,58 +9,85 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseLabourEducationModel<M extends BaseLabourEducationModel<M>> extends Model<M> implements IBean {
 
-	public M setLeId(java.lang.Integer leId) {
+	public M setLeId(java.lang.String leId) {
 		set("leId", leId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getLeId() {
-		return getInt("leId");
+	public java.lang.String getLeId() {
+		return getStr("leId");
 	}
 
-	public M setLeHelper(java.lang.String leHelper) {
-		set("leHelper", leHelper);
+	public M setLeName(java.lang.String leName) {
+		set("leName", leName);
 		return (M)this;
 	}
 	
-	public java.lang.String getLeHelper() {
-		return getStr("leHelper");
+	public java.lang.String getLeName() {
+		return getStr("leName");
 	}
 
-	public M setLeDate(java.util.Date leDate) {
-		set("leDate", leDate);
+	public M setLeLeader(java.lang.String leLeader) {
+		set("leLeader", leLeader);
 		return (M)this;
 	}
 	
-	public java.util.Date getLeDate() {
-		return get("leDate");
+	public java.lang.String getLeLeader() {
+		return getStr("leLeader");
 	}
 
-	public M setLeReason(java.lang.String leReason) {
-		set("leReason", leReason);
+	public M setLeReciver(java.lang.String leReciver) {
+		set("leReciver", leReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getLeReason() {
-		return getStr("leReason");
+	public java.lang.String getLeReciver() {
+		return getStr("leReciver");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
-		set("ucId", ucId);
+	public M setLeCreateDate(java.util.Date leCreateDate) {
+		set("leCreateDate", leCreateDate);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.util.Date getLeCreateDate() {
+		return get("leCreateDate");
 	}
 
-	public M setLePlace(java.lang.String lePlace) {
-		set("lePlace", lePlace);
+	public M setLeState(java.lang.String leState) {
+		set("leState", leState);
 		return (M)this;
 	}
 	
-	public java.lang.String getLePlace() {
-		return getStr("lePlace");
+	public java.lang.String getLeState() {
+		return getStr("leState");
+	}
+
+	public M setLeContent(java.lang.String leContent) {
+		set("leContent", leContent);
+		return (M)this;
+	}
+	
+	public java.lang.String getLeContent() {
+		return getStr("leContent");
+	}
+
+	public M setLeResult(java.lang.String leResult) {
+		set("leResult", leResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getLeResult() {
+		return getStr("leResult");
+	}
+
+	public M setLeCustom(java.lang.String leCustom) {
+		set("leCustom", leCustom);
+		return (M)this;
+	}
+	
+	public java.lang.String getLeCustom() {
+		return getStr("leCustom");
 	}
 
 }

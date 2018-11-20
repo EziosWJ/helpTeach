@@ -1,5 +1,6 @@
 package com.weixin.wj.test;
 
+import com.weixin.wj.model.LeaveRecordModel;
 import com.weixin.wj.model.MenuModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +9,14 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.weixin.wj.model._MappingKit;
 import com.weixin.wj.service.MenuService;
 import com.weixin.wj.service.impl.MenuServiceImpl;
+import com.weixin.wj.service.impl.RecordServiceImpl;
+import com.weixin.wj.util.GenerateKey;
 import com.weixin.wj.util.MsgResponse;
 
 import jfinal.config.DevConfig;
@@ -20,6 +24,7 @@ import jfinal.config.DevConfig;
 public class MenuTest {
 	
 	private MenuService menuService = new MenuServiceImpl();
+	private RecordServiceImpl recordServiceImpl = new RecordServiceImpl();
 	/**
 	 * 我认为可以使用sql找到parent的max值然后得到目录层级 
 	 */
@@ -92,6 +97,19 @@ public class MenuTest {
         button.put("button", jsonArray);
         System.out.println(button);
         
+	}
+	
+	@Test
+	public void testaoptest(){
+		init();
+		LeaveRecordModel leaveRecordModel = new LeaveRecordModel();
+//		String l = recordServiceImpl.generateRecordPrimaryKey(leaveRecordModel);
+//		leaveRecordModel.setLrId(l);
+//		leaveRecordModel.save();
+//		recordServiceImpl.generateRecordPrimaryKey(leaveRecordModel).save();
+//		System.out.println(leaveRecordModel.toJson());
+		
+		recordServiceImpl.putLeaveRecord(leaveRecordModel);
 	}
 	
 	

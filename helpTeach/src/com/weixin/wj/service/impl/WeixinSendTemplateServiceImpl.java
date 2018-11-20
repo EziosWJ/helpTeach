@@ -57,7 +57,7 @@ public class WeixinSendTemplateServiceImpl {
 	 * @param leaveRecordModel
 	 */
 	public void sendLeaveRecord(LeaveRecordModel leaveRecordModel){
-		List<String> list = getTouserList(leaveRecordModel.getUcId().toString());
+		List<String> list = getTouserList(leaveRecordModel.getLrReciver().toString());
 		for (String touser : list) {
 			String template = RecordTemplate.leaveRecord(leaveRecordModel,touser);
 //			weixinApiController.sendCustomTemplateMsg(template);			

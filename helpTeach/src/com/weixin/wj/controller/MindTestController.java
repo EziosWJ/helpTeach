@@ -29,13 +29,7 @@ public class MindTestController extends WController {
 	 */
 	public void putMindTestResult(){
 		MindTestModel mindTestModel = new MindTestModel();
-		try {
 			mindTestModel = getByBeanIgoneArrayZero(MindTestModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = qstServiceImpl.putMindTestResult(mindTestModel);
 		if(flag){
 			renderJson(MsgResponse.success());

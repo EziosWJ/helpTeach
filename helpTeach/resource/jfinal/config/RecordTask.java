@@ -11,8 +11,8 @@ public class RecordTask implements Runnable {
 	private WeixinSendTemplateServiceImpl sendTemplateServiceImpl = new WeixinSendTemplateServiceImpl();
 	@Override
 	public void run() {
-		ApiResult apiResult = sendTemplateServiceImpl.sendTaskDailyCheckIn();
-		logger.debug(apiResult.getJson());
+//		ApiResult apiResult = sendTemplateServiceImpl.sendTaskDailyCheckIn();
+//		logger.debug(apiResult.getJson());
 	}
 
 }

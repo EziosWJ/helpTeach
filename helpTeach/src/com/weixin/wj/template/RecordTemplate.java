@@ -93,9 +93,9 @@ public class RecordTemplate extends CustomTemplateMsg {
 				.setTouser(touser)
 				.setTemplate_id(getTemplateId("leaveRecord"))
 				.setUrl(getMainProp("mainUrl"))
-				.add("reciver", leaveRecordModel.getUcId().toString())
-				.add("reason", leaveRecordModel.getReReason())
-				.add("date", leaveRecordModel.getReDate().toString())
+				.add("reciver", leaveRecordModel.getLrReciver().toString())
+				.add("reason", leaveRecordModel.getLrContent())
+				.add("date", leaveRecordModel.getLrCreateDate().toString())
 				.build();
 		
 		return template;

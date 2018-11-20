@@ -16,6 +16,14 @@ url=jdbc:mysql:///helpeducate
 password=123456
 #password=bootstrap
 
+#分页默认配置
+#数据量
+pageSize=5
+
+
+
+
+
 mainUrl=http://www.tyjcywj.cn
 # Template
 #今日报到定时任务

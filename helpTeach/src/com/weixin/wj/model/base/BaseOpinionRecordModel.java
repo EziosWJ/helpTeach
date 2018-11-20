@@ -9,49 +9,76 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseOpinionRecordModel<M extends BaseOpinionRecordModel<M>> extends Model<M> implements IBean {
 
-	public M setOrId(java.lang.Integer orId) {
+	public M setOrId(java.lang.String orId) {
 		set("orId", orId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getOrId() {
-		return getInt("orId");
+	public java.lang.String getOrId() {
+		return getStr("orId");
 	}
 
-	public M setOrHelper(java.lang.String orHelper) {
-		set("orHelper", orHelper);
+	public M setOrName(java.lang.String orName) {
+		set("orName", orName);
 		return (M)this;
 	}
 	
-	public java.lang.String getOrHelper() {
-		return getStr("orHelper");
+	public java.lang.String getOrName() {
+		return getStr("orName");
 	}
 
-	public M setOrDate(java.util.Date orDate) {
-		set("orDate", orDate);
+	public M setOrLeader(java.lang.String orLeader) {
+		set("orLeader", orLeader);
 		return (M)this;
 	}
 	
-	public java.util.Date getOrDate() {
-		return get("orDate");
+	public java.lang.String getOrLeader() {
+		return getStr("orLeader");
 	}
 
-	public M setOrReason(java.lang.String orReason) {
-		set("orReason", orReason);
+	public M setOrReciver(java.lang.String orReciver) {
+		set("orReciver", orReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getOrReason() {
-		return getStr("orReason");
+	public java.lang.String getOrReciver() {
+		return getStr("orReciver");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
-		set("ucId", ucId);
+	public M setOrCreateDate(java.util.Date orCreateDate) {
+		set("orCreateDate", orCreateDate);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.util.Date getOrCreateDate() {
+		return get("orCreateDate");
+	}
+
+	public M setOrContent(java.lang.String orContent) {
+		set("orContent", orContent);
+		return (M)this;
+	}
+	
+	public java.lang.String getOrContent() {
+		return getStr("orContent");
+	}
+
+	public M setOrResult(java.lang.String orResult) {
+		set("orResult", orResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getOrResult() {
+		return getStr("orResult");
+	}
+
+	public M setOrCustom(java.lang.String orCustom) {
+		set("orCustom", orCustom);
+		return (M)this;
+	}
+	
+	public java.lang.String getOrCustom() {
+		return getStr("orCustom");
 	}
 
 }

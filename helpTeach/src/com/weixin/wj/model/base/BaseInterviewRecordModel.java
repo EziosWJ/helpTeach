@@ -9,49 +9,85 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseInterviewRecordModel<M extends BaseInterviewRecordModel<M>> extends Model<M> implements IBean {
 
-	public M setIrId(java.lang.Integer irId) {
+	public M setIrId(java.lang.String irId) {
 		set("irId", irId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getIrId() {
-		return getInt("irId");
+	public java.lang.String getIrId() {
+		return getStr("irId");
 	}
 
-	public M setIrHelper(java.lang.String irHelper) {
-		set("irHelper", irHelper);
+	public M setIrName(java.lang.String irName) {
+		set("irName", irName);
 		return (M)this;
 	}
 	
-	public java.lang.String getIrHelper() {
-		return getStr("irHelper");
+	public java.lang.String getIrName() {
+		return getStr("irName");
 	}
 
-	public M setIrDate(java.util.Date irDate) {
-		set("irDate", irDate);
+	public M setIrLeader(java.lang.String irLeader) {
+		set("irLeader", irLeader);
 		return (M)this;
 	}
 	
-	public java.util.Date getIrDate() {
-		return get("irDate");
+	public java.lang.String getIrLeader() {
+		return getStr("irLeader");
 	}
 
-	public M setIrReason(java.lang.String irReason) {
-		set("irReason", irReason);
+	public M setIrReciver(java.lang.String irReciver) {
+		set("irReciver", irReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getIrReason() {
-		return getStr("irReason");
+	public java.lang.String getIrReciver() {
+		return getStr("irReciver");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
-		set("ucId", ucId);
+	public M setIrCreateDate(java.util.Date irCreateDate) {
+		set("irCreateDate", irCreateDate);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.util.Date getIrCreateDate() {
+		return get("irCreateDate");
+	}
+
+	public M setIrState(java.lang.String irState) {
+		set("irState", irState);
+		return (M)this;
+	}
+	
+	public java.lang.String getIrState() {
+		return getStr("irState");
+	}
+
+	public M setIrContent(java.lang.String irContent) {
+		set("irContent", irContent);
+		return (M)this;
+	}
+	
+	public java.lang.String getIrContent() {
+		return getStr("irContent");
+	}
+
+	public M setIrResult(java.lang.String irResult) {
+		set("irResult", irResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getIrResult() {
+		return getStr("irResult");
+	}
+
+	public M setIrCustom(java.lang.String irCustom) {
+		set("irCustom", irCustom);
+		return (M)this;
+	}
+	
+	public java.lang.String getIrCustom() {
+		return getStr("irCustom");
 	}
 
 }

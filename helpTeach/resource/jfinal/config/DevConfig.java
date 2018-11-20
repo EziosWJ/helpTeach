@@ -13,7 +13,6 @@ import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 import com.weixin.wj.model._MappingKit;
 
-import jfinal.config.routes.HelloRoutes;
 import jfinal.config.routes.WxRoutes;
 
 public class DevConfig extends JFinalConfig {
@@ -29,7 +28,7 @@ public class DevConfig extends JFinalConfig {
 	@Override
 	public void configRoute(Routes me) {
 		// TODO Auto-generated method stub
-		me.add(new HelloRoutes());
+//		me.add(new HelloRoutes());
 		me.add(new WxRoutes());
 	}
 
@@ -60,8 +59,8 @@ public class DevConfig extends JFinalConfig {
 
 	}
 	public static DruidPlugin createDataSource(){
-//		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql:///helpeducate", "root", "123456");
-		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql://118.126.114.66:3306/helpeducate", "root", "bootstrap");
+		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql:///helpeducate", "root", "123456");
+//		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql://118.126.114.66:3306/helpeducate", "root", "bootstrap");
 		return druidPlugin;
 		
 	}

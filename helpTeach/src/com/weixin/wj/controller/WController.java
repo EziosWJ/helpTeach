@@ -64,7 +64,7 @@ public class WController extends Controller {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public <T> T getByBeanIgoneArrayZero(Class<T> BeanClass) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public <T> T getByBeanIgoneArrayZero(Class<T> BeanClass)  {
 		T t = getBean((Class<T>) BeanClass, "");
 		Map<String, String[]> map = getParaMap();
 		Set<String> set = map.keySet();
@@ -77,8 +77,19 @@ public class WController extends Controller {
 //				Field f = t.getClass().getDeclaredField(realKey);
 //				f.setAccessible(true);
 //				f.set(t, getPara(realKey));//没有声明
-				Method method = Model.class.getDeclaredMethod("set",String.class,Object.class);
-				method.invoke(t, realKey,value[0]);
+				Method method = null;
+				try {
+					method = Model.class.getDeclaredMethod("set",String.class,Object.class);
+				} catch (NoSuchMethodException | SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					method.invoke(t, realKey,value[0]);
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		}

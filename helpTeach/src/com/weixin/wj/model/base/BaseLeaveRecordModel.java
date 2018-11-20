@@ -9,58 +9,76 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseLeaveRecordModel<M extends BaseLeaveRecordModel<M>> extends Model<M> implements IBean {
 
-	public M setReId(java.lang.Integer reId) {
-		set("reId", reId);
+	public M setLrId(java.lang.String lrId) {
+		set("lrId", lrId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getReId() {
-		return getInt("reId");
+	public java.lang.String getLrId() {
+		return getStr("lrId");
 	}
 
-	public M setReUsername(java.lang.String reUsername) {
-		set("reUsername", reUsername);
+	public M setLrName(java.lang.String lrName) {
+		set("lrName", lrName);
 		return (M)this;
 	}
 	
-	public java.lang.String getReUsername() {
-		return getStr("reUsername");
+	public java.lang.String getLrName() {
+		return getStr("lrName");
 	}
 
-	public M setReHelper(java.lang.String reHelper) {
-		set("reHelper", reHelper);
+	public M setLrLeader(java.lang.String lrLeader) {
+		set("lrLeader", lrLeader);
 		return (M)this;
 	}
 	
-	public java.lang.String getReHelper() {
-		return getStr("reHelper");
+	public java.lang.String getLrLeader() {
+		return getStr("lrLeader");
 	}
 
-	public M setReReason(java.lang.String reReason) {
-		set("reReason", reReason);
+	public M setLrReciver(java.lang.String lrReciver) {
+		set("lrReciver", lrReciver);
 		return (M)this;
 	}
 	
-	public java.lang.String getReReason() {
-		return getStr("reReason");
+	public java.lang.String getLrReciver() {
+		return getStr("lrReciver");
 	}
 
-	public M setReDate(java.util.Date reDate) {
-		set("reDate", reDate);
+	public M setLrCreateDate(java.util.Date lrCreateDate) {
+		set("lrCreateDate", lrCreateDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getReDate() {
-		return get("reDate");
+	public java.util.Date getLrCreateDate() {
+		return get("lrCreateDate");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
-		set("ucId", ucId);
+	public M setLrContent(java.lang.String lrContent) {
+		set("lrContent", lrContent);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.lang.String getLrContent() {
+		return getStr("lrContent");
+	}
+
+	public M setLrResult(java.lang.String lrResult) {
+		set("lrResult", lrResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getLrResult() {
+		return getStr("lrResult");
+	}
+
+	public M setLrCustom(java.lang.String lrCustom) {
+		set("lrCustom", lrCustom);
+		return (M)this;
+	}
+	
+	public java.lang.String getLrCustom() {
+		return getStr("lrCustom");
 	}
 
 }

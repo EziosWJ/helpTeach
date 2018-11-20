@@ -81,4 +81,13 @@ public abstract class BaseUserCaseModel<M extends BaseUserCaseModel<M>> extends 
 		return getStr("ucRole");
 	}
 
+	public M setUcOpenId(java.lang.String ucOpenId) {
+		set("ucOpenId", ucOpenId);
+		return (M)this;
+	}
+	
+	public java.lang.String getUcOpenId() {
+		return getStr("ucOpenId");
+	}
+
 }

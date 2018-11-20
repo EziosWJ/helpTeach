@@ -6,6 +6,8 @@
 
 package jfinal.config;
 
+import java.lang.reflect.Field;
+
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -29,7 +31,6 @@ import com.weixin.wj.model._MappingKit;
 import com.weixin.wj.wx.WeixinApiController;
 import com.weixin.wj.wx.WeixinMsgController;
 
-import jfinal.config.routes.HelloRoutes;
 import jfinal.config.routes.WxRoutes;
 
 public class WeixinConfig extends JFinalConfig {
@@ -65,7 +66,7 @@ public class WeixinConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/msg", WeixinMsgController.class);
         me.add("/api", WeixinApiController.class, "/api");
-		me.add(new HelloRoutes());
+//		me.add(new HelloRoutes());
 		me.add(new WxRoutes());
 //        me.add("/pay", WeixinPayController.class);
 //        me.add("/wxa/user", WxaUserApiController.class);

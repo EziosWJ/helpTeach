@@ -32,13 +32,7 @@ public class EduplanController extends WController{
 	 */
 	public void putMindLead(){
 		MindLeadModel mindLeadModel = new MindLeadModel();
-		try {
 			mindLeadModel = getByBeanIgoneArrayZero(MindLeadModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean p = eduplanServiceImp.putMindLead(mindLeadModel);
 		if(p){
 			renderJson(MsgResponse.success());
@@ -62,13 +56,7 @@ public class EduplanController extends WController{
 	 */
 	public void putRisk() {
 		RiskModel riskModel = new RiskModel();
-		try {
 			riskModel = getByBeanIgoneArrayZero(RiskModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean p = eduplanServiceImp.putRisk(riskModel);
 		if(p){
 			renderJson(MsgResponse.success());
@@ -84,13 +72,7 @@ public class EduplanController extends WController{
 	 */
 	public void putEduplan(){
 		EduplanModel eduplanModel = new EduplanModel();
-		try {
 			eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = eduplanServiceImp.putEduplan(eduplanModel);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -108,13 +90,7 @@ public class EduplanController extends WController{
 	 */
 	public void putRevisit(){
 		RevisitModel revisitModel = new RevisitModel();
-		try {
 			revisitModel = getByBeanIgoneArrayZero(RevisitModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = eduplanServiceImp.putReVisit(revisitModel);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -133,13 +109,7 @@ public class EduplanController extends WController{
 	 */
 	public void putRewardPunish(){
 		RewardPunishModel rewardPunishModel = new RewardPunishModel();
-		try {
 			rewardPunishModel = getByBeanIgoneArrayZero(RewardPunishModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = eduplanServiceImp.putRewardPunish(rewardPunishModel);
 		if(flag){
 			renderJson(MsgResponse.success());
@@ -157,13 +127,7 @@ public class EduplanController extends WController{
 	 */
 	public void putInvOption(){
 		InvOptionModel invOptionModel = new InvOptionModel();
-		try {
 			invOptionModel = getByBeanIgoneArrayZero(InvOptionModel.class);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean flag = eduplanServiceImp.putInvOption(invOptionModel);
 		if(flag){
 			renderJson(MsgResponse.success());
