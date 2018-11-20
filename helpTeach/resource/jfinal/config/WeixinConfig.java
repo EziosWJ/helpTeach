@@ -59,7 +59,7 @@ public class WeixinConfig extends JFinalConfig {
         ApiConfigKit.setDevMode(me.getDevMode());
 		me.setViewType(ViewType.JSP);
 		me.setJsonFactory(new MixedJsonFactory());
-		me.setLogFactory(new Log4jLogFactory());
+//		me.setLogFactory(new Log4jLogFactory());
     }
 
     public void configRoute(Routes me) {
@@ -160,7 +160,8 @@ public class WeixinConfig extends JFinalConfig {
 //        JFinal.start("src/main/webapp", 80, "/", 5);
 //    }
 	public static DruidPlugin createDataSource(){
-		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql:///helpeducate", "root", "123456");
+		DruidPlugin druidPlugin = new DruidPlugin(PropKit.get("url"), "root", PropKit.get("password"));
+//		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql:///helpeducate", "root", "123456");
 //		DruidPlugin druidPlugin = new DruidPlugin("jdbc:mysql://118.126.114.66:3306/helpeducate", "root", "bootstrap");
 		return druidPlugin;
 		
