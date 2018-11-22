@@ -11,7 +11,7 @@ import com.weixin.wj.model.RevisitModel;
 import com.weixin.wj.model.RewardPunishModel;
 import com.weixin.wj.model.RiskModel;
 
-public class EduplanServiceImp {
+public class EduplanServiceImp extends WServiceSupport{
 
 	private static MindLeadModel mindLeadDao = new MindLeadModel().dao();
 	private static RiskModel riskDao = new RiskModel().dao();

@@ -9,13 +9,13 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseMindTestModel<M extends BaseMindTestModel<M>> extends Model<M> implements IBean {
 
-	public M setMtId(java.lang.Integer mtId) {
+	public M setMtId(java.lang.String mtId) {
 		set("mtId", mtId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getMtId() {
-		return getInt("mtId");
+	public java.lang.String getMtId() {
+		return getStr("mtId");
 	}
 
 	public M setUrId(java.lang.String urId) {

@@ -9,13 +9,13 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseDailyCheckInModel<M extends BaseDailyCheckInModel<M>> extends Model<M> implements IBean {
 
-	public M setDiId(java.lang.Integer diId) {
+	public M setDiId(java.lang.String diId) {
 		set("diId", diId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getDiId() {
-		return getInt("diId");
+	public java.lang.String getDiId() {
+		return getStr("diId");
 	}
 
 	public M setDiName(java.lang.String diName) {
@@ -27,22 +27,22 @@ public abstract class BaseDailyCheckInModel<M extends BaseDailyCheckInModel<M>> 
 		return getStr("diName");
 	}
 
-	public M setDiLeader(java.lang.Integer diLeader) {
+	public M setDiLeader(java.lang.String diLeader) {
 		set("diLeader", diLeader);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getDiLeader() {
-		return getInt("diLeader");
+	public java.lang.String getDiLeader() {
+		return getStr("diLeader");
 	}
 
-	public M setDiReciver(java.lang.Integer diReciver) {
+	public M setDiReciver(java.lang.String diReciver) {
 		set("diReciver", diReciver);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getDiReciver() {
-		return getInt("diReciver");
+	public java.lang.String getDiReciver() {
+		return getStr("diReciver");
 	}
 
 	public M setDiCreateDate(java.util.Date diCreateDate) {

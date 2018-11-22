@@ -9,13 +9,13 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseRiskModel<M extends BaseRiskModel<M>> extends Model<M> implements IBean {
 
-	public M setRkId(java.lang.Integer rkId) {
+	public M setRkId(java.lang.String rkId) {
 		set("rkId", rkId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getRkId() {
-		return getInt("rkId");
+	public java.lang.String getRkId() {
+		return getStr("rkId");
 	}
 
 	public M setRkName(java.lang.String rkName) {

@@ -5,7 +5,7 @@ import java.util.List;
 import com.weixin.wj.model.MindTestModel;
 import com.weixin.wj.model.MindTestQstModel;
 
-public class MindTestQstServiceImpl {
+public class MindTestQstServiceImpl extends WServiceSupport{
 
 	private static final MindTestQstModel dao = new MindTestQstModel().dao();
 	

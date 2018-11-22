@@ -1,15 +1,7 @@
 package com.weixin.wj.controller;
 
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.Page;
 import com.weixin.wj.model.EduplanModel;
 import com.weixin.wj.model.InvOptionModel;
 import com.weixin.wj.model.MindLeadModel;
@@ -20,7 +12,7 @@ import com.weixin.wj.service.impl.EduplanServiceImp;
 import com.weixin.wj.util.MsgResponse;
 
 public class EduplanController extends WController{
-	
+	private final int pageSize = PropKit.use("a_little_config.txt").getInt("pageSize");
 	private EduplanServiceImp eduplanServiceImp = new EduplanServiceImp();
 	
 	public void index() {
@@ -31,9 +23,17 @@ public class EduplanController extends WController{
 	 * 心理辅导
 	 */
 	public void putMindLead(){
-		MindLeadModel mindLeadModel = new MindLeadModel();
-			mindLeadModel = getByBeanIgoneArrayZero(MindLeadModel.class);
-		boolean p = eduplanServiceImp.putMindLead(mindLeadModel);
+		MindLeadModel mindLeadModel = getByBeanIgoneArrayZero(MindLeadModel.class);
+		boolean p = eduplanServiceImp.putRecord(mindLeadModel);
+		if(p){
+			renderJson(MsgResponse.success());
+		}else {
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void updateMindLead(){
+		MindLeadModel mindLeadModel = getByBeanIgoneArrayZero(MindLeadModel.class);
+		boolean p = eduplanServiceImp.updateRecord(mindLeadModel);
 		if(p){
 			renderJson(MsgResponse.success());
 		}else {
@@ -46,8 +46,10 @@ public class EduplanController extends WController{
 	}
 	
 	public void getMindLeadList(){
-		List<?> list = eduplanServiceImp.getMindLeadList();
-		renderJson(MsgResponse.success().put("mindLeadList", list));
+		int pageNumber = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		Page<?> list = eduplanServiceImp.getRecordList(pageNumber, pageSize, MindLeadModel.class);
+		renderJson(MsgResponse.success().put("page", list));
 		
 	}
 	
@@ -57,7 +59,17 @@ public class EduplanController extends WController{
 	public void putRisk() {
 		RiskModel riskModel = new RiskModel();
 			riskModel = getByBeanIgoneArrayZero(RiskModel.class);
-		boolean p = eduplanServiceImp.putRisk(riskModel);
+		boolean p = eduplanServiceImp.putRecord(riskModel);
+		if(p){
+			renderJson(MsgResponse.success());
+		}else{
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void updateRisk() {
+		RiskModel riskModel = new RiskModel();
+		riskModel = getByBeanIgoneArrayZero(RiskModel.class);
+		boolean p = eduplanServiceImp.updateRecord(riskModel);
 		if(p){
 			renderJson(MsgResponse.success());
 		}else{
@@ -65,7 +77,10 @@ public class EduplanController extends WController{
 		}
 	}
 	public void getRiskList(){
-		renderJson(MsgResponse.success().put("riskList", eduplanServiceImp.getRiskList()));
+		int pageNumber = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		Page<?> list = eduplanServiceImp.getRecordList(pageNumber, pageSize, RiskModel.class);
+		renderJson(MsgResponse.success().put("page", list));
 	}
 	/**
 	 * 帮教计划

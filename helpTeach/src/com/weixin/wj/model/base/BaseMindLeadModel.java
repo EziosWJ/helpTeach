@@ -9,13 +9,13 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseMindLeadModel<M extends BaseMindLeadModel<M>> extends Model<M> implements IBean {
 
-	public M setMdId(java.lang.Integer mdId) {
+	public M setMdId(java.lang.String mdId) {
 		set("mdId", mdId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getMdId() {
-		return getInt("mdId");
+	public java.lang.String getMdId() {
+		return getStr("mdId");
 	}
 
 	public M setMdName(java.lang.String mdName) {
@@ -52,6 +52,24 @@ public abstract class BaseMindLeadModel<M extends BaseMindLeadModel<M>> extends 
 	
 	public java.util.Date getMdLeadDate() {
 		return get("mdLeadDate");
+	}
+
+	public M setMdState(java.lang.String mdState) {
+		set("mdState", mdState);
+		return (M)this;
+	}
+	
+	public java.lang.String getMdState() {
+		return getStr("mdState");
+	}
+
+	public M setMdResult(java.lang.String mdResult) {
+		set("mdResult", mdResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getMdResult() {
+		return getStr("mdResult");
 	}
 
 	public M setMdCondition(java.lang.String mdCondition) {

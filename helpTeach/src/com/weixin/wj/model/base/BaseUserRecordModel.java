@@ -9,22 +9,22 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseUserRecordModel<M extends BaseUserRecordModel<M>> extends Model<M> implements IBean {
 
-	public M setUrId(java.lang.Integer urId) {
+	public M setUrId(java.lang.String urId) {
 		set("urId", urId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUrId() {
-		return getInt("urId");
+	public java.lang.String getUrId() {
+		return getStr("urId");
 	}
 
-	public M setUcId(java.lang.Integer ucId) {
+	public M setUcId(java.lang.String ucId) {
 		set("ucId", ucId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUcId() {
-		return getInt("ucId");
+	public java.lang.String getUcId() {
+		return getStr("ucId");
 	}
 
 	public M setUrName(java.lang.String urName) {
@@ -54,13 +54,13 @@ public abstract class BaseUserRecordModel<M extends BaseUserRecordModel<M>> exte
 		return getStr("urAddress");
 	}
 
-	public M setUrRelationId(java.lang.Integer urRelationId) {
+	public M setUrRelationId(java.lang.String urRelationId) {
 		set("urRelationId", urRelationId);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getUrRelationId() {
-		return getInt("urRelationId");
+	public java.lang.String getUrRelationId() {
+		return getStr("urRelationId");
 	}
 
 	public M setUrPortraitUrl(java.lang.String urPortraitUrl) {
@@ -88,6 +88,24 @@ public abstract class BaseUserRecordModel<M extends BaseUserRecordModel<M>> exte
 	
 	public java.lang.String getUrCustom() {
 		return getStr("urCustom");
+	}
+
+	public M setUrState(java.lang.String urState) {
+		set("urState", urState);
+		return (M)this;
+	}
+	
+	public java.lang.String getUrState() {
+		return getStr("urState");
+	}
+
+	public M setUrResult(java.lang.String urResult) {
+		set("urResult", urResult);
+		return (M)this;
+	}
+	
+	public java.lang.String getUrResult() {
+		return getStr("urResult");
 	}
 
 }

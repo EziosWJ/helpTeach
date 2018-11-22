@@ -19,9 +19,16 @@ public class UserCaseController extends WController{
 	}
 	public void login(){
 		UserCaseModel usercase = getByBean(UserCaseModel.class);
-		MsgResponse msgResponse = userCaseService.login(usercase);
-		setSessionAttr("session_uc",(UserCaseModel) msgResponse.getContent().get("uc"));
-		renderJson(msgResponse);
+		UserCaseModel uc = userCaseService.login(usercase);
+		if(uc == null){
+			renderJson(MsgResponse.fail());
+		}else {
+			setSessionAttr("session_uc", uc);
+			setSessionAttr("ucId", uc.get("ucId"));
+			setSessionAttr("ucToken", uc.get("ucToken"));
+			setSessionAttr("ucRole", uc.get("ucRole"));
+			renderJson(MsgResponse.success().put("uc", uc));
+		}
 	}
 	
 	public void logout() {

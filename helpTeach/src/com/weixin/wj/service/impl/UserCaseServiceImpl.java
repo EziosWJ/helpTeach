@@ -23,10 +23,10 @@ public class UserCaseServiceImpl implements UserCaseService {
 		}
 	}
 	@Override
-	public MsgResponse login(UserCaseModel usercase) {
+	public UserCaseModel login(UserCaseModel usercase) {
 		String sql = "SELECT * FROM hae_user_case_model where ucName = ? and ucPassword = ?";
 		UserCaseModel uc = dao.findFirst(sql, usercase.getUcName(),usercase.getUcPassword());
-		return reMsg(uc);
+		return uc;
 	}
 
 	@Override

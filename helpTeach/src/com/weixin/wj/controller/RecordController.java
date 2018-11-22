@@ -1,6 +1,8 @@
 package com.weixin.wj.controller;
 
 
+import org.apache.catalina.User;
+
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
@@ -13,6 +15,7 @@ import com.weixin.wj.model.LabourEducationModel;
 import com.weixin.wj.model.LeaveRecordModel;
 import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.TalkEducationModel;
+import com.weixin.wj.model.UserCaseModel;
 import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.service.impl.WeixinSendTemplateServiceImpl;
 import com.weixin.wj.util.MsgResponse;
@@ -28,35 +31,46 @@ public class RecordController extends WController {
 		
 	}
 	
-	
-	
 	/**
 	 * 日常报到
+	 * putRecord
 	 */
 	public void putDailyCheckIn(){
 		DailyCheckInModel dailyCheckInModel = new DailyCheckInModel();
 		dailyCheckInModel = getByBeanIgoneArrayZero(DailyCheckInModel.class);
 		boolean flag = recordServiceImpl.putRecord(dailyCheckInModel);
 		if(flag){
-			sendTemplateServiceImpl.sendCheckInRecord(dailyCheckInModel);
+//			sendTemplateServiceImpl.sendCheckInRecord(dailyCheckInModel);
 			renderJson(MsgResponse.success());
 		}else {
 			renderJson(MsgResponse.fail());
 		}
 	}
-	public void getDailyCheckInList(){
-		renderJson(MsgResponse.success().put("dailyCheckInList", recordServiceImpl.getDailyCheckInList()));
+	public void updateDailyCheckIn(){
+		DailyCheckInModel dailyCheckInModel = getByBeanIgoneArrayZero(DailyCheckInModel.class);
+		boolean flag = recordServiceImpl.updateRecord(dailyCheckInModel);
+		if(flag){
+			renderJson(MsgResponse.success());
+		}else {
+			renderJson(MsgResponse.fail());
+		}
+	}
+	public void getDailyCheckInListSession(){
+//		String ucId = getPara("ucId");
+		String ucId = getSessionAttr("ucId");
+		UserCaseModel userCaseModel = getSessionAttr("session_uc");
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getDailyCheckInLimitList(ucId)));
 	}
 	
-	public void getDailyCheckInConditionList(){
-		renderJson(MsgResponse.success().put("dailyCheckInConditionList", recordServiceImpl.getDailyCheckInConditionList()));
+	public void getDailyCheckInList(){
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getDailyCheckInConditionList()));
 	}
 	/**
 	 * 添加劳动教育
 	 */
 	public void putLabourEducation(){
 		LabourEducationModel laboureducation = getByBeanIgoneArrayZero(LabourEducationModel.class);
-		boolean flag = recordServiceImpl.putLabourEducation(laboureducation);
+		boolean flag = recordServiceImpl.putRecord(laboureducation);
 		if(flag){
 			renderJson(MsgResponse.success());
 		}else{
@@ -66,15 +80,17 @@ public class RecordController extends WController {
 	/**
 	 * 获取劳动教育列表
 	 */
-	public void getLabourEducation(){
-		renderJson(MsgResponse.success().put("labourEducationList", recordServiceImpl.getLabourEducationList()));
+	public void getLabourEducationList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, LabourEducationModel.class)));
 	}
 	/**
 	 * 添加外出请假
 	 */
 	public void putLeaveRecord(){
 		LeaveRecordModel leaveRecord = new LeaveRecordModel();
-			 leaveRecord = getByBeanIgoneArrayZero(LeaveRecordModel.class);
+		leaveRecord = getByBeanIgoneArrayZero(LeaveRecordModel.class);
 		boolean flag = recordServiceImpl.putRecord(leaveRecord);
 		if(flag){
 //			sendTemplateServiceImpl.sendLeaveRecord(leaveRecord);
@@ -86,22 +102,24 @@ public class RecordController extends WController {
 	/**
 	 * 获取外出请假
 	 */
-	public void getLeaveRecord(){
-		renderJson(MsgResponse.success().put("leaveRecordList", recordServiceImpl.getLeaveRecordList()));
-	}
 	public void getLeaveRecordList(){
 		int pageNum = getParaToInt("pageNum", 1);
 		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, LeaveRecordModel.class)));
+	}
+	public void getLeaveRecord(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
 		Page<Record> list = recordServiceImpl.getLeaveRecordList(pageNum,pageSize);
-		renderJson(MsgResponse.success().put("leaveRecordList", list));
+		renderJson(MsgResponse.success().put("page", list));
 	}
 	/**
 	 * 添加走访记录
 	 */
 	public void putInterviewRecord() {
 		InterviewRecordModel interviewRecord = new InterviewRecordModel();
-			interviewRecord = getByBeanIgoneArrayZero(InterviewRecordModel.class);
-		boolean flag = recordServiceImpl.putInterviewRecord(interviewRecord);
+		interviewRecord = getByBeanIgoneArrayZero(InterviewRecordModel.class);
+		boolean flag = recordServiceImpl.putRecord(interviewRecord);
 		if(flag){
 			renderJson(MsgResponse.success());
 		}else{
@@ -111,24 +129,28 @@ public class RecordController extends WController {
 	/**
 	 * 获取走访记录
 	 */
-	public void getInterviewRecord(){
-		renderJson(MsgResponse.success().put("interviewRecordList", recordServiceImpl.getInterviewRecord()));
+	public void getInterviewRecordList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, InterviewRecordModel.class)));
 	}
 	/**
 	 * 添加谈话记录
 	 */
 	public void putTalkEducation() {
 		TalkEducationModel talkEducation = new TalkEducationModel();
-			talkEducation = getByBeanIgoneArrayZero(TalkEducationModel.class);
-		boolean flag = recordServiceImpl.putTalkEducation(talkEducation); 
+		talkEducation = getByBeanIgoneArrayZero(TalkEducationModel.class);
+		boolean flag = recordServiceImpl.putRecord(talkEducation); 
 		if(flag){
 			renderJson(MsgResponse.success());
 		}else{
 			renderJson(MsgResponse.fail());
 		}
 	}
-	public void getTalkEduction(){
-		renderJson(MsgResponse.success().put("talkEducationList", recordServiceImpl.getTalkEducation()));
+	public void getTalkEductionList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, TalkEducationModel.class)));
 	}
 	/**
 	 * 添加社区服务
@@ -136,15 +158,17 @@ public class RecordController extends WController {
 	public void putCommiuntyRecord(){
 		CommunityServiceModel community = new CommunityServiceModel();
 			community = getByBeanIgoneArrayZero(CommunityServiceModel.class);
-		boolean flag = recordServiceImpl.putCommunityRecord(community);
+		boolean flag = recordServiceImpl.putRecord(community);
 		if(flag){
 			renderJson(MsgResponse.success());
 		}else{
 			renderJson(MsgResponse.fail());
 		}
 	}
-	public void getCommunityRecord(){
-		renderJson(MsgResponse.success().put("communityRecordList", recordServiceImpl.getCommunityRecordList()));
+	public void getCommunityRecordList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, CommunityServiceModel.class)));
 	}
 	/**
 	 * 添加违规违纪
@@ -152,31 +176,35 @@ public class RecordController extends WController {
 	public void putFoulRecord(){
 		FoulRecordModel foulRecord = new FoulRecordModel();
 			foulRecord = getByBeanIgoneArrayZero(FoulRecordModel.class);
-		boolean flag = recordServiceImpl.putFoulRecord(foulRecord);
+		boolean flag = recordServiceImpl.putRecord(foulRecord);
 		if(flag){
 			renderJson(MsgResponse.success());
 		}else{
 			renderJson(MsgResponse.fail());
 		}
 	}
-	public void getFoulRecord(){
-		renderJson(MsgResponse.success().put("foulRecordList", recordServiceImpl.getFoulRecordList()));
+	public void getFoulRecordList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, FoulRecordModel.class)));
 	}
 	/**
 	 * 添加评定意见
 	 */
 	public void putOpinionRecord(){
 		OpinionRecordModel opinionRecord = new OpinionRecordModel();
-			opinionRecord = getByBeanIgoneArrayZero(OpinionRecordModel.class);
-		boolean flag = recordServiceImpl.putOpinionRecord(opinionRecord);
+		opinionRecord = getByBeanIgoneArrayZero(OpinionRecordModel.class);
+		boolean flag = recordServiceImpl.putRecord(opinionRecord);
 		if(flag){
 			renderJson(MsgResponse.success());
 		}else{
 			renderJson(MsgResponse.fail());
 		}
 	}
-	public void getOpinionRecord(){
-		renderJson(MsgResponse.success().put("opinionRecordList", recordServiceImpl.getOpinionRecordList()));
+	public void getOpinionRecordList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize,OpinionRecordModel.class)));
 	}
 	/**
 	 * 添加反馈意见
@@ -191,8 +219,9 @@ public class RecordController extends WController {
 			renderJson(MsgResponse.fail());
 		}
 	}
-	public void getFeedbackRecord(){
-		
-		renderJson(MsgResponse.success().put("feedbackRecordList", recordServiceImpl.getFeedbackRecordList()));
+	public void getFeedbackRecordList(){
+		int pageNum = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize,FeedbackRecordModel.class)));
 	}
 }
