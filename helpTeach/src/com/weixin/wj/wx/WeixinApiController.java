@@ -1,15 +1,29 @@
 package com.weixin.wj.wx;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSONObject;
+import com.jfinal.json.Json;
+import com.jfinal.weixin.sdk.api.AccessTokenApi;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.sdk.api.ApiResult;
 import com.jfinal.weixin.sdk.api.CallbackIpApi;
 import com.jfinal.weixin.sdk.api.CustomServiceApi;
+import com.jfinal.weixin.sdk.api.CustomServiceApi.Articles;
+import com.jfinal.weixin.sdk.api.MediaApi;
+import com.jfinal.weixin.sdk.api.MediaApi.MediaType;
+import com.jfinal.weixin.sdk.api.MediaArticles;
 import com.jfinal.weixin.sdk.api.MenuApi;
 import com.jfinal.weixin.sdk.api.QrcodeApi;
 import com.jfinal.weixin.sdk.api.ShorturlApi;
 import com.jfinal.weixin.sdk.api.TemplateMsgApi;
 import com.jfinal.weixin.sdk.api.UserApi;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
+import com.jfinal.weixin.sdk.utils.HttpUtils;
+import com.jfinal.weixin.sdk.utils.JsonUtils;
 
 public class WeixinApiController extends ApiController {
 
@@ -111,6 +125,28 @@ public class WeixinApiController extends ApiController {
         renderText(apiResult.getJson());
     }
     
+    public void sendNews(){
+    	Articles articles = new Articles();
+    	articles.setTitle("nihao");
+    	articles.setPicurl("http://ezios.iok.la/helpTeach/img/20181122225900.jpg");
+    	articles.setUrl("https://mp.weixin.qq.com/s/QGODWbYCS1QZYCyFw8s_hA");
+    	articles.setDescription("hello!");
+    	List<Articles> list = new ArrayList<>();
+    	list.add(articles);
+    	ApiResult apiResult = CustomServiceApi.sendNews("oBB5s1W6rzUxkEkpAgg5AcPphr3I", list);
+    	renderText(apiResult.getJson());
+    }
+    public void matchNews(){
+        String url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token" + AccessTokenApi.getAccessTokenStr();
+
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+        dataMap.put("type", "news");
+        dataMap.put("offset", 0);
+        dataMap.put("count", 1);
+
+        String jsonResult = HttpUtils.post(url, JsonUtils.toJson(dataMap));
+        renderText(jsonResult);
+    }
     /**
      * 发送模板消息
      * @param template

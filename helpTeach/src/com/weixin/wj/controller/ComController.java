@@ -34,13 +34,13 @@ public class ComController extends WController {
 		JSONObject jtwo = new JSONObject();
 		JSONObject jthree = new JSONObject();
 		jone.put("url", "");
-		jone.put("img", "https://ww1.sinaimg.cn/large/663d3650gy1fq66vvsr72j20p00gogo2.jpg");
+		jone.put("img", "/api/img/20181122225900.jpg");
 		jone.put("title", "标题一");
 		jtwo.put("url", "");
-		jtwo.put("img", "https://ww1.sinaimg.cn/large/663d3650gy1fq66vw1k2wj20p00goq7n.jpg");
+		jtwo.put("img", "/api/img/20181122225908.jpg");
 		jtwo.put("title", "标题二");
 		jthree.put("url", "");
-		jthree.put("img", "https://ww1.sinaimg.cn/large/663d3650gy1fq66vw50iwj20ff0aaaci.jpg");
+		jthree.put("img", "/api/img/20181122225912.jpg");
 		jthree.put("title", "标题三");
 		List<JSONObject> list = new ArrayList<>();
 		list.add(jone);

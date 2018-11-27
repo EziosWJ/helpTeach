@@ -1,14 +1,10 @@
 package com.weixin.wj.controller;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
-
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.HttpKit;
