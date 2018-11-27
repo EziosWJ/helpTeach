@@ -2,6 +2,7 @@ package com.weixin.wj.controller;
 
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanModel;
 import com.weixin.wj.model.InvOptionModel;
 import com.weixin.wj.model.MindLeadModel;
@@ -95,9 +96,18 @@ public class EduplanController extends WController{
 			renderJson(MsgResponse.fail());
 		}
 	}
+	public void getEduplanById(){
+		Record eduplanModel = null;
+		String idValue = getPara("epId");
+		eduplanModel = eduplanServiceImp.getRecordById(EduplanModel.class, idValue);
+		renderJson(MsgResponse.success().put("eduplan", eduplanModel));
+	}
 	
 	public void getEduplanList(){
-		renderJson(MsgResponse.success().put("eduplanList", eduplanServiceImp.getEduplanList()));
+		int pageNumber = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		Page<?> page = eduplanServiceImp.getRecordList(pageNumber, pageSize, EduplanModel.class);
+		renderJson(MsgResponse.success().put("page", page));
 	}
 	
 	/**
@@ -152,8 +162,10 @@ public class EduplanController extends WController{
 	}
 	
 	public void getInvOptionList() {
-		renderJson(MsgResponse.success().put("invOptionList", eduplanServiceImp.getInvOptionList()));
-		
+		int pageNumber = getParaToInt("pageNum", 1);
+		int pageSize = getParaToInt("pageSize", this.pageSize);
+		Page<?> page = eduplanServiceImp.getRecordList(pageNumber, pageSize, EduplanModel.class);
+		renderJson(MsgResponse.success().put("page", page));
 	}
 	
 	public void getResultRecord(){

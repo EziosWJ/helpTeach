@@ -160,10 +160,8 @@ public class RecordServiceImpl extends WServiceSupport{
 	 * @return
 	 */
 	public boolean putFoulRecord(FoulRecordModel foulRecord) {
-		// TODO Auto-generated method stub
 		return foulRecord.save();
 	}
-
 
 	/**
 	 * 评定意见
@@ -171,10 +169,9 @@ public class RecordServiceImpl extends WServiceSupport{
 	 * @return
 	 */
 	public boolean putOpinionRecord(OpinionRecordModel opinionRecord) {
-		// TODO Auto-generated method stub
-		Record ur = Db.findById("hae_user_record_model","urId" ,opinionRecord.getOrReciver()).set("urPortraitUrl", "8");
+		Record ur = Db.findById("hae_user_record_model","urId" ,opinionRecord.getOrReciver()).set("urState", "8");
 		Db.update("hae_user_record_model","urId", ur);
-		return opinionRecord.save();
+		return generateRecordPrimaryKey(opinionRecord).save();
 	}
 
 	/**
@@ -183,7 +180,6 @@ public class RecordServiceImpl extends WServiceSupport{
 	 * @return
 	 */
 	public boolean putFeedbackRecord(FeedbackRecordModel feedbackRecord) {
-		// TODO Auto-generated method stub
 		return feedbackRecord.save();
 	}
 

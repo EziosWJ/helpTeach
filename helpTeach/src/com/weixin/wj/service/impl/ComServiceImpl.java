@@ -17,10 +17,10 @@ public class ComServiceImpl {
 		String sql;
 		List<?> list;
 		if(role.equals("2")){
-			sql = "select urId as value,urName as name from hae_user_record_model WHERE urPortraitUrl < 8";
+			sql = "select urId as value,urName as name from hae_user_record_model WHERE urState < 8";
 			 list = userCaseDao.find(sql);
 		}else{
-			sql = "select urId as value,urName as name from hae_user_record_model WHERE urRelationId=? and urPortraitUrl < 8";
+			sql = "select urId as value,urName as name from hae_user_record_model WHERE urRelationId=? and urState < 8";
 			 list = userCaseDao.find(sql,ucId);
 		}
 		
@@ -34,7 +34,7 @@ public class ComServiceImpl {
 	 * @return
 	 */
 	public List<?> getByTheHelperOptionedList(String ucId){
-		List<?> list = userCaseDao.find("select urId as value,urName as name from hae_user_record_model WHERE urPortraitUrl = 8");
+		List<?> list = userCaseDao.find("select urId as value,urName as name from hae_user_record_model WHERE urState = 8");
 //		List<?> list = userCaseDao.find("select urId as value,urName as name from hae_user_case_model where urRelationId = ?",ucId);
 		return list;
 	}

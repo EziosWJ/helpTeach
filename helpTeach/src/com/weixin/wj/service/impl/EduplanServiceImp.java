@@ -101,9 +101,9 @@ public class EduplanServiceImp extends WServiceSupport{
 	 */
 	public boolean putInvOption(InvOptionModel invOptionModel) {
 		Record ur = Db.findById("hae_user_record_model", "urId", invOptionModel.getIoReciver());
-		ur.set("urPortraitUrl", "9");
+		ur.set("urState", "9");
 		Db.update("hae_user_record_model", "urId", ur);
-		return invOptionModel.save();
+		return generateRecordPrimaryKey(invOptionModel).save();
 	}
 	
 	public List<?> getInvOptionList() {
@@ -111,7 +111,6 @@ public class EduplanServiceImp extends WServiceSupport{
 	}
 
 	public List<?> getResultRecordList(int ucid) {
-		// TODO Auto-generated method stub
 		return eduplanDao.find("select * from hae_result_record_model where ucId = ?",ucid);
 	}
 }

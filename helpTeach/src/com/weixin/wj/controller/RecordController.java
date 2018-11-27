@@ -194,13 +194,14 @@ public class RecordController extends WController {
 	public void putOpinionRecord(){
 		OpinionRecordModel opinionRecord = new OpinionRecordModel();
 		opinionRecord = getByBeanIgoneArrayZero(OpinionRecordModel.class);
-		boolean flag = recordServiceImpl.putRecord(opinionRecord);
+		boolean flag = recordServiceImpl.putOpinionRecord(opinionRecord);
 		if(flag){
 			renderJson(MsgResponse.success());
 		}else{
 			renderJson(MsgResponse.fail());
 		}
 	}
+	
 	public void getOpinionRecordList(){
 		int pageNum = getParaToInt("pageNum", 1);
 		int pageSize = getParaToInt("pageSize", this.pageSize);
