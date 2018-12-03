@@ -164,7 +164,7 @@ public class EduplanController extends WController{
 	public void getInvOptionList() {
 		int pageNumber = getParaToInt("pageNum", 1);
 		int pageSize = getParaToInt("pageSize", this.pageSize);
-		Page<?> page = eduplanServiceImp.getRecordList(pageNumber, pageSize, EduplanModel.class);
+		Page<?> page = eduplanServiceImp.getRecordList(pageNumber, pageSize, InvOptionModel.class);
 		renderJson(MsgResponse.success().put("page", page));
 	}
 	
