@@ -36,22 +36,22 @@ public abstract class BaseCommunityServiceModel<M extends BaseCommunityServiceMo
 		return getStr("csLeader");
 	}
 
-	public M setCsReciver(java.lang.String csReciver) {
-		set("csReciver", csReciver);
+	public M setUrId(java.lang.String urId) {
+		set("urId", urId);
 		return (M)this;
 	}
 	
-	public java.lang.String getCsReciver() {
-		return getStr("csReciver");
+	public java.lang.String getUrId() {
+		return getStr("urId");
 	}
 
-	public M setCsCreateDate(java.util.Date csCreateDate) {
-		set("csCreateDate", csCreateDate);
+	public M setCsDate(java.util.Date csDate) {
+		set("csDate", csDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getCsCreateDate() {
-		return get("csCreateDate");
+	public java.util.Date getCsDate() {
+		return get("csDate");
 	}
 
 	public M setCsState(java.lang.String csState) {
@@ -79,6 +79,24 @@ public abstract class BaseCommunityServiceModel<M extends BaseCommunityServiceMo
 	
 	public java.lang.String getCsResult() {
 		return getStr("csResult");
+	}
+
+	public M setCsFile(java.lang.String csFile) {
+		set("csFile", csFile);
+		return (M)this;
+	}
+	
+	public java.lang.String getCsFile() {
+		return getStr("csFile");
+	}
+
+	public M setEpId(java.lang.String epId) {
+		set("epId", epId);
+		return (M)this;
+	}
+	
+	public java.lang.String getEpId() {
+		return getStr("epId");
 	}
 
 	public M setCsCustom(java.lang.String csCustom) {

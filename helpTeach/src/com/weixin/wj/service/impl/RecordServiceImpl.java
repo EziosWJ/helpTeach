@@ -25,6 +25,11 @@ import com.weixin.wj.util.GenerateKey;
 import com.weixin.wj.util.NormalUtils;
 
 public class RecordServiceImpl extends WServiceSupport{
+	
+	
+	public List<Record> getRecordByEpId(Class<? extends Model> modelClass,String epId){
+		return Db.find("select * " + TABLE_NAME(modelClass) + " where epId = ?", epId);
+	}
 
 	/**
 	 * 日常报到
@@ -140,8 +145,23 @@ public class RecordServiceImpl extends WServiceSupport{
 	 * @return
 	 */
 	public boolean putTalkEducation(TalkEducationModel talkEducation) {
-		// TODO Auto-generated method stub
 		return talkEducation.save();
+	}
+	/**
+	 * 更新谈话教育
+	 * @param talkEducationModel
+	 * @return
+	 */
+	public boolean updateTalkEducation(TalkEducationModel talkEducationModel){
+		return talkEducationModel.update();
+	}
+	/**
+	 * 通过方案id获取对应的谈话教育记录
+	 * @param epId
+	 * @return
+	 */
+	public List<?> getTalkEducationList(String epId){
+		return Db.find("select * from hae_talk_education_model where epId = ?", epId);
 	}
 	/**
 	 * 获取谈话教育
@@ -149,7 +169,6 @@ public class RecordServiceImpl extends WServiceSupport{
 	 */
 
 	public boolean putCommunityRecord(CommunityServiceModel community) {
-		// TODO Auto-generated method stub
 		return community.save();
 	}
 
@@ -181,6 +200,24 @@ public class RecordServiceImpl extends WServiceSupport{
 	 */
 	public boolean putFeedbackRecord(FeedbackRecordModel feedbackRecord) {
 		return feedbackRecord.save();
+	}
+	
+	/**
+	 * 更新社区服务
+	 * @param communityServiceModel
+	 * @return
+	 */
+	public boolean updateCommunityService(CommunityServiceModel communityServiceModel){
+		return communityServiceModel.update();
+	}
+	
+	/**
+	 * 通过方案id获取对应的社区服务
+	 * @param epId
+	 * @return
+	 */
+	public List<?> getCommunityServiceList(String epId){
+		return Db.find("select * from hae_community_service_model where epId = ? ", epId);
 	}
 
 

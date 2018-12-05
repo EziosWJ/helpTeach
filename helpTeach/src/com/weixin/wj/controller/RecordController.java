@@ -1,6 +1,8 @@
 package com.weixin.wj.controller;
 
 
+import java.util.List;
+
 import org.apache.catalina.User;
 
 import com.jfinal.kit.PropKit;
@@ -147,10 +149,21 @@ public class RecordController extends WController {
 			renderJson(MsgResponse.fail());
 		}
 	}
+	/**
+	 * 
+	 */
 	public void getTalkEductionList(){
 		int pageNum = getParaToInt("pageNum", 1);
 		int pageSize = getParaToInt("pageSize", this.pageSize);
 		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, TalkEducationModel.class)));
+	}
+	/**
+	 * 
+	 */
+	public void getTalkEducationList(){
+		String epId = getPara("epId");
+		List<?> list = recordServiceImpl.getRecordByEpId(TalkEducationModel.class, epId);
+		renderJson(MsgResponse.success().put("list", list));
 	}
 	/**
 	 * 添加社区服务

@@ -36,22 +36,22 @@ public abstract class BaseTalkEducationModel<M extends BaseTalkEducationModel<M>
 		return getStr("teLeader");
 	}
 
-	public M setTeReciver(java.lang.String teReciver) {
-		set("teReciver", teReciver);
+	public M setUrId(java.lang.String urId) {
+		set("urId", urId);
 		return (M)this;
 	}
 	
-	public java.lang.String getTeReciver() {
-		return getStr("teReciver");
+	public java.lang.String getUrId() {
+		return getStr("urId");
 	}
 
-	public M setTeCreateDate(java.util.Date teCreateDate) {
-		set("teCreateDate", teCreateDate);
+	public M setTeDate(java.util.Date teDate) {
+		set("teDate", teDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getTeCreateDate() {
-		return get("teCreateDate");
+	public java.util.Date getTeDate() {
+		return get("teDate");
 	}
 
 	public M setTeState(java.lang.String teState) {
@@ -79,6 +79,24 @@ public abstract class BaseTalkEducationModel<M extends BaseTalkEducationModel<M>
 	
 	public java.lang.String getTeResult() {
 		return getStr("teResult");
+	}
+
+	public M setTeFile(java.lang.String teFile) {
+		set("teFile", teFile);
+		return (M)this;
+	}
+	
+	public java.lang.String getTeFile() {
+		return getStr("teFile");
+	}
+
+	public M setEpId(java.lang.String epId) {
+		set("epId", epId);
+		return (M)this;
+	}
+	
+	public java.lang.String getEpId() {
+		return getStr("epId");
 	}
 
 	public M setTeCustom(java.lang.String teCustom) {

@@ -1,6 +1,8 @@
 package com.weixin.wj.test;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -15,11 +17,18 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.weixin.wj.enums.MindQst;
+import com.weixin.wj.model.EduplanModel;
+import com.weixin.wj.model.LawStudyModel;
 import com.weixin.wj.model.MindTestQstModel;
 import com.weixin.wj.model._MappingKit;
+import com.weixin.wj.service.impl.PlanServiceImpl;
 //不确定%3
 public class QstEntering {
 	private static MindTestQstModel dao = new MindTestQstModel().dao();
@@ -29,6 +38,23 @@ public class QstEntering {
 		new QstEntering().qstEnter();
 		
 	}
+
+	@Test
+	public void testPropkitEduplan()
+	{
+		String s = PropKit.use("eduplan").get("learnTarget");
+//		System.out.println(s);
+		JSONObject jsonObject = JSONObject.parseObject(s);
+		System.out.println(jsonObject);
+		JSONArray jsonArray = jsonObject.getJSONArray("targetList");
+		System.out.println(jsonArray);
+		Iterator<Object> it = jsonArray.iterator();
+		while (it.hasNext()) {
+			JSONObject jo = (JSONObject) it.next();
+			System.out.println(jo);
+		}
+	}
+	
 	@Test
 	public void qstEnter(){
 		MindTestQstModel mtq = new MindTestQstModel();

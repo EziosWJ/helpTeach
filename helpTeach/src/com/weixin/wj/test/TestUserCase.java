@@ -12,11 +12,15 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import com.weixin.wj.model.EduplanModel;
+import com.weixin.wj.model.LawStudyModel;
 import com.weixin.wj.model.MindLeadModel;
 import com.weixin.wj.model.UserCaseModel;
 import com.weixin.wj.service.UserCaseService;
+import com.weixin.wj.service.impl.PlanServiceImpl;
 import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.service.impl.UserCaseServiceImpl;
 
@@ -36,6 +40,27 @@ public class TestUserCase {
 	public void testpage(){
 		Page<Record> list = recordServiceImpl.getLeaveRecordList(1, 2);
 		System.out.println(list.getList());
+	}
+	
+	
+	@Test
+	public void testTarget(){
+		EduplanModel eduplanModel = new EduplanModel();
+		eduplanModel.setUrId("66");
+		eduplanModel.setEpLawStudy(2);
+		eduplanModel.setEpCaseRead(1);
+		eduplanModel = (EduplanModel) new PlanServiceImpl().generateRecordPrimaryKey(eduplanModel);
+		new PlanServiceImpl().learnTargetFactory(eduplanModel);
+	}
+	
+	@Test
+	public void testSetDefualtAttr() throws ClassNotFoundException{
+		EduplanModel eduplanModel = new EduplanModel();
+		eduplanModel.setEpId("231");
+		eduplanModel.setUrId("333");
+		Class clazz = Class.forName("com.weixin.wj.model.LawStudyModel");
+//		Model model = new PlanServiceImpl().setLearnTargetDefualtAttr(clazz, eduplanModel);
+//		System.out.println(model);
 	}
 	
 	

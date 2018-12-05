@@ -61,7 +61,13 @@ public class EduplanServiceImp extends WServiceSupport{
 	 * @return
 	 */
 	public boolean putEduplan(EduplanModel eduplanModel){
-		return eduplanModel.save();
+		EduplanModel ep = (EduplanModel) generateRecordPrimaryKey(eduplanModel);
+		new PlanServiceImpl().learnTargetFactory(ep);
+		return ep.save();
+	}
+	
+	public List<?> getEduplanList(String urId){
+		return Db.find("select * from hae_Eduplan_Model where urId = ?",urId);
 	}
 	
 	public List<?> getEduplanList(){

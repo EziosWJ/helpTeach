@@ -1,0 +1,24 @@
+#eduplan-conf
+learnTarget={\
+	"targetList":[\
+		{\
+			name:"epLawStudy",\
+			flow:"method",\
+			model:"com.weixin.wj.model.LawStudyModel",\
+			method:"lawStudy"\
+		},\
+		{\
+			name:"epMovieWatch",\
+			flow:"defualt",\
+			model:"com.weixin.wj.model.MovieWatchModel",\
+			method:"movieWatch",\
+		},\
+		{\
+			name:"epCaseRead",\
+			flow:"defualt",\
+			model:"com.weixin.wj.model.CaseReadModel",\
+			method:"caseRead",\
+		},\
+	]\
+}\
+				
