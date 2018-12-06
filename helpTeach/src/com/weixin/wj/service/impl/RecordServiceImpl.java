@@ -26,9 +26,20 @@ import com.weixin.wj.util.NormalUtils;
 
 public class RecordServiceImpl extends WServiceSupport{
 	
-	
-	public List<Record> getRecordByEpId(Class<? extends Model> modelClass,String epId){
-		return Db.find("select * " + TABLE_NAME(modelClass) + " where epId = ?", epId);
+	/**
+	 * 
+	 * @param modelClass
+	 * @param epId
+	 * @return
+	 */
+	public List<Record> getRecordListByEpId(Class<? extends Model> modelClass,String epId){
+		try {
+			List<Record> list = Db.find("select * " + TABLE_NAME(modelClass) + " where epId = ?", epId);
+			return list;
+		} catch (NullPointerException e) {
+			System.out.println("");
+			return null;
+		}
 	}
 
 	/**

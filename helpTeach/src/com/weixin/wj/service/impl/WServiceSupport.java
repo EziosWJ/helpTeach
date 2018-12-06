@@ -72,7 +72,13 @@ public class WServiceSupport {
 	}
 	
 	public Record getRecordById(Class<? extends Model> modelClass ,String idValue){
-		return Db.findById(TABLE_NAME(modelClass), PRIMARY_KEY(modelClass), idValue);
+		try {
+			Record r = Db.findById(TABLE_NAME(modelClass), PRIMARY_KEY(modelClass), idValue);
+			return r;
+		} catch (NullPointerException e) {
+			System.out.println(modelClass.getName() + "未找到id为：" + idValue + "  的记录");
+			return null;
+		}
 	}
 
 	
@@ -87,6 +93,22 @@ public class WServiceSupport {
 	
 	public boolean updateRecord(Model<? extends Model> model){
 		return model.update();
+	}
+
+	public boolean updateRecordCheckPK(Model<? extends Model> model){
+		String primary_key;
+		try {
+			primary_key = PRIMARY_KEY(model.getClass());
+			if(primary_key == null){
+				return false;
+			}else {
+				return model.update();
+			}
+		} catch (NullPointerException e) {
+			System.out.println("没有主键id无法更新");
+			return false;
+		}
+		
 	}
 	
 	public boolean deleteRecord(Model<? extends Model> model){

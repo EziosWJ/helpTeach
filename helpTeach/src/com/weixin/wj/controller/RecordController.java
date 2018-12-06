@@ -162,8 +162,8 @@ public class RecordController extends WController {
 	 */
 	public void getTalkEducationList(){
 		String epId = getPara("epId");
-		List<?> list = recordServiceImpl.getRecordByEpId(TalkEducationModel.class, epId);
-		renderJson(MsgResponse.success().put("list", list));
+//		List<?> list = recordServiceImpl.getRecordByEpId(TalkEducationModel.class, epId);
+//		renderJson(MsgResponse.success().put("list", list));
 	}
 	/**
 	 * 添加社区服务
@@ -178,6 +178,35 @@ public class RecordController extends WController {
 			renderJson(MsgResponse.fail());
 		}
 	}
+	/**
+	 * 通过csId获取社区服务
+	 */
+	public void getCommunityServiceById(){
+		String csId = getPara("csId");
+		Record record = recordServiceImpl.getRecordById(CommunityServiceModel.class, csId);
+		obtainRecordMsgResponse(record);
+	}
+	
+	/**
+	 * 通过epId获取社区服务列表
+	 */
+	public void getCommunityServiceListByEpId(){
+		String epId = getPara("epId");
+		List<?> list = recordServiceImpl.getRecordListByEpId(CommunityServiceModel.class, epId);
+		obtainListMsgResponse(list);
+	}
+	
+	public void updateCommunityService(){
+		CommunityServiceModel communityServiceModel = getByBeanIgoneArrayZero(CommunityServiceModel.class);
+		boolean flag = recordServiceImpl.updateRecordCheckPK(communityServiceModel);
+		if(flag){
+			
+		} else {
+			
+		}
+		
+	}
+	
 	public void getCommunityRecordList(){
 		int pageNum = getParaToInt("pageNum", 1);
 		int pageSize = getParaToInt("pageSize", this.pageSize);
@@ -220,6 +249,7 @@ public class RecordController extends WController {
 		int pageSize = getParaToInt("pageSize", this.pageSize);
 		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize,OpinionRecordModel.class)));
 	}
+	
 	/**
 	 * 添加反馈意见
 	 */

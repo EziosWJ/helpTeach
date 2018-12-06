@@ -3,13 +3,16 @@ package com.weixin.wj.controller;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.HttpKit;
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.service.impl.WeixinSendTemplateServiceImpl;
+import com.weixin.wj.util.MsgResponse;
 
 /**
  * 山一程，水一程，身向榆关那畔行~
@@ -101,5 +104,27 @@ public class WController extends Controller {
 		return getBean((Class<T>) BeanClass, "",skipConvertError);
 	}
 	
+	/**
+	 * 获取record类型目标进行判断及返回
+	 * @param record
+	 */
+	public void obtainRecordMsgResponse(Record record){
+		if(record != null){
+			renderJson(MsgResponse.success().put("record", record));
+		} else {
+			renderJson(MsgResponse.fail().setMsg("未找到该记录..."));
+		}
+	}
 	
+	/**
+	 * 获取List类型目标进行判断及返回
+	 * @param list
+	 */
+	public void obtainListMsgResponse(List<?> list){
+		if(list != null || list.size() != 0){
+			renderJson(MsgResponse.success().put("list", list));
+		}else {
+			renderJson(MsgResponse.fail().setMsg("未找到该列表..."));
+		}
+	}
 }
