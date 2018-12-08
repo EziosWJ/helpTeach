@@ -7,10 +7,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.weixin.sdk.api.ApiResult;
 import com.jfinal.weixin.sdk.api.TemplateMsgApi;
-import com.weixin.wj.model.DailyCheckInModel;
-import com.weixin.wj.model.LeaveRecordModel;
 import com.weixin.wj.model.UserRecordModel;
-import com.weixin.wj.template.RecordTemplate;
 import com.weixin.wj.wx.WeixinApiController;
 @SuppressWarnings("unused")
 public class WeixinSendTemplateServiceImpl {
@@ -52,41 +49,41 @@ public class WeixinSendTemplateServiceImpl {
 		return procuratorOpenIdList;
 	}
 	
-	/**
-	 * 发送外出请假提醒
-	 * @param leaveRecordModel
-	 */
-	public void sendLeaveRecord(LeaveRecordModel leaveRecordModel){
-		List<String> list = getTouserList(leaveRecordModel.getLrReciver().toString());
-		for (String touser : list) {
-			String template = RecordTemplate.leaveRecord(leaveRecordModel,touser);
-//			weixinApiController.sendCustomTemplateMsg(template);			
-			ApiResult apiResult = TemplateMsgApi.send(template);
-		}
-	}
-	/**
-	 * 发送报到提醒
-	 * @param dailyCheckInModel
-	 */
-	public void sendCheckInRecord(DailyCheckInModel dailyCheckInModel){
-		List<String> list = getTouserList(dailyCheckInModel.getDiReciver().toString());
-		for (String touser : list) {
-			String template = RecordTemplate.dailyCheckIn(dailyCheckInModel,touser);
-			ApiResult apiResult = TemplateMsgApi.send(template);		
-		}
-	}
+//	/**
+//	 * 发送外出请假提醒
+//	 * @param leaveRecordModel
+//	 */
+//	public void sendLeaveRecord(LeaveRecordModel leaveRecordModel){
+//		List<String> list = getTouserList(leaveRecordModel.getLrReciver().toString());
+//		for (String touser : list) {
+//			String template = RecordTemplate.leaveRecord(leaveRecordModel,touser);
+////			weixinApiController.sendCustomTemplateMsg(template);			
+//			ApiResult apiResult = TemplateMsgApi.send(template);
+//		}
+//	}
+//	/**
+//	 * 发送报到提醒
+//	 * @param dailyCheckInModel
+//	 */
+//	public void sendCheckInRecord(DailyCheckInModel dailyCheckInModel){
+//		List<String> list = getTouserList(dailyCheckInModel.getDiReciver().toString());
+//		for (String touser : list) {
+//			String template = RecordTemplate.dailyCheckIn(dailyCheckInModel,touser);
+//			ApiResult apiResult = TemplateMsgApi.send(template);		
+//		}
+//	}
 	
-	/**
-	 * 发送报道汇总情况定时任务提醒
-	 * @return 
-	 */
-	public ApiResult sendTaskDailyCheckIn(){
-		List<String> list = getProcuratorOpenIdList();
-		ApiResult apiResult = null;
-		for (String touser : list) {
-			String template = RecordTemplate.taskDailyCheckInToday(touser);
-			apiResult = TemplateMsgApi.send(template);
-		}
-		return apiResult;
-	}
+//	/**
+//	 * 发送报道汇总情况定时任务提醒
+//	 * @return 
+//	 */
+//	public ApiResult sendTaskDailyCheckIn(){
+//		List<String> list = getProcuratorOpenIdList();
+//		ApiResult apiResult = null;
+//		for (String touser : list) {
+//			String template = RecordTemplate.taskDailyCheckInToday(touser);
+//			apiResult = TemplateMsgApi.send(template);
+//		}
+//		return apiResult;
+//	}
 }

@@ -6,55 +6,10 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanModel;
 import com.weixin.wj.model.InvOptionModel;
-import com.weixin.wj.model.MindLeadModel;
-import com.weixin.wj.model.RevisitModel;
 import com.weixin.wj.model.RewardPunishModel;
-import com.weixin.wj.model.RiskModel;
 
 public class EduplanServiceImp extends WServiceSupport{
 
-	private static MindLeadModel mindLeadDao = new MindLeadModel().dao();
-	private static RiskModel riskDao = new RiskModel().dao();
-	private static EduplanModel eduplanDao = new EduplanModel().dao();
-	private static RevisitModel revisitDao = new RevisitModel().dao();
-	private static RewardPunishModel rewardPunishDao = new RewardPunishModel().dao();
-	private static InvOptionModel invOptionDao = new InvOptionModel().dao();
-	
-	/**
-	 * 心理辅导
-	 * @param mindLeadModel
-	 * @return
-	 */
-	public boolean putMindLead(MindLeadModel mindLeadModel){
-		return mindLeadModel.save();
-	}
-	
-	public MindLeadModel getMindLeadById(String id){
-		MindLeadModel mindLeadModel = mindLeadDao.findById(id);
-		return mindLeadModel;
-	}
-	
-	public MindLeadModel getMindLeadByRecent(String mdReciver){
-		MindLeadModel mindLeadModel = mindLeadDao.findFirst("select * from hae_mind_lead_model where mdReciver = ? ",mdReciver);
-		return mindLeadModel;
-	}
-	
-	public List<?> getMindLeadList(){
-		return mindLeadDao.find("select * from hae_mind_lead_model");
-	}
-	
-	/**
-	 * 风险评估
-	 * @param riskModel
-	 * @return
-	 */
-	public boolean putRisk(RiskModel riskModel){
-		return riskModel.save();
-	}
-	
-	public List<?> getRiskList(){
-		return riskDao.find("select * from hae_risk_model");
-	}
 	/**
 	 * 帮教计划
 	 * @param EduplanModel
@@ -66,26 +21,15 @@ public class EduplanServiceImp extends WServiceSupport{
 		return ep.save();
 	}
 	
+	/**
+	 * 通过urId获取帮教计划表
+	 * @param urId
+	 * @return
+	 */
 	public List<?> getEduplanList(String urId){
 		return Db.find("select * from hae_Eduplan_Model where urId = ?",urId);
 	}
 	
-	public List<?> getEduplanList(){
-		return eduplanDao.find("select * from hae_Eduplan_Model");
-	}
-	
-	/**
-	 * 帮教回访
-	 * @param revisitModel
-	 * @return
-	 */
-	public boolean putReVisit(RevisitModel revisitModel){
-		return revisitModel.save();
-	}
-	
-	public List<?> getReVisitList(){
-		return revisitDao.find("select * from hae_revisit_model");
-	}
 	
 	/**
 	 * 奖惩管理
@@ -97,26 +41,7 @@ public class EduplanServiceImp extends WServiceSupport{
 	}
 	
 	public List<?> getRewardPunishList(){
-		return rewardPunishDao.find("select * from hae_reward_punish_model");
+		return Db.find("select * from hae_reward_punish_model");
 	}
 	
-	/**
-	 * 考察意见
-	 * @param invOptionModel
-	 * @return
-	 */
-	public boolean putInvOption(InvOptionModel invOptionModel) {
-		Record ur = Db.findById("hae_user_record_model", "urId", invOptionModel.getIoReciver());
-		ur.set("urState", "9");
-		Db.update("hae_user_record_model", "urId", ur);
-		return generateRecordPrimaryKey(invOptionModel).save();
-	}
-	
-	public List<?> getInvOptionList() {
-		return invOptionDao.find("select * from hae_Inv_Option_Model");
-	}
-
-	public List<?> getResultRecordList(int ucid) {
-		return eduplanDao.find("select * from hae_result_record_model where ucId = ?",ucid);
-	}
 }
