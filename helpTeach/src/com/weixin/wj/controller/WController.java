@@ -127,4 +127,16 @@ public class WController extends Controller {
 			renderJson(MsgResponse.fail().setMsg("未找到该列表..."));
 		}
 	}
+	
+	/**
+	 * 
+	 * @param flag
+	 */
+	public void obtainBooleanMsgResponse(boolean flag) {
+		if(flag){
+			renderJson(MsgResponse.success());
+		} else {
+			renderJson(MsgResponse.fail());
+		}
+	}
 }

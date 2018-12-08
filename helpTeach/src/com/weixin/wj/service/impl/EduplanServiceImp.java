@@ -26,7 +26,7 @@ public class EduplanServiceImp extends WServiceSupport{
 	 * @param urId
 	 * @return
 	 */
-	public List<?> getEduplanList(String urId){
+	public List<?> getEduplanListByUrId(String urId){
 		return Db.find("select * from hae_Eduplan_Model where urId = ?",urId);
 	}
 	

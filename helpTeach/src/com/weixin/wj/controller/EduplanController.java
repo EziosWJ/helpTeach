@@ -1,5 +1,7 @@
 package com.weixin.wj.controller;
 
+import java.util.List;
+
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
@@ -19,29 +21,32 @@ public class EduplanController extends WController{
 	
 	/**
 	 * 帮教计划
+	 * 
+	 * 添加计划
 	 */
 	public void putEduplan(){
 		EduplanModel eduplanModel = new EduplanModel();
-			eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
+		eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
 		boolean flag = eduplanServiceImp.putEduplan(eduplanModel);
-		if(flag){
-			renderJson(MsgResponse.success());
-		}else {
-			renderJson(MsgResponse.fail());
-		}
+		obtainBooleanMsgResponse(flag);
 	}
-	public void getEduplanById(){
+	/**
+	 * 通过主键epId查询帮教计划
+	 */
+	public void getEduplanByEpId(){
 		Record eduplanModel = null;
 		String idValue = getPara("epId");
 		eduplanModel = eduplanServiceImp.getRecordById(EduplanModel.class, idValue);
-		renderJson(MsgResponse.success().put("eduplan", eduplanModel));
+		obtainRecordMsgResponse(eduplanModel);
 	}
 	
-	public void getEduplanList(){
-		int pageNumber = getParaToInt("pageNum", 1);
-		int pageSize = getParaToInt("pageSize", this.pageSize);
-		Page<?> page = eduplanServiceImp.getRecordList(pageNumber, pageSize, EduplanModel.class);
-		renderJson(MsgResponse.success().put("page", page));
+	/**
+	 * 通过urId获取帮教计划列表
+	 */
+	public void getEduplanListByUrId(){
+		String urId = getPara("urId");
+		List<?> list = eduplanServiceImp.getEduplanListByUrId(urId);
+		obtainListMsgResponse(list);
 	}
 	
 	/**
@@ -49,13 +54,9 @@ public class EduplanController extends WController{
 	 */
 	public void putRewardPunish(){
 		RewardPunishModel rewardPunishModel = new RewardPunishModel();
-			rewardPunishModel = getByBeanIgoneArrayZero(RewardPunishModel.class);
+		rewardPunishModel = getByBeanIgoneArrayZero(RewardPunishModel.class);
 		boolean flag = eduplanServiceImp.putRewardPunish(rewardPunishModel);
-		if(flag){
-			renderJson(MsgResponse.success());
-		}else{
-			renderJson(MsgResponse.fail());
-		}
+		obtainBooleanMsgResponse(flag);
 	}
 	
 	public void getRewardPunishList() {

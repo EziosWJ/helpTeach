@@ -44,21 +44,30 @@ public class RecordController extends WController {
 			renderJson(MsgResponse.fail());
 		}
 	}
+	
 	/**
-	 * 
+	 * 更新谈话记录
 	 */
-	public void getTalkEductionList(){
-		int pageNum = getParaToInt("pageNum", 1);
-		int pageSize = getParaToInt("pageSize", this.pageSize);
-		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, TalkEducationModel.class)));
+	public void updateTalkEducation(){
+		TalkEducationModel model = getByBeanIgoneArrayZero(TalkEducationModel.class);
+		boolean flag = recordServiceImpl.updateRecordCheckPK(model);
+		obtainBooleanMsgResponse(flag);
 	}
 	/**
-	 * 
+	 * 通过epId获取谈话教育列表
 	 */
-	public void getTalkEducationList(){
+	public void getTalkEducationListByEpId(){
 		String epId = getPara("epId");
-//		List<?> list = recordServiceImpl.getRecordByEpId(TalkEducationModel.class, epId);
-//		renderJson(MsgResponse.success().put("list", list));
+		List<?> list = recordServiceImpl.getRecordListByEpId(TalkEducationModel.class, epId);
+		obtainListMsgResponse(list);
+	}
+	/**
+	 * 通过主键teId获取谈话教育模块
+	 */
+	public void getTalkEducationByTeId(){
+		String teId = getPara("teId");
+		Record record = recordServiceImpl.getRecordById(TalkEducationModel.class, teId);
+		obtainRecordMsgResponse(record);
 	}
 	/**
 	 * 添加社区服务
@@ -67,14 +76,10 @@ public class RecordController extends WController {
 		CommunityServiceModel community = new CommunityServiceModel();
 			community = getByBeanIgoneArrayZero(CommunityServiceModel.class);
 		boolean flag = recordServiceImpl.putRecord(community);
-		if(flag){
-			renderJson(MsgResponse.success());
-		}else{
-			renderJson(MsgResponse.fail());
-		}
+		obtainBooleanMsgResponse(flag);
 	}
 	/**
-	 * 通过csId获取社区服务
+	 * 通过主键csId获取社区服务
 	 */
 	public void getCommunityServiceById(){
 		String csId = getPara("csId");
@@ -90,22 +95,13 @@ public class RecordController extends WController {
 		List<?> list = recordServiceImpl.getRecordListByEpId(CommunityServiceModel.class, epId);
 		obtainListMsgResponse(list);
 	}
-	
+	/**
+	 * 
+	 */
 	public void updateCommunityService(){
 		CommunityServiceModel communityServiceModel = getByBeanIgoneArrayZero(CommunityServiceModel.class);
 		boolean flag = recordServiceImpl.updateRecordCheckPK(communityServiceModel);
-		if(flag){
-			
-		} else {
-			
-		}
-		
-	}
-	
-	public void getCommunityRecordList(){
-		int pageNum = getParaToInt("pageNum", 1);
-		int pageSize = getParaToInt("pageSize", this.pageSize);
-		renderJson(MsgResponse.success().put("page", recordServiceImpl.getRecordList(pageNum, pageSize, CommunityServiceModel.class)));
+		obtainBooleanMsgResponse(flag);
 	}
 	/**
 	 * 添加评定意见

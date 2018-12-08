@@ -71,6 +71,12 @@ public class WServiceSupport {
 		return TableMapping.me().getTable(modelClass).getPrimaryKey()[0];
 	}
 	
+	/**
+	 * 通过主键查询记录
+	 * @param modelClass
+	 * @param idValue
+	 * @return
+	 */
 	public Record getRecordById(Class<? extends Model> modelClass ,String idValue){
 		try {
 			Record r = Db.findById(TABLE_NAME(modelClass), PRIMARY_KEY(modelClass), idValue);
