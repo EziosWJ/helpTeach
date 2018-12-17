@@ -1,15 +1,12 @@
 package com.weixin.wj.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.jfinal.core.Controller;
-import com.jfinal.kit.HttpKit;
 import com.weixin.wj.model.UserCaseModel;
-import com.weixin.wj.service.UserCaseService;
+import com.weixin.wj.model.UserRecordModel;
 import com.weixin.wj.service.impl.UserCaseServiceImpl;
 import com.weixin.wj.util.MsgResponse;
 
 public class UserCaseController extends WController{
-	private UserCaseService userCaseService = new UserCaseServiceImpl();
+	private UserCaseServiceImpl userCaseService = new UserCaseServiceImpl();
 	public void index() {
 		
 	}
@@ -50,26 +47,20 @@ public class UserCaseController extends WController{
 		renderJson(MsgResponse.fail());
 	}
 	
-	public void regist(){
-		UserCaseModel uc = new UserCaseModel();
-		uc.setUcName(getPara("ucName"));
-		uc.setUcPassword(getPara("ucPassword"));
-		uc.setUcRole(getPara("ucRole"));
-		renderJson(userCaseService.regist(uc));
-	}
+
 	
 	public void getChatList(){
 		String ucAccid = getPara("ucAccid");
 		renderJson(userCaseService.getChatList(ucAccid));
 	}
-	public void editUserInfo(){
-		
-		UserCaseModel usercase = getByBean(UserCaseModel.class);
-		boolean flag = userCaseService.editUserInfo(usercase);
-		if(flag){
-			renderJson(MsgResponse.success());
-		}else{
-			renderJson(MsgResponse.fail());
-		}
+	
+	/**
+	 * 更新档案状态
+	 */
+	public void updateUserRecord(){
+		UserRecordModel userRecordModel = getByBeanIgoneArrayZero(UserRecordModel.class);
+		boolean flag = userCaseService.updateUserRecordState(userRecordModel);
+		obtainBooleanMsgResponse(flag);
 	}
+
 }

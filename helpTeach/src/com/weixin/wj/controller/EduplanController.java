@@ -3,10 +3,8 @@ package com.weixin.wj.controller;
 import java.util.List;
 
 import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanModel;
-import com.weixin.wj.model.InvOptionModel;
 import com.weixin.wj.model.RewardPunishModel;
 import com.weixin.wj.service.impl.EduplanServiceImp;
 import com.weixin.wj.util.MsgResponse;
@@ -16,7 +14,12 @@ public class EduplanController extends WController{
 	private EduplanServiceImp eduplanServiceImp = new EduplanServiceImp();
 	
 	public void index() {
-		
+		String[] names = getParaValues("names");
+		for (String string : names) {
+			System.out.println(string);
+		}
+		EduplanModel eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
+		renderText("amd yes!");
 	}
 	
 	/**
@@ -25,6 +28,7 @@ public class EduplanController extends WController{
 	 * 添加计划
 	 */
 	public void putEduplan(){
+//		getParaValues("names[]");
 		EduplanModel eduplanModel = new EduplanModel();
 		eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
 		boolean flag = eduplanServiceImp.putEduplan(eduplanModel);

@@ -3,8 +3,8 @@ package com.weixin.wj.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.weixin.wj.service.bean.ByTheHelperConditionBean;
 import com.weixin.wj.service.impl.ComServiceImpl;
 import com.weixin.wj.util.MsgResponse;
 
@@ -19,16 +19,51 @@ public class ComController extends WController {
 	 * 查询被帮教人列表
 	 */
 	public void getByTheHelperList(){
-		String ucId = getPara("ucId");
-		String role = getPara("role");
-		List<?> list = comServiceImpl.getByTheHelperList(ucId,role);
-		renderJson(MsgResponse.success().put("byTheHelperList", list));
+		try {
+			String ucId = getPara("ucId");
+			String ucRole = getPara("ucRole");
+			ByTheHelperConditionBean condition = new ByTheHelperConditionBean();
+			condition.setUcId(ucId);
+			condition.setUcRole(ucRole);
+			List<?> list = comServiceImpl.getByTheHelperList(condition);
+			obtainListMsgResponse(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			renderJson(MsgResponse.fail().setMsg("查询被帮教人列表失败！"));
+		}
 	}
-	public void getByTheHelperOptionedList(){
-		String ucId = getPara("ucId");
-		List<?> list = comServiceImpl.getByTheHelperOptionedList(ucId);
-		renderJson(MsgResponse.success().put("byTheHelperList", list));
+	/**
+	 * 查询帮教人列表
+	 */
+	public void getHelperList(){
+		try {
+			String ucRole = getPara("ucRole");
+			ByTheHelperConditionBean condition = new ByTheHelperConditionBean();
+			condition.setUcRole(ucRole);
+			List<?> list = comServiceImpl.getHelperList(condition);
+			obtainListMsgResponse(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			renderJson(MsgResponse.fail().setMsg("查询帮教人列表失败！"));
+		}
 	}
+	
+	/**
+	 * 查询检察官列表
+	 */
+	public void getProcuratorList(){
+		try {
+			String ucRole = getPara("ucRole");
+			ByTheHelperConditionBean condition = new ByTheHelperConditionBean();
+			condition.setUcRole(ucRole);
+			List<?> list = comServiceImpl.getProcuratorList(condition);
+			obtainListMsgResponse(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			renderJson(MsgResponse.fail().setMsg("查询检察官列表失败！"));
+		}
+	}
+
 	public void getCarouselList(){
 		JSONObject jone = new JSONObject();
 		JSONObject jtwo = new JSONObject();

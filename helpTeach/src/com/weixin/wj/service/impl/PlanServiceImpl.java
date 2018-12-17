@@ -5,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.PropKit;
@@ -27,7 +26,8 @@ public class PlanServiceImpl extends WServiceSupport {
 				try {
 					for (int i = 0; i < eduplanModel.getInt(target.getString("name")); i++) {
 						try {
-							setLearnTargetDefualtAttr((Class<? extends Model>) Class.forName(target.getString("model")), eduplanModel).save();
+							
+							setLearnTargetDefualtAttr((Class<? extends Model>) Class.forName(target.getString("model")),eduplanModel).save();
 						} catch (ClassNotFoundException e) {
 							e.printStackTrace();
 						}
@@ -53,6 +53,7 @@ public class PlanServiceImpl extends WServiceSupport {
 			}
 		}
 	}
+	
 	private JSONArray getLearnTargetList(){
 		String s = PropKit.use("eduplan").get("learnTarget");
 		JSONObject jsonObject = JSONObject.parseObject(s);
@@ -119,7 +120,12 @@ public class PlanServiceImpl extends WServiceSupport {
 		return generateRecordPrimaryKey(model);
 	}
 	
-	
+	/**
+	 * 自动生成对应的模型对象并返回
+	 * @param modelClass
+	 * @param eduplanModel
+	 * @return
+	 */
 	private Model setHelpTargetDefualtAttr(Class<? extends Model> modelClass,EduplanModel eduplanModel){
 		Model model = null;
 		try {
