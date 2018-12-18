@@ -63,13 +63,22 @@ public abstract class BaseMovieWatchModel<M extends BaseMovieWatchModel<M>> exte
 		return getStr("wmState");
 	}
 
-	public M setWmDate(java.util.Date wmDate) {
+	public M setWmDieDate(java.lang.String wmDieDate) {
+		set("wmDieDate", wmDieDate);
+		return (M)this;
+	}
+	
+	public java.lang.String getWmDieDate() {
+		return getStr("wmDieDate");
+	}
+
+	public M setWmDate(java.lang.String wmDate) {
 		set("wmDate", wmDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getWmDate() {
-		return get("wmDate");
+	public java.lang.String getWmDate() {
+		return getStr("wmDate");
 	}
 
 	public M setWmScreen(java.lang.String wmScreen) {

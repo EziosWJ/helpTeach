@@ -63,13 +63,22 @@ public abstract class BaseThinkReportModel<M extends BaseThinkReportModel<M>> ex
 		return getStr("trState");
 	}
 
-	public M setTrDate(java.util.Date trDate) {
+	public M setTrDieDate(java.lang.String trDieDate) {
+		set("trDieDate", trDieDate);
+		return (M)this;
+	}
+	
+	public java.lang.String getTrDieDate() {
+		return getStr("trDieDate");
+	}
+
+	public M setTrDate(java.lang.String trDate) {
 		set("trDate", trDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getTrDate() {
-		return get("trDate");
+	public java.lang.String getTrDate() {
+		return getStr("trDate");
 	}
 
 	public M setTrFile(java.lang.String trFile) {

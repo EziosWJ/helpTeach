@@ -54,6 +54,15 @@ public abstract class BaseLawStudyModel<M extends BaseLawStudyModel<M>> extends 
 		return getStr("slResult");
 	}
 
+	public M setSlDieDate(java.lang.String slDieDate) {
+		set("slDieDate", slDieDate);
+		return (M)this;
+	}
+	
+	public java.lang.String getSlDieDate() {
+		return getStr("slDieDate");
+	}
+
 	public M setSlState(java.lang.String slState) {
 		set("slState", slState);
 		return (M)this;
@@ -63,13 +72,13 @@ public abstract class BaseLawStudyModel<M extends BaseLawStudyModel<M>> extends 
 		return getStr("slState");
 	}
 
-	public M setSlDate(java.util.Date slDate) {
+	public M setSlDate(java.lang.String slDate) {
 		set("slDate", slDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getSlDate() {
-		return get("slDate");
+	public java.lang.String getSlDate() {
+		return getStr("slDate");
 	}
 
 	public M setEpId(java.lang.String epId) {

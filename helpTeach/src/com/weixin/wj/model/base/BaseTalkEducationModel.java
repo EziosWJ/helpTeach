@@ -45,13 +45,22 @@ public abstract class BaseTalkEducationModel<M extends BaseTalkEducationModel<M>
 		return getStr("urId");
 	}
 
-	public M setTeDate(java.util.Date teDate) {
+	public M setTeDieDate(java.lang.String teDieDate) {
+		set("teDieDate", teDieDate);
+		return (M)this;
+	}
+	
+	public java.lang.String getTeDieDate() {
+		return getStr("teDieDate");
+	}
+
+	public M setTeDate(java.lang.String teDate) {
 		set("teDate", teDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getTeDate() {
-		return get("teDate");
+	public java.lang.String getTeDate() {
+		return getStr("teDate");
 	}
 
 	public M setTeState(java.lang.String teState) {

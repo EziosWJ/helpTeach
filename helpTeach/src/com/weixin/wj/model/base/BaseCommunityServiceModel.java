@@ -45,13 +45,22 @@ public abstract class BaseCommunityServiceModel<M extends BaseCommunityServiceMo
 		return getStr("urId");
 	}
 
-	public M setCsDate(java.util.Date csDate) {
+	public M setCsDate(java.lang.String csDate) {
 		set("csDate", csDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getCsDate() {
-		return get("csDate");
+	public java.lang.String getCsDate() {
+		return getStr("csDate");
+	}
+
+	public M setCsDieDate(java.lang.String csDieDate) {
+		set("csDieDate", csDieDate);
+		return (M)this;
+	}
+	
+	public java.lang.String getCsDieDate() {
+		return getStr("csDieDate");
 	}
 
 	public M setCsState(java.lang.String csState) {

@@ -63,13 +63,22 @@ public abstract class BaseCaseReadModel<M extends BaseCaseReadModel<M>> extends 
 		return getStr("crState");
 	}
 
-	public M setCrDate(java.util.Date crDate) {
+	public M setCrDate(java.lang.String crDate) {
 		set("crDate", crDate);
 		return (M)this;
 	}
 	
-	public java.util.Date getCrDate() {
-		return get("crDate");
+	public java.lang.String getCrDate() {
+		return getStr("crDate");
+	}
+
+	public M setCrDieDate(java.lang.String crDieDate) {
+		set("crDieDate", crDieDate);
+		return (M)this;
+	}
+	
+	public java.lang.String getCrDieDate() {
+		return getStr("crDieDate");
 	}
 
 	public M setCrScreen(java.lang.String crScreen) {
