@@ -19,6 +19,7 @@ public class _MappingKit {
 		arp.addMapping("hae_case_read_model", "crId", CaseReadModel.class);
 		arp.addMapping("hae_community_service_model", "csId", CommunityServiceModel.class);
 		arp.addMapping("hae_eduplan_model", "epId", EduplanModel.class);
+		arp.addMapping("hae_eduplan_task_model", "id", EduplanTaskModel.class);
 		arp.addMapping("hae_feedback_record_model", "frId", FeedbackRecordModel.class);
 		arp.addMapping("hae_foul_record_model", "frId", FoulRecordModel.class);
 		arp.addMapping("hae_interview_record_model", "irId", InterviewRecordModel.class);

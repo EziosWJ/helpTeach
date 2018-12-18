@@ -39,10 +39,12 @@ public class TestUserCase {
 	
 	@Test
 	public void testTarget(){
+		String mo = "[{\"name\":\"1\",\"dieDate\":\"2018-12-20\"},{\"name\":\"bb\"}]";
+//		String mo = "[{\"name\":\"1\",\"dieDate\":\"2018-12-20\"},{\"name\":\"bb\",\"dieDate\":\"2018-12-21\"}]";
 		EduplanModel eduplanModel = new EduplanModel();
 		eduplanModel.setUrId("66");
-		eduplanModel.setEpLawStudy(2);
-		eduplanModel.setEpCaseRead(1);
+		eduplanModel.setEpLawStudy(mo);
+		eduplanModel.setEpCaseRead(mo);
 		eduplanModel = (EduplanModel) new PlanServiceImpl().generateRecordPrimaryKey(eduplanModel);
 		new PlanServiceImpl().learnTargetFactory(eduplanModel);
 	}

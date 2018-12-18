@@ -36,58 +36,58 @@ public abstract class BaseEduplanModel<M extends BaseEduplanModel<M>> extends Mo
 		return getStr("epTitle");
 	}
 
-	public M setEpLawStudy(java.lang.Integer epLawStudy) {
+	public M setEpLawStudy(java.lang.String epLawStudy) {
 		set("epLawStudy", epLawStudy);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getEpLawStudy() {
-		return getInt("epLawStudy");
+	public java.lang.String getEpLawStudy() {
+		return getStr("epLawStudy");
 	}
 
-	public M setEpMovieWatch(java.lang.Integer epMovieWatch) {
+	public M setEpMovieWatch(java.lang.String epMovieWatch) {
 		set("epMovieWatch", epMovieWatch);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getEpMovieWatch() {
-		return getInt("epMovieWatch");
+	public java.lang.String getEpMovieWatch() {
+		return getStr("epMovieWatch");
 	}
 
-	public M setEpCaseRead(java.lang.Integer epCaseRead) {
+	public M setEpCaseRead(java.lang.String epCaseRead) {
 		set("epCaseRead", epCaseRead);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getEpCaseRead() {
-		return getInt("epCaseRead");
+	public java.lang.String getEpCaseRead() {
+		return getStr("epCaseRead");
 	}
 
-	public M setEpThinkReport(java.lang.Integer epThinkReport) {
+	public M setEpThinkReport(java.lang.String epThinkReport) {
 		set("epThinkReport", epThinkReport);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getEpThinkReport() {
-		return getInt("epThinkReport");
+	public java.lang.String getEpThinkReport() {
+		return getStr("epThinkReport");
 	}
 
-	public M setEpTalk(java.lang.Integer epTalk) {
+	public M setEpTalk(java.lang.String epTalk) {
 		set("epTalk", epTalk);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getEpTalk() {
-		return getInt("epTalk");
+	public java.lang.String getEpTalk() {
+		return getStr("epTalk");
 	}
 
-	public M setEpService(java.lang.Integer epService) {
+	public M setEpService(java.lang.String epService) {
 		set("epService", epService);
 		return (M)this;
 	}
 	
-	public java.lang.Integer getEpService() {
-		return getInt("epService");
+	public java.lang.String getEpService() {
+		return getStr("epService");
 	}
 
 	public M setEpStratTime(java.util.Date epStratTime) {

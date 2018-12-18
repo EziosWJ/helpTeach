@@ -2,6 +2,7 @@ package com.weixin.wj.test;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpResponse;
@@ -25,6 +26,7 @@ import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.weixin.wj.enums.MindQst;
 import com.weixin.wj.model.EduplanModel;
+import com.weixin.wj.model.EduplanTaskModel;
 import com.weixin.wj.model.LawStudyModel;
 import com.weixin.wj.model.MindTestQstModel;
 import com.weixin.wj.model._MappingKit;
@@ -38,6 +40,31 @@ public class QstEntering {
 		new QstEntering().qstEnter();
 		
 	}
+	
+	
+	@Test
+	public void testJsonArrayNullPoint(){
+		EduplanModel eduplanModel = new EduplanModel();
+//		eduplanModel.setEpCaseRead("[{\"id\":\"1\",\"name\":\"wj\"},{\"id\":\"bb\",\"name\":\"000\"}]");
+		JSONArray jsonArray = JSONArray.parseArray(eduplanModel.getEpCaseRead());
+		List<EduplanTaskModel> list = jsonArray.toJavaList(EduplanTaskModel.class);
+		for (EduplanTaskModel eduplanTaskModel : list) {
+			System.out.println(eduplanTaskModel.getName());
+		}
+	}
+	
+	
+	@Test
+	public void testJsonArrayToList(){
+		String str = "[{\"id\":\"1\",\"name\":\"wj\"},{\"id\":\"bb\",\"name\":\"000\"}]"
+				+ "";
+		JSONArray jsonArray = JSONArray.parseArray(str);
+		List<EduplanTaskModel> list = jsonArray.toJavaList(EduplanTaskModel.class);
+		for (EduplanTaskModel eduplanTaskModel : list) {
+			System.out.println(eduplanTaskModel.getName());
+		}
+	}
+	
 
 	@Test
 	public void testPropkitEduplan()

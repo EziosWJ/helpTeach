@@ -3,18 +3,21 @@ learnTarget={\
 	"targetList":[\
 		{\
 			name:"epLawStudy",\
-			flow:"method",\
+			prefix:"sl",\
+			flow:"defualt",\
 			model:"com.weixin.wj.model.LawStudyModel",\
 			method:"lawStudy"\
 		},\
 		{\
 			name:"epMovieWatch",\
+			prefix:"wm",\
 			flow:"defualt",\
 			model:"com.weixin.wj.model.MovieWatchModel",\
 			method:"movieWatch",\
 		},\
 		{\
 			name:"epCaseRead",\
+			prefix:"cr",\
 			flow:"defualt",\
 			model:"com.weixin.wj.model.CaseReadModel",\
 			method:"caseRead",\
