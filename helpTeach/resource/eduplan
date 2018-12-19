@@ -4,7 +4,7 @@ learnTarget={\
 		{\
 			name:"epLawStudy",\
 			prefix:"sl",\
-			flow:"defualt",\
+			flow:"method",\
 			model:"com.weixin.wj.model.LawStudyModel",\
 			method:"lawStudy"\
 		},\

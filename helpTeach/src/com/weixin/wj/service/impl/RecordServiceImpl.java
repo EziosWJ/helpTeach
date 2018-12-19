@@ -32,7 +32,7 @@ public class RecordServiceImpl extends WServiceSupport{
 	 */
 	public List<Record> getRecordListByEpId(Class<? extends Model> modelClass,String epId){
 		try {
-			List<Record> list = Db.find("select * " + TABLE_NAME(modelClass) + " where epId = ?", epId);
+			List<Record> list = Db.find("select * " + FROM_TABLE(modelClass) + " where epId = ?", epId);
 			return list;
 		} catch (NullPointerException e) {
 			System.out.println("");

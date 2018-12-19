@@ -1,7 +1,6 @@
 package com.weixin.wj.service.impl;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
@@ -42,30 +41,24 @@ public class PlanServiceImpl extends WServiceSupport {
 		Iterator<Object> iterator = targetList.iterator();
 		while (iterator.hasNext()) {
 			JSONObject target = (JSONObject) iterator.next();
+			PlanTargetBean targetBean = new PlanTargetBean(target, eduplanModel);
 			if(target.getString("flow").equals("defualt")){
 				try {
-					PlanTargetBean targetBean = new PlanTargetBean(target, eduplanModel);
 					if(!targetBean.isSkip()){
-						circularSetLearnTargetDefualtAttr(target, eduplanModel);;
+						circularSetLearnTargetDefualtAttr(targetBean);
 					}
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
 			}else if(target.getString("flow").equals("method")){
 				try {
-					Method method = this.getClass().getDeclaredMethod(target.getString("method"),EduplanModel.class);
-					method.invoke(this,target, eduplanModel);
-				} catch (NoSuchMethodException e) {
+					if(!targetBean.isSkip()){
+						Method method = this.getClass().getDeclaredMethod(target.getString("method"),PlanTargetBean.class);
+						method.invoke(this,targetBean);
+					}
+				} catch (Exception e) {
 					e.printStackTrace();
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				}
+				} 
 			}
 		}
 	}
@@ -76,14 +69,17 @@ public class PlanServiceImpl extends WServiceSupport {
 	 * 帮教目标
 	 * @param eduplanModel
 	 */
-	public void helpTargetFactory(EduplanModel eduplanModel) throws ClassNotFoundException{
+	public void helpTargetFactory(EduplanModel eduplanModel){
 		JSONArray targetList = getHelpTargetList();
 		Iterator<Object> iterator = targetList.iterator();
 		while (iterator.hasNext()) {
 			JSONObject target = (JSONObject) iterator.next();
+			PlanTargetBean targetBean = new PlanTargetBean(target,eduplanModel);
 			if(target.getString("flow").equals("defualt")){
 				try {
-					circularSetHelpTargetDefualtAttr(target, eduplanModel);
+					if(!targetBean.isSkip()){
+						circularSetHelpTargetDefualtAttr(targetBean);						
+					}
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -91,24 +87,14 @@ public class PlanServiceImpl extends WServiceSupport {
 			}else if(target.getString("flow").equals("method")){
 				Method method;
 				try {
-					method = this.getClass().getDeclaredMethod(target.getString("method"),EduplanModel.class);
-					method.invoke(this, target,eduplanModel);
-				} catch (NoSuchMethodException e) {
+					if(!targetBean.isSkip()){
+						method = this.getClass().getDeclaredMethod(target.getString("method"),PlanTargetBean.class);
+						method.invoke(this, targetBean);
+					}
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 			}
 		}
 	}
@@ -138,6 +124,15 @@ public class PlanServiceImpl extends WServiceSupport {
 			System.out.println(target.getString("method")+"发生空指针异常，自动生成失败，请检查数据是否完整。");
 			System.out.println(eduplanModel.getStr(target.getString("name")));
 			throw e;
+		}
+	}
+	private void circularSetHelpTargetDefualtAttr(PlanTargetBean targetBean) throws ClassNotFoundException{
+		String prefix = targetBean.getPrefix();
+		for (EduplanTaskModel eduplanTaskModel : targetBean.getTaskList()) {
+			Model model = setLearnTargetDefualtAttr(targetBean.getModelClass(), targetBean.getEduplanModel());
+			model.set(prefix+"Name", eduplanTaskModel.getName());
+			model.set(prefix+"DieDate", eduplanTaskModel.getDieDate());
+			generateRecordPrimaryKey(model).save();
 		}
 	}
 
@@ -170,7 +165,15 @@ public class PlanServiceImpl extends WServiceSupport {
 			throw e;
 		}
 	}
-
+	private void circularSetLearnTargetDefualtAttr(PlanTargetBean targetBean) throws ClassNotFoundException{
+		String prefix = targetBean.getPrefix();
+		for (EduplanTaskModel eduplanTaskModel : targetBean.getTaskList()) {
+			Model model = setLearnTargetDefualtAttr(targetBean.getModelClass(), targetBean.getEduplanModel());
+			model.set(prefix+"Name", eduplanTaskModel.getName());
+			model.set(prefix+"DieDate", eduplanTaskModel.getDieDate());
+			generateRecordPrimaryKey(model).save();
+		}
+	}
 	/**
 	 * 
 	 * 生成学习目标策略并返回
@@ -215,26 +218,13 @@ public class PlanServiceImpl extends WServiceSupport {
 	 * @param eduplanModel
 	 * @throws ClassNotFoundException 
 	 */
-	private void lawStudy(JSONObject target,EduplanModel eduplanModel) throws ClassNotFoundException{
-		if(eduplanModel.getStr(target.getString("name")) == null || eduplanModel.getStr(target.getString("name")) == ""){
-			System.out.println(target.get("method")+"没有数据，跳过。");
-			return;
-		}
-		JSONArray jsonArray = JSONArray.parseArray(eduplanModel.getStr(target.getString("name")));
-		List<EduplanTaskModel> list = jsonArray.toJavaList(EduplanTaskModel.class);
-		String prefix = target.getString("prefix");
-		Class modelClass = Class.forName(target.getString("model"));
-		try {
-			for (EduplanTaskModel eduplanTaskModel : list) {
-				Model model = setLearnTargetDefualtAttr(modelClass, eduplanModel);
-				model.set(prefix+"Name", eduplanTaskModel.getName());
-				model.set(prefix+"DieDate", eduplanTaskModel.getDieDate());
-				generateRecordPrimaryKey(model).save();
-			}
-		} catch (NullPointerException e) {
-			System.out.println(target.getString("method")+"发生空指针异常，自动生成失败，请检查数据是否完整。");
-			System.out.println(eduplanModel.getStr(target.getString("name")));
-			throw e;
+	private void lawStudy(PlanTargetBean targetBean) throws ClassNotFoundException{
+		String prefix = targetBean.getPrefix();
+		for (EduplanTaskModel eduplanTaskModel : targetBean.getTaskList()) {
+			Model model = setLearnTargetDefualtAttr(targetBean.getModelClass(), targetBean.getEduplanModel());
+			model.set(prefix+"Name", eduplanTaskModel.getName());
+			model.set(prefix+"DieDate", eduplanTaskModel.getDieDate());
+			generateRecordPrimaryKey(model).save();
 		}
 	}
 //	private void movieWatch(EduplanModel eduplanModel) {

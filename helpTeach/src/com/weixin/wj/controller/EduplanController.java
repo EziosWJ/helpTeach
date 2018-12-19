@@ -54,6 +54,14 @@ public class EduplanController extends WController{
 	}
 	
 	/**
+	 * 获取帮教任务计划列表
+	 */
+	public void getEduplanTaskList(){
+		List<?> list = eduplanServiceImp.getEduplanTaskList();
+		obtainListMsgResponse(list);
+	}
+	
+	/**
 	 * 奖惩管理
 	 */
 	public void putRewardPunish(){

@@ -24,12 +24,13 @@ public class PlanTargetBean {
 	private String prefix;
 	private Class modelClass;
 	private boolean skip = false;
+	private EduplanModel eduplanModel;
 	
 	public boolean isSkip() {
 		return skip;
 	}
 
-	public PlanTargetBean(JSONObject target, EduplanModel eduplanModel) throws ClassNotFoundException {
+	public PlanTargetBean(JSONObject target, EduplanModel eduplanModel) {
 		super();
 		if(eduplanModel.getStr(target.getString("name")) == null || eduplanModel.getStr(target.getString("name")) == ""){
 			System.out.println(target.get("method")+"没有数据，跳过。");
@@ -39,7 +40,14 @@ public class PlanTargetBean {
 		this.moduleArray = JSONArray.parseArray(eduplanModel.getStr(target.getString("name")));
 		this.taskList = moduleArray.toJavaList(EduplanTaskModel.class);
 		this.prefix = target.getString("prefix");
-		this.modelClass = Class.forName(target.getString("model"));
+		try {
+			this.modelClass = Class.forName(target.getString("model"));
+		} catch (ClassNotFoundException e) {
+			System.out.println("未找到该" + target.getString("model") + "，配置可能有误!");
+			this.skip = true;
+			e.printStackTrace();
+		}
+		this.eduplanModel = eduplanModel;
 	}
 	public PlanTargetBean() {
 		super();
@@ -74,6 +82,14 @@ public class PlanTargetBean {
 	}
 	public void setModelClass(Class modelClass) {
 		this.modelClass = modelClass;
+	}
+
+	public EduplanModel getEduplanModel() {
+		return eduplanModel;
+	}
+
+	public void setEduplanModel(EduplanModel eduplanModel) {
+		this.eduplanModel = eduplanModel;
 	}
 	
 	

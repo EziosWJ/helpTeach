@@ -2,9 +2,12 @@ package com.weixin.wj.service.impl;
 
 import java.util.List;
 
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.weixin.wj.model.EduplanModel;
+import com.weixin.wj.model.EduplanTaskModel;
 import com.weixin.wj.model.InvOptionModel;
 import com.weixin.wj.model.RewardPunishModel;
 
@@ -15,9 +18,12 @@ public class EduplanServiceImp extends WServiceSupport{
 	 * @param EduplanModel
 	 * @return
 	 */
+	@Before(Tx.class)
 	public boolean putEduplan(EduplanModel eduplanModel){
 		EduplanModel ep = (EduplanModel) generateRecordPrimaryKey(eduplanModel);
-		new PlanServiceImpl().learnTargetFactory(ep);
+		PlanServiceImpl planServiceImpl = new PlanServiceImpl();
+		planServiceImpl.learnTargetFactory(ep);
+		planServiceImpl.helpTargetFactory(eduplanModel);
 		return ep.save();
 	}
 	
@@ -30,6 +36,9 @@ public class EduplanServiceImp extends WServiceSupport{
 		return Db.find("select * from hae_Eduplan_Model where urId = ?",urId);
 	}
 	
+	public List<?> getEduplanTaskList(){
+		return Db.find("select id,name,dieDate,content,type " + FROM_TABLE(EduplanTaskModel.class));
+	}
 	
 	/**
 	 * 奖惩管理
