@@ -31,7 +31,6 @@ public class PlanServiceImpl extends WServiceSupport {
 		JSONArray jsonArray = jsonObject.getJSONArray("targetList");
 		return jsonArray;
 	}
-	
 	/**
 	 * 学习目标
 	 * @param eduplanModel
@@ -81,7 +80,6 @@ public class PlanServiceImpl extends WServiceSupport {
 						circularSetHelpTargetDefualtAttr(targetBean);						
 					}
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}else if(target.getString("flow").equals("method")){
@@ -92,7 +90,6 @@ public class PlanServiceImpl extends WServiceSupport {
 						method.invoke(this, targetBean);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} 
 			}
@@ -127,11 +124,11 @@ public class PlanServiceImpl extends WServiceSupport {
 		}
 	}
 	private void circularSetHelpTargetDefualtAttr(PlanTargetBean targetBean) throws ClassNotFoundException{
-		String prefix = targetBean.getPrefix();
+//		String prefix = targetBean.getPrefix();
 		for (EduplanTaskModel eduplanTaskModel : targetBean.getTaskList()) {
 			Model model = setLearnTargetDefualtAttr(targetBean.getModelClass(), targetBean.getEduplanModel());
-			model.set(prefix+"Name", eduplanTaskModel.getName());
-			model.set(prefix+"DieDate", eduplanTaskModel.getDieDate());
+//			model.set(prefix+"Name", eduplanTaskModel.getName());
+//			model.set(prefix+"DieDate", eduplanTaskModel.getDieDate());
 			generateRecordPrimaryKey(model).save();
 		}
 	}

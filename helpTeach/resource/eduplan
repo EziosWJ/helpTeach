@@ -4,7 +4,7 @@ learnTarget={\
 		{\
 			name:"epLawStudy",\
 			prefix:"sl",\
-			flow:"method",\
+			flow:"defualt",\
 			model:"com.weixin.wj.model.LawStudyModel",\
 			method:"lawStudy"\
 		},\
@@ -22,8 +22,35 @@ learnTarget={\
 			model:"com.weixin.wj.model.CaseReadModel",\
 			method:"caseRead",\
 		},\
+		{\
+			name:"epThinkReport",\
+			prefix:"tr",\
+			flow:"defualt",\
+			model:"com.weixin.wj.model.ThinkReportModel",\
+			method:"thinkReport",\
+		},\
 	]\
-}\
+}
+
+#帮教目标
+helpTarget={\
+	"targetList":[\
+		{\
+			name:"epTalk",\
+			prefix:"te",\
+			flow:"defualt",\
+			model:"com.weixin.wj.model.TalkEducationModel",\
+			method:"talkEducation"\
+		},\
+		{\
+			name:"epService",\
+			prefix:"cs",\
+			flow:"defualt",\
+			model:"com.weixin.wj.model.CommunityServiceModel",\
+			method:"communityService",\
+		},\
+	]\
+}
 
 # 微信菜单
 wxMenu =  {\
