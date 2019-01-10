@@ -3,8 +3,6 @@ package com.weixin.wj.util;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.plugin.activerecord.Model;
-import com.jfinal.plugin.activerecord.Table;
-import com.jfinal.plugin.activerecord.TableMapping;
 import com.weixin.wj.service.bean.TableBean;
 
 public class GenerateKey implements Interceptor {

@@ -8,7 +8,7 @@ import com.weixin.wj.util.MsgResponse;
 public class UserCaseController extends WController{
 	private UserCaseServiceImpl userCaseService = new UserCaseServiceImpl();
 	public void index() {
-		
+		renderText("user index");
 	}
 	
 	public void getById(){

@@ -2,25 +2,13 @@ package com.weixin.wj.service.impl;
 
 import java.util.List;
 
-import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
-import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.activerecord.Table;
-import com.jfinal.plugin.activerecord.TableMapping;
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.FeedbackRecordModel;
-import com.weixin.wj.model.FoulRecordModel;
-import com.weixin.wj.model.InterviewRecordModel;
-import com.weixin.wj.model.LabourEducationModel;
 import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.TalkEducationModel;
-import com.weixin.wj.model.UserCaseModel;
-import com.weixin.wj.service.bean.TableBean;
-import com.weixin.wj.util.GenerateKey;
-import com.weixin.wj.util.NormalUtils;
 
 public class RecordServiceImpl extends WServiceSupport{
 	
@@ -39,7 +27,6 @@ public class RecordServiceImpl extends WServiceSupport{
 			return null;
 		}
 	}
-
 
 
 	/**

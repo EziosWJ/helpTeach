@@ -1,8 +1,5 @@
 package com.weixin.wj.wx;
 
-import java.io.UnsupportedEncodingException;
-
-import com.jfinal.weixin.sdk.api.ApiResult;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 
 public class SubscribeMsgController extends ApiController{

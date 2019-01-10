@@ -5,17 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.fastjson.JSONObject;
-import com.jfinal.json.Json;
 import com.jfinal.weixin.sdk.api.AccessTokenApi;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.sdk.api.ApiResult;
 import com.jfinal.weixin.sdk.api.CallbackIpApi;
 import com.jfinal.weixin.sdk.api.CustomServiceApi;
 import com.jfinal.weixin.sdk.api.CustomServiceApi.Articles;
-import com.jfinal.weixin.sdk.api.MediaApi;
-import com.jfinal.weixin.sdk.api.MediaApi.MediaType;
-import com.jfinal.weixin.sdk.api.MediaArticles;
 import com.jfinal.weixin.sdk.api.MenuApi;
 import com.jfinal.weixin.sdk.api.QrcodeApi;
 import com.jfinal.weixin.sdk.api.ShorturlApi;

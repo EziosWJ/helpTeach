@@ -1,24 +1,13 @@
 package com.weixin.wj.test;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jfinal.plugin.activerecord.Model;
-import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanModel;
-import com.weixin.wj.model.LawStudyModel;
 import com.weixin.wj.model.UserCaseModel;
-import com.weixin.wj.service.UserCaseService;
 import com.weixin.wj.service.impl.PlanServiceImpl;
 import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.service.impl.UserCaseServiceImpl;

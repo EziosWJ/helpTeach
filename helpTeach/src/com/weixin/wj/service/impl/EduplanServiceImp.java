@@ -8,11 +8,13 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.weixin.wj.model.EduplanModel;
 import com.weixin.wj.model.EduplanTaskModel;
-import com.weixin.wj.model.InvOptionModel;
 import com.weixin.wj.model.RewardPunishModel;
 
 public class EduplanServiceImp extends WServiceSupport{
 
+	public List<Record> getTaskList(){
+		return Db.find("select * from hae_task_list_model");
+	}
 	/**
 	 * 帮教计划
 	 * @param EduplanModel

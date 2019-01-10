@@ -3,7 +3,6 @@ package com.weixin.wj.test;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -22,15 +21,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.weixin.wj.enums.MindQst;
 import com.weixin.wj.model.EduplanModel;
 import com.weixin.wj.model.EduplanTaskModel;
-import com.weixin.wj.model.LawStudyModel;
 import com.weixin.wj.model.MindTestQstModel;
 import com.weixin.wj.model._MappingKit;
-import com.weixin.wj.service.impl.PlanServiceImpl;
 //不确定%3
 public class QstEntering {
 	private static MindTestQstModel dao = new MindTestQstModel().dao();

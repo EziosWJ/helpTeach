@@ -5,9 +5,6 @@ import java.util.List;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.weixin.sdk.api.ApiResult;
-import com.jfinal.weixin.sdk.api.TemplateMsgApi;
-import com.weixin.wj.model.UserRecordModel;
 import com.weixin.wj.wx.WeixinApiController;
 @SuppressWarnings("unused")
 public class WeixinSendTemplateServiceImpl {

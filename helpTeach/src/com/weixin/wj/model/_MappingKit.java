@@ -33,6 +33,7 @@ public class _MappingKit {
 		arp.addMapping("hae_opinion_record_model", "orId", OpinionRecordModel.class);
 		arp.addMapping("hae_reward_punish_model", "rpId", RewardPunishModel.class);
 		arp.addMapping("hae_talk_education_model", "teId", TalkEducationModel.class);
+		arp.addMapping("hae_task_list_model", "tlId", TaskListModel.class);
 		arp.addMapping("hae_think_report_model", "trId", ThinkReportModel.class);
 		arp.addMapping("hae_user_case_model", "ucId", UserCaseModel.class);
 		arp.addMapping("hae_user_record_model", "urId", UserRecordModel.class);

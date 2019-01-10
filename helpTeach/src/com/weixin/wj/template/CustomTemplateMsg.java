@@ -1,7 +1,6 @@
 package com.weixin.wj.template;
 
 import com.jfinal.kit.PropKit;
-import com.jfinal.weixin.sdk.api.TemplateMsgApi;
 
 public class CustomTemplateMsg {
 	

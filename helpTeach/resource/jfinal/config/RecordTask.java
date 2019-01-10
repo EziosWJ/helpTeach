@@ -3,7 +3,6 @@ package jfinal.config;
 
 import org.apache.log4j.Logger;
 
-import com.jfinal.weixin.sdk.api.ApiResult;
 import com.weixin.wj.service.impl.WeixinSendTemplateServiceImpl;
 
 public class RecordTask implements Runnable {

@@ -14,12 +14,11 @@ public class EduplanController extends WController{
 	private EduplanServiceImp eduplanServiceImp = new EduplanServiceImp();
 	
 	public void index() {
-		String[] names = getParaValues("names");
-		for (String string : names) {
-			System.out.println(string);
-		}
-		EduplanModel eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
-		renderText("amd yes!");
+	}
+	
+	public void getTaskList(){
+		List<Record> list = eduplanServiceImp.getTaskList();
+		obtainListMsgResponse(list);
 	}
 	
 	/**

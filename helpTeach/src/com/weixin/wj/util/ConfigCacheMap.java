@@ -2,7 +2,6 @@ package com.weixin.wj.util;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;

@@ -1,9 +1,7 @@
 package com.weixin.wj.controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import com.jfinal.core.Controller;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Page;
 import com.weixin.wj.model.MindTestModel;

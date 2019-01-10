@@ -1,18 +1,9 @@
 package com.weixin.wj.service.impl;
 
-import java.io.IOException;
-import java.util.List;
-
-import com.alibaba.fastjson.JSONObject;
-import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.UserCaseModel;
 import com.weixin.wj.model.UserRecordModel;
-import com.weixin.wj.service.UserCaseService;
 import com.weixin.wj.util.MsgResponse;
-
-import nim.api.server.NIMService;
 
 public class UserCaseServiceImpl extends WServiceSupport{
 

@@ -1,7 +1,7 @@
 package com.weixin.wj.controller;
 
-
 import java.util.List;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.PropKit;
@@ -82,7 +82,7 @@ public class RecordController extends WController {
 	private ByRecordBean getModelClass(ByRecordBean byRecordBean){
 		JSONObject target = (JSONObject) ConfigCacheMap.getCache("learnTarget");
 		if(byRecordBean.getModelName().indexOf(target.toString())== -1){
-			target = (JSONObject) ConfigCacheMap.getCache("learnTarget");
+			target = (JSONObject) ConfigCacheMap.getCache("helpTarget");
 		}
 		JSONArray targetList = target.getJSONArray("targetList");
 		List<JSONObject> list = targetList.toJavaList(JSONObject.class);
