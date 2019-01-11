@@ -17,6 +17,7 @@ import com.jfinal.weixin.sdk.api.ShorturlApi;
 import com.jfinal.weixin.sdk.api.TemplateMsgApi;
 import com.jfinal.weixin.sdk.api.UserApi;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
+import com.jfinal.weixin.sdk.kit.ParaMap;
 import com.jfinal.weixin.sdk.utils.HttpUtils;
 import com.jfinal.weixin.sdk.utils.JsonUtils;
 
@@ -45,6 +46,16 @@ public class WeixinApiController extends ApiController {
         else
             renderText(apiResult.getErrorMsg());
     }
+    
+    public void getWxCode(){
+    	String code = getPara("code");
+        ParaMap pm = ParaMap.create("appid", "wx254ff707d1b45b3e").
+        		put("secret", "487215f2ce0b41b8c8cc8e22c3c6c4c3").
+        		put("code",code).put("grant_type", "authorization_code");
+        ApiResult result = new ApiResult(HttpUtils.get("https://api.weixin.qq.com/sns/oauth2/access_token", pm.getData()));
+        System.out.println(result.toString());
+    	renderText(result.toString());
+    }
 
     /**
      * 创建菜单
@@ -54,8 +65,8 @@ public class WeixinApiController extends ApiController {
         String str = "{\n" +
                 "    \"button\": [\n" +
                 "        {\n" +
-                "            \"name\": \"帮教平台\",\n" +
-                "            \"url\": \"http://www.tyjcywj.cn\",\n" +
+                "            \"name\": \"看我\",\n" +
+                "            \"url\": \"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx254ff707d1b45b3e&redirect_uri=http://ezios.iok.la/helpTeach/api/getWxCode&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect\",\n" +
                 "            \"type\": \"view\"\n" +
                 "        },\n" +
                 "        {\n" +
@@ -128,7 +139,7 @@ public class WeixinApiController extends ApiController {
     	articles.setDescription("hello!");
     	List<Articles> list = new ArrayList<>();
     	list.add(articles);
-    	ApiResult apiResult = CustomServiceApi.sendNews("oBB5s1W6rzUxkEkpAgg5AcPphr3I", list);
+    	ApiResult apiResult = CustomServiceApi.sendNews("oBB5s1TjL4DfYqv6gfq0CwJXAJ6A", list);
     	renderText(apiResult.getJson());
     }
     public void matchNews(){
@@ -153,7 +164,7 @@ public class WeixinApiController extends ApiController {
     
     public void sendWjMsg() {
 //		renderText(CustomServiceApi.sendText(getPara("openid"), "大傻逼").getJson());
-		renderText(CustomServiceApi.sendText("oBB5s1W6rzUxkEkpAgg5AcPphr3I", "五分钟测试↑").getJson());
+		renderText(CustomServiceApi.sendText("oBB5s1TjL4DfYqv6gfq0CwJXAJ6A", "五分钟测试↑").getJson());
 	}
 
     /**
