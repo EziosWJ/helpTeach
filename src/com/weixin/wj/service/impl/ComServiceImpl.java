@@ -2,6 +2,8 @@ package com.weixin.wj.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.UserCaseModel;
@@ -12,8 +14,10 @@ public class ComServiceImpl extends WServiceSupport{
 
 	private static UserCaseModel userCaseDao = new UserCaseModel().dao(); 
 	
-	private String HelperUcRole = "3";
-	private String Procurator = "2";
+	private static final String HelperUcRole = "3";
+	private static final String Admin = "1";
+	private static final String Procurator = "2";
+	private static final String dict_Id = "4";
 	
 	/**
 	 * 正在被帮教人
@@ -30,8 +34,6 @@ public class ComServiceImpl extends WServiceSupport{
 			sql = "select urId as value,urName as name from hae_user_record_model WHERE urRelationId=? and urState < 8";
 			 list = userCaseDao.find(sql,ucId);
 		}
-		
-		
 //		List<?> list = userCaseDao.find("select urId as value,urName as name from hae_user_case_model where urRelationId = ?",ucId);
 		return list;
 	}
@@ -52,12 +54,11 @@ public class ComServiceImpl extends WServiceSupport{
 	 * @return
 	 */
 	public List<?> getByTheHelperList(ByTheHelperConditionBean condition){
-		String role = condition.getUcRole();
 		List<?> list = null;
-		if(role.equals("2")){
+		if(StringUtils.equals(condition.getUcRole(), this.Procurator)){
 			list = getByTheHelperListProcurator(condition);
 		}
-		if(role.equals("3")){
+		if(StringUtils.equals(condition.getUcRole(), this.HelperUcRole)){
 			list = getByTheHelperListHelper(condition);
 		}
 		return list;
@@ -92,7 +93,7 @@ public class ComServiceImpl extends WServiceSupport{
 	 */
 	public List<?> getHelperList(ByTheHelperConditionBean condition){
 		List<?> list = null;
-		if(condition.getUcRole().equals("2") || condition.getUcRole().equals("1")){
+		if(StringUtils.equals(condition.getUcRole(),this.Procurator) || StringUtils.equals(condition.getUcRole(),this.Admin)){
 			String ucRole = this.HelperUcRole;
 			list = Db.find("select ucId,ucName,ucAccid,ucRole " + FROM_TABLE(UserCaseModel.class) + " where ucRole = ?", ucRole);
 		}
@@ -106,10 +107,14 @@ public class ComServiceImpl extends WServiceSupport{
 	 */
 	public List<?> getProcuratorList(ByTheHelperConditionBean condition){
 		List<?> list = null;
-		if(condition.getUcRole().equals("1")){
+		if(StringUtils.equals(condition.getUcRole(),this.Admin)){
 			String ucRole = this.Procurator;
 			list = Db.find("select ucId,ucName,ucAccid,ucRole " + FROM_TABLE(UserCaseModel.class) + " where ucRole = ?", ucRole);
 		}
 		return list;
+	}
+	
+	public List<Record> taskList(){
+		return Db.find("select data_Id type,data_Name name from dict_data where dict_Id = ?",this.dict_Id);
 	}
 }

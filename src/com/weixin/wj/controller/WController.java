@@ -109,10 +109,10 @@ public class WController extends Controller {
 	 * @param record
 	 */
 	public void obtainRecordMsgResponse(Record record){
-		if(record != null){
-			renderJson(MsgResponse.success().put("record", record));
-		} else {
+		if(record == null){
 			renderJson(MsgResponse.fail().setMsg("未找到该记录..."));
+		} else {
+			renderJson(MsgResponse.success().put("record", record));
 		}
 	}
 	
@@ -121,10 +121,10 @@ public class WController extends Controller {
 	 * @param list
 	 */
 	public void obtainListMsgResponse(List<?> list){
-		if(list != null || list.size() != 0){
-			renderJson(MsgResponse.success().put("list", list));
-		}else {
+		if(list == null || list.size() == 0){
 			renderJson(MsgResponse.fail().setMsg("未找到该列表..."));
+		}else {
+			renderJson(MsgResponse.success().put("list", list));
 		}
 	}
 	

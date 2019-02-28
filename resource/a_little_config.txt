@@ -11,8 +11,8 @@ appSecret=487215f2ce0b41b8c8cc8e22c3c6c4c3
 #encodingAesKey=yourEncodingAesKey
 
 #mysqljdbc
-url=jdbc:mysql:///helpeducate
-#url=jdbc:mysql://118.126.114.66:3306/helpeducate
+url=jdbc:mysql:///helpeducate?useUnicode=true&characterEncoding=UTF-8
+#url=jdbc:mysql://118.126.114.66:3306/helpeducate?useUnicode=true&characterEncoding=UTF-8
 password=123456
 #password=bootstrap
 
