@@ -2,29 +2,22 @@ package com.weixin.wj.service.impl;
 
 import java.util.List;
 
+import com.alibaba.druid.util.StringUtils;
 import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
-import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.activerecord.Table;
-import com.jfinal.plugin.activerecord.TableMapping;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.weixin.wj.model.CommunityServiceModel;
 import com.weixin.wj.model.EduplanTaskModel;
 import com.weixin.wj.model.FeedbackRecordModel;
-import com.weixin.wj.model.FoulRecordModel;
-import com.weixin.wj.model.InterviewRecordModel;
-import com.weixin.wj.model.LabourEducationModel;
 import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.TalkEducationModel;
-import com.weixin.wj.model.UserCaseModel;
-import com.weixin.wj.service.bean.TableBean;
-import com.weixin.wj.util.GenerateKey;
+import com.weixin.wj.model.UserRecordModel;
 import com.weixin.wj.util.NormalUtils;
 
 public class RecordServiceImpl extends WServiceSupport{
-	
+	private static final String FINISHED_STATE = "2";
 	/**
 	 * 
 	 * @param modelClass
@@ -75,8 +68,6 @@ public class RecordServiceImpl extends WServiceSupport{
 	public boolean putCommunityRecord(CommunityServiceModel community) {
 		return community.save();
 	}
-
-
 	
 	/**
 	 * 评定意见
@@ -117,11 +108,29 @@ public class RecordServiceImpl extends WServiceSupport{
 	}
 
 
+	@Before(Tx.class)
 	public boolean finishedTask(String score,String content,String id){
 		 EduplanTaskModel eduplanTaskModel = new EduplanTaskModel();
 		 EduplanTaskModel findById = eduplanTaskModel.findById(id);
+		 findById.setFinishedDate(NormalUtils.getGeneralDate());
 		 findById.setScore(score).setContent(content).setState("2");
+		 Integer count = Db.queryInt("SELECT COUNT(1) FROM hae_eduplan_task_model WHERE epId = ? and finishedDate IS NULL",findById.getEpId());
+		 if(1 == count){
+			 UserRecordModel findById2 = new UserRecordModel().dao().findById(findById.getUrId());
+			 findById2.setUrState(FINISHED_STATE);
+			 findById2.update();
+		 }
 		 return findById.update();
+	}
+	//SELECT * from hae_eduplan_task_model WHERE epId = (SELECT epId FROM hae_eduplan_task_model 
+	//where id = 'EDUP201903010003') AND state = 1 ORDER BY dieDate LIMIT 1
+	public boolean estimateDieDate(String id){
+		String queryStr = Db.queryStr("SELECT epId "+ FROM_TABLE(EduplanTaskModel.class)+" WHERE id =?",id);
+		String rid = Db.queryStr("SELECT id "+FROM_TABLE(EduplanTaskModel.class)+
+				" WHERE epId =? AND state = 1 ORDER BY dieDate LIMIT 1", queryStr);
+		if(StringUtils.equals(id, rid))
+			return true;
+		return false;
 	}
 	
 }

@@ -32,5 +32,10 @@ public class NormalUtils {
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
 		return df.format(date);
 	}
+	public static String getGeneralDate(){
+		Date date = new Date();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(date);
+	}
 	
 }

@@ -31,6 +31,7 @@ import com.weixin.wj.model.LawStudyModel;
 import com.weixin.wj.model.MindTestQstModel;
 import com.weixin.wj.model._MappingKit;
 import com.weixin.wj.service.impl.PlanServiceImpl;
+import com.weixin.wj.util.NormalUtils;
 //不确定%3
 public class QstEntering {
 	private static MindTestQstModel dao = new MindTestQstModel().dao();
@@ -151,6 +152,9 @@ public class QstEntering {
 	
 	@Test
 	public void Tenmus(){
-		System.out.println(MindQst.getValueByKey("10003"));
+//		System.out.println(MindQst.getValueByKey("10003"));
+		System.out.println(NormalUtils.getGeneralDate());
 	}
+	
+
 }

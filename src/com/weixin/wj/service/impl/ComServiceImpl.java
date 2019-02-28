@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.weixin.wj.model.OpinionRecordModel;
 import com.weixin.wj.model.UserCaseModel;
 import com.weixin.wj.model.UserRecordModel;
 import com.weixin.wj.service.bean.ByTheHelperConditionBean;
@@ -129,5 +130,8 @@ public class ComServiceImpl extends WServiceSupport{
 	
 	public List<Record> taskList(){
 		return Db.find("select data_Id value,data_Name name from dict_data where dict_Id = ?",this.dict_Id);
+	}
+	public List<Record> imagesList(String id){
+		return Db.find("select * " + FROM_TABLE(OpinionRecordModel.class)+" Where orName = ?",id);
 	}
 }

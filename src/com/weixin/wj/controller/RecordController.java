@@ -30,6 +30,11 @@ public class RecordController extends WController {
 		String content = getPara("content");
 		String score = getPara("score");
 		String id = getPara("id");
+//		boolean estimateDieDate = recordServiceImpl.estimateDieDate(id);
+//		if(!estimateDieDate){
+//			obtainBooleanMsgResponse(estimateDieDate);
+//			return;
+//		}4008205555
 		boolean finishedTask = recordServiceImpl.finishedTask(score, content, id);
 //		EduplanTaskModel eduplanTaskModel = getBean(EduplanTaskModel.class,"");
 //		eduplanTaskModel.setFinishedDate(new Date().toString());
