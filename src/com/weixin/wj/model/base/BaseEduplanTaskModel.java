@@ -27,6 +27,24 @@ public abstract class BaseEduplanTaskModel<M extends BaseEduplanTaskModel<M>> ex
 		return getStr("name");
 	}
 
+	public M setState(java.lang.String state) {
+		set("state", state);
+		return (M)this;
+	}
+	
+	public java.lang.String getState() {
+		return getStr("state");
+	}
+
+	public M setFinishedDate(java.lang.String finishedDate) {
+		set("finishedDate", finishedDate);
+		return (M)this;
+	}
+	
+	public java.lang.String getFinishedDate() {
+		return getStr("finishedDate");
+	}
+
 	public M setDieDate(java.lang.String dieDate) {
 		set("dieDate", dieDate);
 		return (M)this;
@@ -34,6 +52,15 @@ public abstract class BaseEduplanTaskModel<M extends BaseEduplanTaskModel<M>> ex
 	
 	public java.lang.String getDieDate() {
 		return getStr("dieDate");
+	}
+
+	public M setScore(java.lang.String score) {
+		set("score", score);
+		return (M)this;
+	}
+	
+	public java.lang.String getScore() {
+		return getStr("score");
 	}
 
 	public M setContent(java.lang.String content) {

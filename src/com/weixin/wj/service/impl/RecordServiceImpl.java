@@ -11,6 +11,7 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.Table;
 import com.jfinal.plugin.activerecord.TableMapping;
 import com.weixin.wj.model.CommunityServiceModel;
+import com.weixin.wj.model.EduplanTaskModel;
 import com.weixin.wj.model.FeedbackRecordModel;
 import com.weixin.wj.model.FoulRecordModel;
 import com.weixin.wj.model.InterviewRecordModel;
@@ -116,5 +117,11 @@ public class RecordServiceImpl extends WServiceSupport{
 	}
 
 
+	public boolean finishedTask(String score,String content,String id){
+		 EduplanTaskModel eduplanTaskModel = new EduplanTaskModel();
+		 EduplanTaskModel findById = eduplanTaskModel.findById(id);
+		 findById.setScore(score).setContent(content).setState("2");
+		 return findById.update();
+	}
 	
 }

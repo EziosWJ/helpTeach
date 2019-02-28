@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.service.bean.ByTheHelperConditionBean;
 import com.weixin.wj.service.impl.ComServiceImpl;
 import com.weixin.wj.util.MsgResponse;
@@ -83,5 +84,10 @@ public class ComController extends WController {
 		list.add(jthree);
 		renderJson(MsgResponse.success().put("imgList", list));
 		
+	}
+	
+	public void taskList(){
+		List<Record> taskList = comServiceImpl.taskList();
+		renderJson(taskList);
 	}
 }

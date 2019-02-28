@@ -29,6 +29,8 @@ public class EduplanController extends WController{
 	 */
 	public void putEduplan(){
 //		getParaValues("names[]");
+		System.out.println(getParaValues("epCustom[]"));
+		System.out.println(getPara("epCustom"));
 		EduplanModel eduplanModel = new EduplanModel();
 		eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
 		boolean flag = eduplanServiceImp.putEduplan(eduplanModel);
@@ -50,6 +52,14 @@ public class EduplanController extends WController{
 	public void getEduplanListByUrId(){
 		String urId = getPara("urId");
 		List<?> list = eduplanServiceImp.getEduplanListByUrId(urId);
+		obtainListMsgResponse(list);
+	}
+	/**
+	 * 通过ucId获取帮教计划列表
+	 */
+	public void getEduplanListByUcId(){
+		String ucId = getPara("ucId");
+		List<?> list = eduplanServiceImp.getEduplanListByUcId(ucId);
 		obtainListMsgResponse(list);
 	}
 	
