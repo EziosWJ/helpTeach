@@ -4,7 +4,6 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.druid.DruidPlugin;
 
-import jfinal.config.DevConfig;
 
 public class BeanGenerator {
 
@@ -21,7 +20,7 @@ public class BeanGenerator {
 		String modelOutputDir = baseModelOutputDir + "/..";
 //		String modelOutputDir = baseModelOutputDir ;
 		
-		DruidPlugin druidPlugin = DevConfig.createDataSource();
+		DruidPlugin druidPlugin = null;
 		druidPlugin.start();
 		// 创建生成器
 		Generator generator = new Generator(druidPlugin.getDataSource(), baseModelPackageName, baseModelOutputDir, modelPackageName, modelOutputDir);

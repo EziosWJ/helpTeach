@@ -6,9 +6,11 @@ import java.util.List;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanTaskModel;
+import com.weixin.wj.model.TalkEducationModel;
 import com.weixin.wj.service.bean.ByRecordBean;
 import com.weixin.wj.service.impl.RecordServiceImpl;
 import com.weixin.wj.util.ConfigCacheMap;
@@ -22,6 +24,26 @@ public class RecordController extends WController {
 	
 	public void index(){
 
+	}
+	/**
+	 * 家长留言
+	 */
+	public void putTalk(){
+		TalkEducationModel model = getByBeanIgoneArrayZero(TalkEducationModel.class);
+		boolean save = recordServiceImpl.generateRecordPrimaryKey(model).save();
+		obtainBooleanMsgResponse(save);
+	}
+	
+	public void getTalkList(){
+		String urId = getPara("urId");
+		List<?> talkList = recordServiceImpl.getTalkList(urId );
+		obtainListMsgResponse(talkList);
+		
+	}
+	public void getTalk(){
+		String id = getPara("id");
+		Record recordById = recordServiceImpl.getRecordById(TalkEducationModel.class, id);
+		obtainRecordMsgResponse(recordById);
 	}
 	/**
 	 * 完成任务
