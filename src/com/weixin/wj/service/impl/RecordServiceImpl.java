@@ -18,6 +18,10 @@ import com.weixin.wj.util.NormalUtils;
 
 public class RecordServiceImpl extends WServiceSupport{
 	private static final String FINISHED_STATE = "2";
+	
+	public List<?> getTalkList(String urId){
+		return Db.find("select * "+FROM_TABLE(TalkEducationModel.class)+" where urId = ?",urId);
+	}
 	/**
 	 * 
 	 * @param modelClass
