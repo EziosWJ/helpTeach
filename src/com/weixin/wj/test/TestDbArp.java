@@ -6,7 +6,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.weixin.wj.model._MappingKit;
 
-import jfinal.config.DevConfig;
+import jfinal.config.WeixinConfig;
 
 public class TestDbArp {
 	
@@ -14,7 +14,7 @@ public class TestDbArp {
 		
 	}
 	public static void init() {
-		DruidPlugin druidPlugin = DevConfig.createDataSource();
+		DruidPlugin druidPlugin = WeixinConfig.createDataSource();
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
 		_MappingKit.mapping(arp);
 	    
