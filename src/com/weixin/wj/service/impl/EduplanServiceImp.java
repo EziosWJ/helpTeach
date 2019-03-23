@@ -41,6 +41,14 @@ public class EduplanServiceImp extends WServiceSupport{
 		Db.update("update "+TABLE_NAME(UserRecordModel.class)+" SET "+" urState = ? " + " WHERE urId = ?","1",ep.getUrId() );
 		return ep.save();
 	}
+	/**
+	 * 通过urId获取帮教
+	 * @param urId
+	 * @return
+	 */
+	public Record getEduplanByUrId(String urId){
+		return Db.findFirst("select * from hae_Eduplan_Model where urId = ?",urId);
+	}
 	
 	/**
 	 * 通过urId获取帮教计划表

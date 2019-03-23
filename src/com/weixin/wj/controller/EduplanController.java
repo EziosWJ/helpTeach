@@ -45,7 +45,23 @@ public class EduplanController extends WController{
 		eduplanModel = eduplanServiceImp.getRecordById(EduplanModel.class, idValue);
 		obtainRecordMsgResponse(eduplanModel);
 	}
-	
+	/**
+	 * 通过主键urId查询帮教计划
+	 */
+	public void getEduplanByUrId(){
+		Record eduplanModel = null;
+		String urId = getPara("urId");
+		eduplanModel = eduplanServiceImp.getEduplanByUrId(urId);
+		obtainRecordMsgResponse(eduplanModel);
+	}
+	/**
+	 * 帮教结果
+	 */
+	public void updateEduplan(){
+		EduplanModel eduplanModel = getByBeanIgoneArrayZero(EduplanModel.class);
+		boolean updateRecordCheckPK = eduplanServiceImp.updateRecordCheckPK(eduplanModel);
+		obtainBooleanMsgResponse(updateRecordCheckPK);
+	}
 	/**
 	 * 通过urId获取帮教计划列表
 	 */

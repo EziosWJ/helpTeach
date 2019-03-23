@@ -128,10 +128,76 @@ public class ComServiceImpl extends WServiceSupport{
 		return list;
 	}
 	
+	/**
+	 * 提醒
+	 */
+	private static final String reminderState = "0"; 
+	/**
+	 * 检察官完成提醒
+	 * @param procurator_ucId
+	 * @return
+	 */
+	public List<Record> reminderCompletedToProcurator(String procurator_ucId) {
+		List<Record> reminderList = Db.find("SELECT * from hae_eduplan_task_model et "
+				+ "RIGHT JOIN hae_user_record_model ur ON et.urId = ur.urId "
+				+ "where "
+				+ "ur.urPortraitUrl = ? AND urState > ?"
+				+ "AND finishedDate IS NOT NULL ORDER BY finishedDate DESC",procurator_ucId,reminderState);
+		return reminderList;
+	}
+	/**
+	 * 帮教人完成提醒
+	 * @param helper_ucId
+	 * @return
+	 */
+	public List<Record> reminderCompletedToHelper(String helper_ucId) {
+		List<Record> reminderList = Db.find("SELECT * from hae_eduplan_task_model et "
+				+ "RIGHT JOIN hae_user_record_model ur ON et.urId = ur.urId "
+				+ "where "
+				+ "ur.urRelationId = ? AND urState > ?"
+				+ "AND finishedDate IS NOT NULL ORDER BY finishedDate DESC",helper_ucId,reminderState);
+		return reminderList;
+	}
+	/**
+	 * 检察官未完成提醒
+	 * @param procurator_ucId
+	 * @return
+	 */
+	public List<Record> reminderUnCompletedToProcurator(String procurator_ucId) {
+		List<Record> reminderList = Db.find("SELECT * from hae_eduplan_task_model et "
+				+ "RIGHT JOIN hae_user_record_model ur ON et.urId = ur.urId "
+				+ "where "
+				+ "ur.urPortraitUrl = ? AND urState > ?"
+				+ "AND finishedDate IS NULL AND dieDate < NOW() ORDER BY dieDate DESC",procurator_ucId,reminderState);
+		return reminderList;
+	}
+	/**
+	 * 帮教人未完成提醒
+	 * @param helper_ucId
+	 * @return
+	 */
+	public List<Record> reminderUnCompletedToHelper(String helper_ucId) {
+		List<Record> reminderList = Db.find("SELECT * from hae_eduplan_task_model et "
+				+ "RIGHT JOIN hae_user_record_model ur ON et.urId = ur.urId "
+				+ "where "
+				+ "ur.urRelationId = ? AND urState > ?"
+				+ "AND finishedDate IS NULL AND dieDate < NOW() ORDER BY dieDate DESC",helper_ucId,reminderState);
+		return reminderList;
+	}
+	
+	/**
+	 * 任务下拉框接口
+	 * @return
+	 */
 	public List<Record> taskList(){
 		return Db.find("select data_Id value,data_Name name from dict_data where dict_Id = ?",this.dict_Id);
 
 	}
+	/**
+	 * 图片接口
+	 * @param id
+	 * @return
+	 */
 	public List<Record> imagesList(String id){
 		return Db.find("select * " + FROM_TABLE(OpinionRecordModel.class)+" Where orName = ?",id);
 

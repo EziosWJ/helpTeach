@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
@@ -82,25 +83,30 @@ public class ComController extends WController {
 		}
 	}
 
-	public void getCarouselList(){
-		JSONObject jone = new JSONObject();
-		JSONObject jtwo = new JSONObject();
-		JSONObject jthree = new JSONObject();
-		jone.put("url", "");
-		jone.put("img", "/api/img/20181122225900.jpg");
-		jone.put("title", "标题一");
-		jtwo.put("url", "");
-		jtwo.put("img", "/api/img/20181122225908.jpg");
-		jtwo.put("title", "标题二");
-		jthree.put("url", "");
-		jthree.put("img", "/api/img/20181122225912.jpg");
-		jthree.put("title", "标题三");
-		List<JSONObject> list = new ArrayList<>();
-		list.add(jone);
-		list.add(jtwo);
-		list.add(jthree);
-		renderJson(MsgResponse.success().put("imgList", list));
-		
+	/**
+	 * 提醒
+	 */
+	public void reminderCompleted(){
+		String ucRole = getPara("ucRole");
+		String ucId = getPara("ucId");
+		List<Record> list = new ArrayList<>();
+		if(StringUtils.equals(ucRole, "2")){
+			list = comServiceImpl.reminderCompletedToProcurator(ucId);
+		}else if (StringUtils.equals(ucRole, "3")) {
+			list = comServiceImpl.reminderCompletedToHelper(ucId);
+		}
+		obtainListMsgResponse(list);
+	}
+	public void reminderUnCompleted(){
+		String ucRole = getPara("ucRole");
+		String ucId = getPara("ucId");
+		List<Record> list = new ArrayList<>();
+		if(StringUtils.equals(ucRole, "2")){
+			list = comServiceImpl.reminderUnCompletedToProcurator(ucId);
+		}else if (StringUtils.equals(ucRole, "3")) {
+			list = comServiceImpl.reminderUnCompletedToHelper(ucId);
+		}
+		obtainListMsgResponse(list);
 	}
 	
 	public void taskList(){
@@ -123,6 +129,26 @@ public class ComController extends WController {
 		OpinionRecordModel opinionRecordModel = new OpinionRecordModel();
 		opinionRecordModel.setOrName(id).setOrCustom("/api/upload/"+file2.getFileName());
 		comServiceImpl.generateRecordPrimaryKey(opinionRecordModel).save();
-		renderText(file2.getFileName());
+		renderJson(opinionRecordModel);
+	}
+	public void getCarouselList(){
+		JSONObject jone = new JSONObject();
+		JSONObject jtwo = new JSONObject();
+		JSONObject jthree = new JSONObject();
+		jone.put("url", "");
+		jone.put("img", "/api/img/20181122225900.jpg");
+		jone.put("title", "标题一");
+		jtwo.put("url", "");
+		jtwo.put("img", "/api/img/20181122225908.jpg");
+		jtwo.put("title", "标题二");
+		jthree.put("url", "");
+		jthree.put("img", "/api/img/20181122225912.jpg");
+		jthree.put("title", "标题三");
+		List<JSONObject> list = new ArrayList<>();
+		list.add(jone);
+		list.add(jtwo);
+		list.add(jthree);
+		renderJson(MsgResponse.success().put("imgList", list));
+		
 	}
 }
