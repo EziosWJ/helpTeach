@@ -9,7 +9,7 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings({"serial", "unchecked"})
 public abstract class BaseRewardPunishModel<M extends BaseRewardPunishModel<M>> extends Model<M> implements IBean {
 
-	public M setRpId(java.lang.Integer rpId) {
+	public M setRpId(java.lang.String rpId) {
 		set("rpId", rpId);
 		return (M)this;
 	}

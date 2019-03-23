@@ -5,6 +5,7 @@ import java.util.List;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanModel;
+import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.RewardPunishModel;
 import com.weixin.wj.service.impl.EduplanServiceImp;
 import com.weixin.wj.util.MsgResponse;
@@ -96,7 +97,31 @@ public class EduplanController extends WController{
 		boolean flag = eduplanServiceImp.putRewardPunish(rewardPunishModel);
 		obtainBooleanMsgResponse(flag);
 	}
-	
+	/**
+	 * 保存回访教育
+	 */
+	public void putInterview(){
+		InterviewRecordModel recordModel=new InterviewRecordModel();
+		recordModel = getByBeanIgoneArrayZero(InterviewRecordModel.class);
+		boolean flag = eduplanServiceImp.putInterview(recordModel);
+		obtainBooleanMsgResponse(flag);
+	}
+	/**
+	 * 获取回访教育列表
+	 */
+	public void getInterviewList() {
+		String urId = getPara("urId");
+		List<?> list = eduplanServiceImp.getInterviewList(urId);
+		obtainListMsgResponse(list);
+	}
+	/**
+	 * 获取奖惩列表
+	 */
+	public void getRewordList() {
+		String urId = getPara("urId");
+		List<?> list = eduplanServiceImp.getRewordList(urId);
+		obtainListMsgResponse(list);
+	}
 	public void getRewardPunishList() {
 		renderJson(MsgResponse.success().put("rewardPunishList", eduplanServiceImp.getRewardPunishList()));
 	}

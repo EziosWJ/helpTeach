@@ -10,6 +10,7 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.weixin.wj.model.EduplanModel;
 import com.weixin.wj.model.EduplanTaskModel;
+import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.RewardPunishModel;
 import com.weixin.wj.model.UserRecordModel;
 
@@ -75,11 +76,26 @@ public class EduplanServiceImp extends WServiceSupport{
 	 * @return
 	 */
 	public boolean putRewardPunish(RewardPunishModel rewardPunishModel) {
-		return rewardPunishModel.save();
+		return generateRecordPrimaryKey(rewardPunishModel).save();
 	}
 	
 	public List<?> getRewardPunishList(){
 		return Db.find("select * from hae_reward_punish_model");
+	}
+
+	public boolean putInterview(InterviewRecordModel recordModel) {
+		// TODO Auto-generated method stub
+		return generateRecordPrimaryKey(recordModel).save();
+	}
+
+	public List<?> getInterviewList(String urId) {
+		// TODO Auto-generated method stub
+		return Db.find("select * "+FROM_TABLE(InterviewRecordModel.class)+" where irReciver = ? ORDER BY irCreateDate desc", urId);
+	}
+
+	public List<?> getRewordList(String urId) {
+		// TODO Auto-generated method stub
+		return Db.find("select * "+FROM_TABLE(RewardPunishModel.class)+" where rpReciver = ? ORDER BY rpCreateDate desc", urId);
 	}
 	
 }
