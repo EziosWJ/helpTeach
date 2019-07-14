@@ -5,6 +5,7 @@ import java.util.List;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Record;
 import com.weixin.wj.model.EduplanModel;
+import com.weixin.wj.model.EduplanTaskModel;
 import com.weixin.wj.model.InterviewRecordModel;
 import com.weixin.wj.model.RewardPunishModel;
 import com.weixin.wj.service.impl.EduplanServiceImp;
@@ -86,6 +87,23 @@ public class EduplanController extends WController{
 	public void getEduplanTaskList(){
 		List<?> list = eduplanServiceImp.getEduplanTaskList();
 		obtainListMsgResponse(list);
+	}
+	/**
+	 * 单个任务删除
+	 */
+	public void delEduplanTaskById() {
+		String para = getPara("id");
+		EduplanTaskModel taskModel = getBean(EduplanTaskModel.class,"",true);
+		boolean deleteRecord = eduplanServiceImp.deleteRecord(taskModel);
+		obtainBooleanMsgResponse(deleteRecord);
+	}
+	/**
+	 * 重置帮教计划
+	 */
+	public void redoEduplanTask() {
+		String urId = getPara("urId");
+		eduplanServiceImp.redoEduplanTask(urId);
+		renderJson(MsgResponse.success());
 	}
 	
 	/**

@@ -42,6 +42,16 @@ public class EduplanServiceImp extends WServiceSupport{
 		Db.update("update "+TABLE_NAME(UserRecordModel.class)+" SET "+" urState = ? " + " WHERE urId = ?","1",ep.getUrId() );
 		return ep.save();
 	}
+	
+	@Before(Tx.class)
+	public int redoEduplanTask(String urId) {
+		int delete = Db.delete("delete from " + TABLE_NAME(EduplanModel.class)+ " where urId = ?", urId);
+		int delete2 = Db.delete("delete from " + TABLE_NAME(EduplanTaskModel.class)+ " where urId = ?", urId);
+		if(delete==0) {
+			throw new RuntimeException("a");
+		}
+		return Db.update("update "+TABLE_NAME(UserRecordModel.class)+" SET "+" urState = ? " + " WHERE urId = ?","0",urId );
+	}
 	/**
 	 * 通过urId获取帮教
 	 * @param urId
